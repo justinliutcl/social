@@ -11,8 +11,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitManager {
 
-    private static String SOUND_CLOUD_KEY_DEFAULT = "WKcQQdEZw7Oi01KqtHWxeVSxNyRzgT8M";
-    private static String SOUND_CLOUD_BASE_URL = "https://api.soundcloud.com/";
+    private static String SOUND_CLOUD_BASE_URL = "http://39.107.72.34:8080/app-api/";
 
     public static Retrofit getSoundCloudRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -21,7 +20,7 @@ public class RetrofitManager {
             public Response intercept(Chain chain) throws IOException {
                 Request origin = chain.request();
                 HttpUrl url = origin.url().newBuilder().
-                        addQueryParameter("client_id", SOUND_CLOUD_KEY_DEFAULT).build();
+                        build();
                 return chain.proceed(origin.newBuilder().url(url).build());
             }
         });
@@ -31,8 +30,5 @@ public class RetrofitManager {
                 .client(builder.build())
                 .build();
     }
-
-}
-
 
 }

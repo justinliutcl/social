@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.justin.social.model.loginMode.RegistModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/login_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_login_title">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/backview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:onClick="onBackClick"
+                android:paddingLeft="18dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/phone_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_below="@+id/login_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/back_login_edit"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/icon_login_phone" />
+
+            <EditText
+                android:id="@+id/phone_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/white"
+                android:hint="@string/regist_hint_phone"
+                android:lines="1"
+                android:textColor="@color/base_black1"
+                android:textColorHint="@color/base_black1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/password_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_ll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:background="@drawable/back_login_edit"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/icon_password" />
+
+                <EditText
+                    android:id="@+id/password_ed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/white"
+                    android:hint="@string/regist_hint_password"
+                    android:lines="1"
+                    android:textColor="@color/base_black1"
+                    android:textColorHint="@color/base_black1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/send_tv"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:onClick="@{model.onSendClick}"
+                android:padding="10dp"
+                app:loginBack="@{model.sendBackId}"
+                android:text="@{model.timeObservable}"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/code_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password_ll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/back_login_edit"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/icon_password" />
+
+            <EditText
+                android:id="@+id/code_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/white"
+                android:hint="@string/regist_hint_password"
+                android:lines="1"
+                android:textColor="@color/base_black1"
+                android:textColorHint="@color/base_black1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/register_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/code_ll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:onClick="@{model.onRegistClick}"
+            android:text="@string/regist_hint_regist"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:loginBack="@{model.loginBackId}" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="点击注册代表您已同意？"
+                android:textColor="@color/base_black3"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:onClick="@{model.onRegistClick}"
+                android:text="《社保服务协议》"
+                android:textColor="@color/base_green2"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
+

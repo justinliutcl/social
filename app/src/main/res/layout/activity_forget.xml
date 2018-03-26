@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.justin.social.model.loginMode.ForgetModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/login_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_login_title">
+
+        </RelativeLayout>
+        <EditText
+            android:id="@+id/phone_ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="141dp"
+            android:hint="@string/regist_hint_phone" />
+
+        <EditText
+            android:id="@+id/password_ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_ed"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:hint="@string/regist_hint_password" />
+
+        <EditText
+            android:id="@+id/code_ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password_ed"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:hint="@string/regist_hint_code" />
+
+        <TextView
+            android:id="@+id/register_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="118dp"
+            android:onClick="@{model.onRegistClick}"
+            android:padding="20dp"
+            android:text="@string/regist_hint_regist" />
+
+        <TextView
+            android:id="@+id/send_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/code_ed"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/register_tv"
+            android:layout_toRightOf="@+id/register_tv"
+            android:onClick="@{model.onSendClick}"
+            android:padding="20dp"
+            android:text="@{model.timeObservable}" />
+
+    </RelativeLayout>
+</layout>
+

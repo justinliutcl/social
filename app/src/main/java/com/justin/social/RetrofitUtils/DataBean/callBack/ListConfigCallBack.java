@@ -1,4 +1,4 @@
-package com.justin.social.RetrofitUtils.DataBean;
+package com.justin.social.RetrofitUtils.DataBean.callBack;
 
 import java.util.List;
 
@@ -6,6 +6,6 @@ import java.util.List;
  * Created by Justinliu on 2018/1/29.
  */
 
-public interface SoundConfigCallBack<T> {
+public interface ListConfigCallBack<T> {
     void onDataResponse(List<T> list);
 }

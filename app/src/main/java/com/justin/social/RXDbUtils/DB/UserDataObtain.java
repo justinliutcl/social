@@ -3,10 +3,11 @@ package com.justin.social.RXDbUtils.DB;
 import android.content.Context;
 import android.util.ArrayMap;
 
+import com.justin.social.RXDbUtils.DBbean.DbUser;
+import com.justin.social.RXDbUtils.DBbean.IDataObtain;
+
 import java.util.List;
 
-import RXDbUtils.DBbean.DbUser;
-import RXDbUtils.DBbean.IDataObtain;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
