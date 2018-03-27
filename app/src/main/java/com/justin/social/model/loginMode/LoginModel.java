@@ -36,12 +36,12 @@ public class LoginModel extends BaseModel {
     public void onForgetClick(View view){
         Intent intent = new Intent(mContext, ForgetActivity.class);
         mContext.startActivity(intent);
-        AppUtils.getAppUtilsInstance().addActivity((Activity)mContext);
+//        AppUtils.getAppUtilsInstance().addActivity((Activity)mContext);
     }
 
     public void onRegistClick(View view){
         Intent intent = new Intent(mContext, RegistActivity.class);
         mContext.startActivity(intent);
-        AppUtils.getAppUtilsInstance().addActivity((Activity)mContext);
+//        AppUtils.getAppUtilsInstance().addActivity((Activity)mContext);
     }
 }

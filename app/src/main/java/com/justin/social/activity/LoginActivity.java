@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 
+import com.justin.social.MainActivity;
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
+import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
+import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.databinding.ActivityLoginBinding;
 import com.justin.social.model.loginMode.LoginModel;
+import com.justin.social.utils.ConfigUtils;
 
 /**
  * Created by ASUS on 2018/3/25.
@@ -25,18 +31,22 @@ public class LoginActivity extends BackActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        model = new LoginModel(this);
         binding.loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new HttpConfigManager().loginConfig(binding.phoneEd.getText().toString(), binding.passwordEd.getText().toString(), new BeanConfigCallBack<BaseConfig>() {
+                new HttpConfigManager().loginConfig(binding.phoneEd.getText().toString(), binding.passwordEd.getText().toString(), new BeanConfigCallBack<LoginConfig>() {
                     @Override
-                    public void onDataResponse(BaseConfig bean) {
-                        toastShow(bean.getMsg());
+                    public void onDataResponse(LoginConfig bean) {
+                        if(ConfigUtils.isSuccess(bean)){
+                            MainActivity.JumpTMain(LoginActivity.this);
+                        }else {
+                            toastShow(bean.getMsg());
+                        }
                     }
                 });
             }
         });
-        model = new LoginModel(this);
         binding.phoneEd.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

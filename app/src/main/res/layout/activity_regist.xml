@@ -47,7 +47,7 @@
 
         <LinearLayout
             android:id="@+id/phone_ll"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_below="@+id/login_title"
             android:layout_centerHorizontal="true"
@@ -80,7 +80,7 @@
 
         <LinearLayout
             android:id="@+id/password_ll"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/phone_ll"
             android:layout_centerHorizontal="true"
@@ -90,21 +90,24 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <LinearLayout
-
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
-                android:background="@drawable/back_login_edit"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/back_edit"
+                    />
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/icon_password" />
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_sms_code" />
 
                 <EditText
                     android:id="@+id/password_ed"
@@ -113,18 +116,20 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="20dp"
                     android:background="@color/white"
-                    android:hint="@string/regist_hint_password"
+                    android:layout_toRightOf="@+id/image"
+                    android:layout_centerVertical="true"
+                    android:hint="@string/regist_hint_code"
                     android:lines="1"
                     android:textColor="@color/base_black1"
                     android:textColorHint="@color/base_black1"
                     android:textSize="14sp" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/send_tv"
                 android:layout_width="110dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
@@ -137,7 +142,7 @@
 
         <LinearLayout
             android:id="@+id/code_ll"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/password_ll"
             android:layout_centerHorizontal="true"

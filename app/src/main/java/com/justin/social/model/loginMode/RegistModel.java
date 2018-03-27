@@ -1,16 +1,20 @@
 package com.justin.social.model.loginMode;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableInt;
 import android.view.View;
 import android.widget.EditText;
 
+import com.justin.social.MainActivity;
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.LoginActivity;
 import com.justin.social.model.base.SmsModel;
+import com.justin.social.utils.ConfigUtils;
 
 /**
  * Created by ASUS on 2018/3/25.
@@ -47,8 +51,12 @@ public class RegistModel extends SmsModel {
         super.onSubmitSuccess();
         new HttpConfigManager().registerConfig( getPhoneNum(), codeEditText.getText().toString(), new BeanConfigCallBack<BaseConfig>() {
             @Override
-            public void onDataResponse(BaseConfig list) {
-                toastShow(list.getMsg());
+            public void onDataResponse(BaseConfig bean) {
+                if(ConfigUtils.isSuccess(bean)){
+                    ((Activity)mContext).finish();
+                }else {
+                    toastShow(bean.getMsg());
+                }
             }
         });
     }

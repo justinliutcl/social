@@ -1,8 +1,11 @@
 package com.justin.social;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import com.justin.social.fragment.FourFragment;
 import com.justin.social.fragment.OneFragment;
 import com.justin.social.fragment.ThreeFragment;
 import com.justin.social.fragment.TwoFragment;
+import com.justin.social.utils.AppUtils;
 
 import java.util.ArrayList;
 
@@ -110,6 +114,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public static void JumpTMain(Activity activity){
+//        AppUtils.getAppUtilsInstance().finish();
+        Intent intent = new Intent(activity,MainActivity.class);
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
 }
 
-        }
