@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.justin.social.fragment.FiveFragment;
 import com.justin.social.fragment.FourFragment;
@@ -15,7 +16,7 @@ import com.justin.social.fragment.TwoFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FragmentManager mFm;
     private ArrayList<Fragment> mFragmentList = new ArrayList<Fragment>();
     private String[] mFragmentTagList = {"OneFragment", "TwoFragment", "ThreeFragment", "fourFragment", "fiveFragment"};
@@ -60,14 +61,45 @@ public class MainActivity extends AppCompatActivity {
         updateFragment(outState);
     }
 
-     private void updateFragment(Bundle outState) {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tab_one:
+                switchFragment(mFragmentList.get(0), mFragmentTagList[0]);
+                break;
+//            case R.id.ib_two:
+//                switchFragment(mFragmentList.get(1), mFragmentTagList[1]);
+//                break;
+//            case R.id.ib_three:
+//                switchFragment(mFragmentList.get(2), mFragmentTagList[2]);
+//                break;
+        }
+    }
+
+    // 转换Fragment
+    void switchFragment(Fragment to, String tag) {
+        if (mCurrentFragmen != to) {
+            FragmentTransaction transaction = mFm.beginTransaction();
+            if (!to.isAdded()) {
+                // 没有添加过:     // 隐藏当前的，添加新的，显示新的
+                transaction.hide(mCurrentFragmen).add(R.id.content, to, tag).show(to);
+            } else {
+                // 隐藏当前的，显示新的
+                transaction.hide(mCurrentFragmen).show(to);
+            }
+            mCurrentFragmen = to;
+            transaction.commitAllowingStateLoss();
+        }
+    }
+
+    private void updateFragment(Bundle outState) {
         mFm = getFragmentManager();
-        if(outState == null){
+        if (outState == null) {
             FragmentTransaction transaction = mFm.beginTransaction();
             OneFragment oneFragment = new OneFragment();
             mCurrentFragmen = oneFragment;
             transaction.add(R.id.content, oneFragment, mFragmentTagList[0]).commitAllowingStateLoss();
-        }else{
+        } else {
             // 通过tag找到fragment并重置
             OneFragment oneFragment = (OneFragment) mFm.findFragmentByTag(mFragmentTagList[0]);
             TwoFragment twoFragment = (TwoFragment) mFm.findFragmentByTag(mFragmentTagList[1]);
@@ -79,3 +111,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+        }
