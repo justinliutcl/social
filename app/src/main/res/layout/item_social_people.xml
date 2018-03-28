@@ -11,20 +11,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:src="@drawable/icon_password" />
+            android:text="最新"
+            android:textSize="13sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="4dp"
+            android:textColor="@color/short_news_title"
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
+            android:paddingRight="13dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:text="@{model.socialTitle}"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
     </LinearLayout>
 </layout>
 

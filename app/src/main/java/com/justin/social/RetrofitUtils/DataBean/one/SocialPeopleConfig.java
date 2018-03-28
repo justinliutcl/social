@@ -9,11 +9,20 @@ import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
  */
 
 public class SocialPeopleConfig extends BaseConfig {
-    public String title;
+    public String content;
 
-    public SocialPeopleConfig(String title) {
-        this.title = title;
-        socialTitle = new ObservableField<>(title);
+    public SocialPeopleConfig(String content) {
+        this.content = content;
+        socialTitle = new ObservableField<>(content);
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+        socialTitle.set(content);
     }
 
     public SocialPeopleConfig() {

@@ -30,6 +30,7 @@ public class OneFragment extends Fragment {
     private void initView() {
         model = new OneModel(getActivity());
         model.init(mBinding);
+        model.getShortNewsList();
         mBinding.setModel(model);
     }
 }
