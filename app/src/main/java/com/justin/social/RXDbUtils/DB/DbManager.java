@@ -50,18 +50,43 @@ public class DbManager extends SQLiteOpenHelper {
         mContext = c;
     }
 
-    private static final String TBL_USER_TABLE_NAME = "_user";
-    private static final String TBL_USER_COLUMN_ID = "_id";
-    private static final String TBL_USER_COLUMN_NAME = "_name";
-    private static final String TBL_USER_COLUMN_DESC = "_description";
+    private static final String TBL_USER_TABLE_NAME             = "_user";
+    private static final String TBL_USER_COLUMN_ID              = "_id";
+    private static final String TBL_USER_COLUMN_USER_ID         = "userId";
+    private static final String TBL_USER_COLUMN_USER_NAME       = "userName";
+    private static final String TBL_USER_COLUMN_PHONE           = "phone";
+    private static final String TBL_USER_COLUMN_NIKE_NAME       = "nikeName";
+    private static final String TBL_USER_COLUMN_HEADIMAGE       = "headImg";
+    private static final String TBL_USER_COLUMN_EMAIL           = "email;";
+    private static final String TBL_USER_COLUMN_IDCARD          = "idCard;";
+    private static final String TBL_USER_COLUMN_INSUREDCITY     = "insuredCity;";
+    private static final String TBL_USER_COLUMN_HOUSEHOLD_TYPE  = "householdType;";
+    private static final String TBL_USER_COLUMN_BANKNAME        = "bankName;";
+    private static final String TBL_USER_COLUMN_BRANCH_NAME     = "branchName;";
+    private static final String TBL_USER_COLUMN_BRANCH_NUM      = "branchNum;";
+    private static final String TBL_USER_COLUMN_TOKEN           = "token;";
+    private static final String TBL_USER_COLUMN_PASSWORD        = "passWord;";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String tblPlaylistCreateSql = formatInUkFormat("CREATE TABLE %1$s (%2$s INTEGER PRIMARY KEY AUTOINCREMENT, %3$s TEXT, %4$s TEXT);",
-                TBL_USER_TABLE_NAME,
-                TBL_USER_COLUMN_ID,
-                TBL_USER_COLUMN_NAME,
-                TBL_USER_COLUMN_DESC
+        String tblPlaylistCreateSql = formatInUkFormat("CREATE TABLE %1$s (%2$s INTEGER PRIMARY KEY AUTOINCREMENT, %3$s TEXT, %4$s TEXT, %5$s TEXT" +
+                        ", %6$s TEXT, %7$s TEXT, %8$s TEXT, %9$s TEXT, %10$s TEXT, %11$s TEXT, %12$s TEXT, %13$s TEXT, %14$s TEXT, %15$s TEXT, %16$s TEXT);",
+                TBL_USER_TABLE_NAME,                //1
+                TBL_USER_COLUMN_ID,                 //2
+                TBL_USER_COLUMN_USER_ID,            //3
+                TBL_USER_COLUMN_USER_NAME,          //4
+                TBL_USER_COLUMN_PHONE,              //5
+                TBL_USER_COLUMN_NIKE_NAME,          //6
+                TBL_USER_COLUMN_HEADIMAGE,          //7
+                TBL_USER_COLUMN_EMAIL,              //8
+                TBL_USER_COLUMN_IDCARD,             //9
+                TBL_USER_COLUMN_INSUREDCITY,        //10
+                TBL_USER_COLUMN_HOUSEHOLD_TYPE,     //11
+                TBL_USER_COLUMN_BANKNAME,           //12
+                TBL_USER_COLUMN_BRANCH_NAME,        //13
+                TBL_USER_COLUMN_BRANCH_NUM,         //14
+                TBL_USER_COLUMN_TOKEN,              //15
+                TBL_USER_COLUMN_PASSWORD            //16
         );
         db.execSQL(tblPlaylistCreateSql);
     }
@@ -73,10 +98,22 @@ public class DbManager extends SQLiteOpenHelper {
 
     private @NonNull
     DbUser getMusicByCursor(Cursor c) {
-        int id = c.getInt(c.getColumnIndex(TBL_USER_COLUMN_ID));
-        String name = c.getString(c.getColumnIndex(TBL_USER_COLUMN_NAME));
-        String des = c.getString(c.getColumnIndex(TBL_USER_COLUMN_DESC));
-        return new DbUser(id, name, des);
+        int    id               = c.getInt   (c.getColumnIndex(TBL_USER_COLUMN_ID));
+        String userId           = c.getString(c.getColumnIndex(TBL_USER_COLUMN_USER_ID));
+        String userName         = c.getString(c.getColumnIndex(TBL_USER_COLUMN_USER_NAME));
+        String phone            = c.getString(c.getColumnIndex(TBL_USER_COLUMN_PHONE));
+        String nikeName         = c.getString(c.getColumnIndex(TBL_USER_COLUMN_NIKE_NAME));
+        String headImg          = c.getString(c.getColumnIndex(TBL_USER_COLUMN_HEADIMAGE));
+        String email            = c.getString(c.getColumnIndex(TBL_USER_COLUMN_EMAIL));
+        String idCard           = c.getString(c.getColumnIndex(TBL_USER_COLUMN_IDCARD));
+        String insuredCity      = c.getString(c.getColumnIndex(TBL_USER_COLUMN_INSUREDCITY));
+        String householdType    = c.getString(c.getColumnIndex(TBL_USER_COLUMN_HOUSEHOLD_TYPE));
+        String bankName         = c.getString(c.getColumnIndex(TBL_USER_COLUMN_BANKNAME));
+        String branchName       = c.getString(c.getColumnIndex(TBL_USER_COLUMN_BRANCH_NAME));
+        String branchNum        = c.getString(c.getColumnIndex(TBL_USER_COLUMN_BRANCH_NUM));
+        String token            = c.getString(c.getColumnIndex(TBL_USER_COLUMN_TOKEN));
+        String passWord         = c.getString(c.getColumnIndex(TBL_USER_COLUMN_PASSWORD));
+        return new DbUser(id,userId,userName,phone,nikeName,headImg,email,idCard,insuredCity,householdType,bankName,branchName,branchNum,token,passWord);
     }
 
     public DbUser getUser(int userId) {
@@ -99,9 +136,21 @@ public class DbManager extends SQLiteOpenHelper {
 
     private boolean addUser(@NonNull SQLiteDatabase db, @NonNull DbUser user) {
         ContentValues cv = new ContentValues();
-        cv.put(TBL_USER_COLUMN_ID, user.id);
-        cv.put(TBL_USER_COLUMN_NAME, user.name);
-        cv.put(TBL_USER_COLUMN_DESC, user.des);
+        cv.put(TBL_USER_COLUMN_ID ,             user.id           );
+        cv.put(TBL_USER_COLUMN_USER_ID,         user.userId       );
+        cv.put(TBL_USER_COLUMN_USER_NAME,       user.userName     );
+        cv.put(TBL_USER_COLUMN_PHONE,           user.phone        );
+        cv.put(TBL_USER_COLUMN_NIKE_NAME,       user.nikeName     );
+        cv.put(TBL_USER_COLUMN_HEADIMAGE,       user.headImg      );
+        cv.put(TBL_USER_COLUMN_EMAIL,           user.email        );
+        cv.put(TBL_USER_COLUMN_IDCARD,          user.idCard       );
+        cv.put(TBL_USER_COLUMN_INSUREDCITY,     user.insuredCity  );
+        cv.put(TBL_USER_COLUMN_HOUSEHOLD_TYPE,  user.householdType);
+        cv.put(TBL_USER_COLUMN_BANKNAME,        user.bankName     );
+        cv.put(TBL_USER_COLUMN_BRANCH_NAME,     user.branchName   );
+        cv.put(TBL_USER_COLUMN_BRANCH_NUM,      user.branchNum    );
+        cv.put(TBL_USER_COLUMN_TOKEN,           user.token        );
+        cv.put(TBL_USER_COLUMN_PASSWORD,        user.passWord     );
         long insertResult = db.insertWithOnConflict(TBL_USER_TABLE_NAME, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
         return (insertResult != -1);
     }

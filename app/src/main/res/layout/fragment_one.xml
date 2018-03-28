@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="model"
+            type="com.justin.social.model.one.OneModel"/>
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ViewFlipper
+            android:id="@+id/marquee_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoStart="true"
+            android:background="#fff"
+            android:flipInterval="2500"
+            android:inAnimation="@anim/social_people_in"
+            android:outAnimation="@anim/social_people_out"/>
+
+    </RelativeLayout>
+</layout>
