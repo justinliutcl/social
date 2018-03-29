@@ -17,6 +17,7 @@ import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.databinding.ActivityLoginBinding;
 import com.justin.social.model.loginMode.LoginModel;
 import com.justin.social.utils.ConfigUtils;
@@ -42,6 +43,7 @@ public class LoginActivity extends BackActivity {
                         if(ConfigUtils.isSuccess(bean)){
                             MainActivity.JumpTMain(LoginActivity.this);
                             UserDataObtain.getInstance(LoginActivity.this).updataUser(bean.getData().changeToDbUser(),null);
+                            CommonSettingValue.getIns(LoginActivity.this).setCurrentPhone(bean.getData().getPhone());
                         }else {
                             toastShow(bean.getMsg());
                         }

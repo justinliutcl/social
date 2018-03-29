@@ -16,25 +16,17 @@ public class CommonSettingValue extends GlobPre {
         }
         return commonValue;
     }
-    private static final String KEY_SOUND_CLOUD_ENABLE  = "key_sound_cloud_enable";
-    private static final String KEY_MUSIC_UPDATE        = "key_music_update";
+    private static final String KEY_CURRENT_PHONE           = "key_current_phone";
     protected CommonSettingValue(Context context) {
         super(context);
     }
 
-    public void setSoundCloudEnable(boolean enable) {
-        putBoolean(KEY_SOUND_CLOUD_ENABLE, enable);
+
+    public void setCurrentPhone(String phone){
+        putString(KEY_CURRENT_PHONE, phone);
     }
 
-    public boolean isSoundClodEnable() {
-        return getBoolean(KEY_SOUND_CLOUD_ENABLE, false);
-    }
-
-    public void setMusicUpdate(boolean enable) {
-        putBoolean(KEY_MUSIC_UPDATE, enable);
-    }
-
-    public boolean isMusicUpdate() {
-        return getBoolean(KEY_MUSIC_UPDATE, false);
+    public String getCurrentPhone(){
+        return getString(KEY_CURRENT_PHONE, null);
     }
 }
