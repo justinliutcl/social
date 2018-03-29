@@ -5,6 +5,7 @@ import android.util.ArrayMap;
 
 import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
+import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class UserDataObtain {
             public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
                 if (dbManager == null)
                     init();
-                DbUser musics = dbManager.getUser(id);
-                e.onNext(musics);
+                DbUser dbUser = dbManager.getUser(id);
+                e.onNext(dbUser);
                 e.onComplete();
             }
         };
@@ -63,6 +64,27 @@ public class UserDataObtain {
         Observer<DbUser> obs = createObserver(callback);
         execute(ob, obs);
     }
+
+    public void updataUser(final DbUser user, IDataObtain.IDBResCallback<DbUser> callback){
+        ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
+                if (dbManager == null)
+                    init();
+                DbUser dbUser = dbManager.getUserFromIdCard(user.idCard);
+                if(dbUser == null)
+                    dbManager.addUser(user);
+                else
+                    dbManager.updateUser(user);
+                e.onNext(user);
+                e.onComplete();
+            }
+        };
+
+        Observer<DbUser> obs = createObserver(callback);
+        execute(ob, obs);
+    }
+
 
     protected <T> Observer<T> createObserver(IDataObtain.IDBResCallback<T> cb) {
         final int key;

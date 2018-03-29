@@ -3,14 +3,12 @@ package com.justin.social.RXDbUtils.DB;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
 import com.justin.social.RXDbUtils.DBbean.DbUser;
 
-import java.io.File;
 import java.util.Locale;
 
 
@@ -97,7 +95,7 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     private @NonNull
-    DbUser getMusicByCursor(Cursor c) {
+    DbUser getUserByCursor(Cursor c) {
         int    id               = c.getInt   (c.getColumnIndex(TBL_USER_COLUMN_ID));
         String userId           = c.getString(c.getColumnIndex(TBL_USER_COLUMN_USER_ID));
         String userName         = c.getString(c.getColumnIndex(TBL_USER_COLUMN_USER_NAME));
@@ -125,7 +123,7 @@ public class DbManager extends SQLiteOpenHelper {
             if (null == c || !c.moveToFirst()) {
                 return ret;
             }
-            ret = getMusicByCursor(c);
+            ret = getUserByCursor(c);
             return ret;
         } finally {
             if (null != c) {
@@ -134,9 +132,58 @@ public class DbManager extends SQLiteOpenHelper {
         }
     }
 
+    public DbUser getUserFromIdCard(String idCard) {
+        getDb();
+        DbUser ret = null;
+        Cursor c = null;
+        try {
+            c = mDb.query(TBL_USER_TABLE_NAME, null, TBL_USER_COLUMN_IDCARD + " = " + idCard + "", null, null, null, null, null);
+            if (null == c || !c.moveToFirst()) {
+                return ret;
+            }
+            ret = getUserByCursor(c);
+            return ret;
+        } finally {
+            if (null != c) {
+                c.close();
+            }
+        }
+    }
+
+    public void addUser(@NonNull DbUser user){
+        getDb();
+        addUser(mDb,user);
+    }
+
+
+
+    public DbUser updateUser(DbUser user) {
+        getDb();
+        ContentValues cv = new ContentValues();
+        cv.put(TBL_USER_COLUMN_USER_NAME,       user.userName     );
+        cv.put(TBL_USER_COLUMN_PHONE,           user.phone        );
+        cv.put(TBL_USER_COLUMN_NIKE_NAME,       user.nikeName     );
+        cv.put(TBL_USER_COLUMN_HEADIMAGE,       user.headImg      );
+        cv.put(TBL_USER_COLUMN_EMAIL,           user.email        );
+        cv.put(TBL_USER_COLUMN_INSUREDCITY,     user.insuredCity  );
+        cv.put(TBL_USER_COLUMN_HOUSEHOLD_TYPE,  user.householdType);
+        cv.put(TBL_USER_COLUMN_BANKNAME,        user.bankName     );
+        cv.put(TBL_USER_COLUMN_BRANCH_NAME,     user.branchName   );
+        cv.put(TBL_USER_COLUMN_BRANCH_NUM,      user.branchNum    );
+        cv.put(TBL_USER_COLUMN_TOKEN,           user.token        );
+        cv.put(TBL_USER_COLUMN_PASSWORD,        user.passWord     );
+        int updated = mDb.update(TBL_USER_TABLE_NAME, cv,
+                formatInUkFormat("%1$s=?", TBL_USER_COLUMN_IDCARD),
+                new String[]{"" + user.idCard});
+        if (updated == 1) {
+            return getUserFromIdCard(user.idCard);
+        } else {
+            return null;
+        }
+    }
+
     private boolean addUser(@NonNull SQLiteDatabase db, @NonNull DbUser user) {
         ContentValues cv = new ContentValues();
-        cv.put(TBL_USER_COLUMN_ID ,             user.id           );
         cv.put(TBL_USER_COLUMN_USER_ID,         user.userId       );
         cv.put(TBL_USER_COLUMN_USER_NAME,       user.userName     );
         cv.put(TBL_USER_COLUMN_PHONE,           user.phone        );

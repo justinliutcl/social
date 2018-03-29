@@ -1,5 +1,7 @@
 package com.justin.social.RetrofitUtils.DataBean;
 
+import com.justin.social.RXDbUtils.DBbean.DbUser;
+
 /**
  * Created by Justinliu on 2018/1/29.
  */
@@ -130,5 +132,24 @@ public class UserConfig {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+
+
+    public DbUser changeToDbUser(){
+        return new DbUser(0,userId,
+        userName,
+        phone,
+        nikeName,
+        headImg,
+        email,
+        idCard,
+        insuredCity,
+        householdType,
+        bankName,
+        branchName,
+        branchNum,
+        token,
+        passWord);
     }
 }

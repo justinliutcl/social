@@ -5,17 +5,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.widget.ViewFlipper;
 
-import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
-import com.justin.social.databinding.ItemSocialPeopleBinding;
 import com.justin.social.fragment.FiveFragment;
 import com.justin.social.fragment.FourFragment;
 import com.justin.social.fragment.OneFragment;
@@ -23,7 +17,6 @@ import com.justin.social.fragment.ThreeFragment;
 import com.justin.social.fragment.TwoFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FragmentManager mFm;

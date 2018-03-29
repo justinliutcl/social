@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.justin.social.MainActivity;
 import com.justin.social.R;
+import com.justin.social.RXDbUtils.DB.UserDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
@@ -40,6 +41,7 @@ public class LoginActivity extends BackActivity {
                     public void onDataResponse(LoginConfig bean) {
                         if(ConfigUtils.isSuccess(bean)){
                             MainActivity.JumpTMain(LoginActivity.this);
+                            UserDataObtain.getInstance(LoginActivity.this).updataUser(bean.getData().changeToDbUser(),null);
                         }else {
                             toastShow(bean.getMsg());
                         }
