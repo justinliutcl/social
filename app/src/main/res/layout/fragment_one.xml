@@ -1,310 +1,591 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="model"
-            type="com.justin.social.model.one.OneModel"/>
+            type="com.justin.social.model.one.OneModel" />
     </data>
-    <RelativeLayout
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/base_black_back"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_one_background"
-            />
+        android:layout_height="match_parent">
+
         <RelativeLayout
-            android:id="@+id/backview"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="match_parent"
+            android:background="@color/base_black_back"
+            android:clipToPadding="false"
+            android:paddingBottom="50dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="首页"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_right_news"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:padding="5dp"
-                android:layout_marginRight="15dp"
-                />
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_below="@+id/backview"
-
-            >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_title_social"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="缴社保"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:layout_marginTop="13dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:scaleType="center"
-                    android:src="@drawable/icon_title_accumulation"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="公积金"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:layout_marginTop="13dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_title_five_money"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="五险一金"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:layout_marginTop="13dp"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/function"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginTop="18dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginRight="13dp"
-            android:background="@drawable/back_one_content"
-            >
-            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                >
-                <LinearLayout
-                    android:id="@+id/funciation_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="20dp"
+                android:background="@drawable/back_one_background" />
 
-                    >
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_funciation_more"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="缴社保"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:scaleType="center"
-                            android:src="@drawable/icon_funciation_add"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="公积金"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/icon_funciation_save"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="五险一金"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_below="@+id/funciation_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+            <RelativeLayout
+                android:id="@+id/backview"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
 
-                    >
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_funciation_note"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="缴社保"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:scaleType="center"
-                            android:src="@drawable/icon_funciation_send"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="公积金"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/icon_funciation_problem"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="五险一金"
-                            android:textColor="@color/base_black3"
-                            android:textSize="15sp"
-                            android:layout_marginTop="13dp"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="首页"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:onClick="@{model.onClick}"
+                    android:padding="5dp"
+                    android:src="@drawable/icon_right_news" />
             </RelativeLayout>
 
-        </RelativeLayout>
-        <ViewFlipper
-            android:id="@+id/marquee_view"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="13dp"
-            android:layout_below="@+id/function"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:autoStart="true"
-            android:background="@drawable/back_login_edit"
-            android:flipInterval="2500"
-            android:inAnimation="@anim/social_people_in"
-            android:outAnimation="@anim/social_people_out"/>
+            <LinearLayout
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/backview"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
 
-    </RelativeLayout>
+                >
+
+                <LinearLayout
+                    android:id="@+id/social_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_title_social" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="缴社保"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/accu_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/icon_title_accumulation" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="公积金"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/five_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_title_five_money" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="五险一金"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/function"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/back_one_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <LinearLayout
+                        android:id="@+id/funciation_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/more_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/icon_funciation_more" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="增值服务"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/add_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:scaleType="center"
+                                android:src="@drawable/icon_funciation_add" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="补缴"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/save_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/icon_funciation_save" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="存档"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/funciation_top"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/note_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/icon_funciation_note" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="申请发票"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/send_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:scaleType="center"
+                                android:src="@drawable/icon_funciation_send" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="上传资料"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/problem_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/icon_funciation_problem" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="常见问题"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <ViewFlipper
+                android:id="@+id/marquee_view"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_below="@+id/function"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:autoStart="true"
+                android:background="@drawable/back_login_edit"
+                android:flipInterval="2500"
+                android:inAnimation="@anim/social_people_in"
+                android:outAnimation="@anim/social_people_out"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp" />
+
+            <ImageView
+                android:id="@+id/share_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/marquee_view"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/back_one_share"
+                android:onClick="@{model.onClick}" />
+
+            <ImageView
+                android:id="@+id/police_white"
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_below="@id/share_iv"
+                android:background="@color/white" />
+
+            <ImageView
+                android:id="@+id/police_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/police_white"
+                android:background="@drawable/back_one_policy_icon" />
+
+            <LinearLayout
+                android:id="@+id/police_text_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/police_white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/base_black4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="18dp"
+                    android:text="政策解读"
+                    android:textColor="@color/base_black4"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/base_black4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/police_text_ll"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:background="@drawable/back_one_police_float"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/police_hourse"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:src="@drawable/icon_one_police_hourse" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="买房"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/police_car"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:scaleType="center"
+                        android:src="@drawable/icon_one_police_car" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="买车"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/police_school"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:src="@drawable/icon_one_police_school" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="上学"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/police_locial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="11dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:src="@drawable/icon_one_police_locial" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="落户"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pay_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/police_back"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/base_black4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="18dp"
+                    android:text="缴费解读"
+                    android:textColor="@color/base_black4"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/base_black4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pay_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pay_back"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:id="@+id/pay_social"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="center"
+                        android:src="@drawable/icon_pay_social" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="我的社保"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/base_black1" />
+
+                <LinearLayout
+                    android:id="@+id/pay_accu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/icon_pay_accu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="我的公积金"
+                        android:textColor="@color/base_black3"
+                        android:textSize="@dimen/one_main_text" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 </layout>

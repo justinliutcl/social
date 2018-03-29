@@ -10,6 +10,7 @@ import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.justin.social.activity.BaseActivity;
 import com.justin.social.fragment.FiveFragment;
 import com.justin.social.fragment.FourFragment;
 import com.justin.social.fragment.OneFragment;
@@ -18,7 +19,7 @@ import com.justin.social.fragment.TwoFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FragmentManager mFm;
     private ArrayList<Fragment> mFragmentList = new ArrayList<Fragment>();
     private String[] mFragmentTagList = {"OneFragment", "TwoFragment", "ThreeFragment", "fourFragment", "fiveFragment"};

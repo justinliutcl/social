@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ViewFlipper;
 
@@ -83,5 +84,37 @@ public class OneModel extends BaseModel {
                 }
             }
         });
+    }
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.social_ll:
+
+                break;
+            case R.id.accu_ll:
+
+                break;
+            case R.id.five_ll:
+
+                break;
+            case R.id.more_ll:
+
+                break;
+            case R.id.add_ll:
+
+                break;
+            case R.id.save_ll:
+
+                break;
+            case R.id.note_ll:
+
+                break;
+            case R.id.send_ll:
+
+                break;
+            case R.id.problem_ll:
+
+                break;
+        }
     }
 }
