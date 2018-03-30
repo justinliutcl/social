@@ -7,8 +7,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.justin.social.activity.BaseActivity;
 import com.justin.social.fragment.FiveFragment;
@@ -16,24 +14,32 @@ import com.justin.social.fragment.FourFragment;
 import com.justin.social.fragment.OneFragment;
 import com.justin.social.fragment.ThreeFragment;
 import com.justin.social.fragment.TwoFragment;
+import com.justin.social.views.NavigateBarView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity {
     private FragmentManager mFm;
     private ArrayList<Fragment> mFragmentList = new ArrayList<Fragment>();
     private String[] mFragmentTagList = {"OneFragment", "TwoFragment", "ThreeFragment", "fourFragment", "fiveFragment"};
     private Fragment mCurrentFragmen = null;
+    private NavigateBarView navigateBarView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
         initData();
+        initView();
     }
 
     private void initView() {
-
+        navigateBarView = (NavigateBarView) findViewById(R.id.tab_bar);
+        navigateBarView.setNavigateBarChangeListener(new NavigateBarView.NavigateBarChangeListener() {
+            @Override
+            public void onTabChaged(int tabPostion) {
+                switchFragment(mFragmentList.get(tabPostion),mFragmentTagList[tabPostion]);
+            }
+        });
 
     }
 
@@ -62,21 +68,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onSaveInstanceState(outState, outPersistentState);
         // 重置Fragment，防止当内存不足时导致Fragment重叠
         updateFragment(outState);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tab_one:
-                switchFragment(mFragmentList.get(0), mFragmentTagList[0]);
-                break;
-//            case R.id.ib_two:
-//                switchFragment(mFragmentList.get(1), mFragmentTagList[1]);
-//                break;
-//            case R.id.ib_three:
-//                switchFragment(mFragmentList.get(2), mFragmentTagList[2]);
-//                break;
-        }
     }
 
     // 转换Fragment

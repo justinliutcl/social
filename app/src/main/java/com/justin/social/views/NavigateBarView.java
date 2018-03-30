@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.justin.social.R;
+import com.justin.social.databinding.ViewNavigateBarBinding;
 
 
 /**
@@ -16,10 +17,9 @@ import com.justin.social.R;
 
 public class NavigateBarView extends RelativeLayout {
 
-    private static final int PROPORTION = 240;
-
-    private RelativeLayout.LayoutParams layoutParams;
     private NavigateBarChangeListener listener;
+    ViewNavigateBarBinding mBind;
+    int current;
 
     public NavigateBarView(Context context) {
         super(context);
@@ -42,8 +42,7 @@ public class NavigateBarView extends RelativeLayout {
     }
 
     private void initView() {
-        ViewNavigateBarBing bing =
-        DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.view_navigate_bar, this, true);
+        mBind = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.view_navigate_bar, this, true);
         attachListener();
     }
 
@@ -51,48 +50,122 @@ public class NavigateBarView extends RelativeLayout {
 
     }
 
-    public void onLibrary() {
-        mBind.libraryIcon.setImageResource(R.drawable.icon_tab_library_select);
-        mBind.searchIcon.setImageResource(R.drawable.icon_tab_browse_normal);
-        mBind.libraryText.setTextColor(getResources().getColor(R.color.base_red));
-        mBind.searchText.setTextColor(getResources().getColor(R.color.base_gray));
-        mBind.onlineIcon.setImageResource(R.drawable.icon_tab_hone_normal);
-        mBind.onlineText.setTextColor(getResources().getColor(R.color.base_gray));
-        mViewModel.onLibraryTabClick();
+    public void onOne() {
+        if(current == 0)
+            return;
+        mBind.oneIv.setImageResource(R.drawable.icon_tab_home_select);
+        mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
+        mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
+        mBind.fourIv.setImageResource(R.drawable.icon_tab_tool_normal);
+        mBind.fifthIv.setImageResource(R.drawable.icon_tab_user_normal);
+
+        mBind.oneTv.    setTextColor(getResources().getColor(R.color.base_green3));
+        mBind.twoTv.    setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.threeTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fourTv.   setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fifthTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        if(listener!=null)
+            listener.onTabChaged(0);
+    }
+    public void onTwo() {
+        if(current == 0)
+            return;
+        mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
+        mBind.twoIv.setImageResource(R.drawable.icon_tab_service_select);
+        mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
+        mBind.fourIv.setImageResource(R.drawable.icon_tab_tool_normal);
+        mBind.fifthIv.setImageResource(R.drawable.icon_tab_user_normal);
+
+        mBind.oneTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.twoTv.  setTextColor(getResources().getColor(R.color.base_green3));
+        mBind.threeTv.setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fourTv. setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fifthTv.setTextColor(getResources().getColor(R.color.base_black4));
+        if(listener!=null)
+            listener.onTabChaged(1);
+    }
+    public void onThree() {
+        if(current == 0)
+            return;
+        mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
+        mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
+        mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
+        mBind.fourIv.setImageResource(R.drawable.icon_tab_tool_normal);
+        mBind.fifthIv.setImageResource(R.drawable.icon_tab_user_normal);
+
+        mBind.oneTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.twoTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.threeTv.setTextColor(getResources().getColor(R.color.base_green3));
+        mBind.fourTv. setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fifthTv.setTextColor(getResources().getColor(R.color.base_black4));
+        if(listener!=null)
+            listener.onTabChaged(2);
+    }
+    public void onFour() {
+        if(current == 0)
+            return;
+        mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
+        mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
+        mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
+        mBind.fourIv.setImageResource(R.drawable.icon_tab_tool_select);
+        mBind.fifthIv.setImageResource(R.drawable.icon_tab_user_normal);
+
+        mBind.oneTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.twoTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.threeTv.setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fourTv. setTextColor(getResources().getColor(R.color.base_green3));
+        mBind.fifthTv.setTextColor(getResources().getColor(R.color.base_black4));
+        if(listener!=null)
+            listener.onTabChaged(3);
+    }
+    public void onFifth() {
+        if(current == 0)
+            return;
+        mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
+        mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
+        mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
+        mBind.fourIv.setImageResource(R.drawable.icon_tab_tool_normal);
+        mBind.fifthIv.setImageResource(R.drawable.icon_tab_user_select);
+
+        mBind.oneTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.twoTv.  setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.threeTv.setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fourTv. setTextColor(getResources().getColor(R.color.base_black4));
+        mBind.fifthTv.setTextColor(getResources().getColor(R.color.base_green3));
+        if(listener!=null)
+            listener.onTabChaged(4);
     }
 
+
     private void attachListener() {
-        mBind.online.setOnClickListener(new OnClickListener() {
+        mBind.tabOne.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mBind.searchIcon.setImageResource(R.drawable.icon_tab_browse_normal);
-                mBind.libraryIcon.setImageResource(R.drawable.icon_tab_library_normal);
-                mBind.searchText.setTextColor(getResources().getColor(R.color.base_gray));
-                mBind.libraryText.setTextColor(getResources().getColor(R.color.base_gray));
-                mBind.onlineIcon.setImageResource(R.drawable.icon_tab_hone_select);
-                mBind.onlineText.setTextColor(getResources().getColor(R.color.base_red));
-                mViewModel.onHomeTabClick();
+                onOne();
             }
         });
-
-        mBind.search.setOnClickListener(new OnClickListener() {
+        mBind.tabTwo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mBind.searchIcon.setImageResource(R.drawable.icon_tab_browse_select);
-                mBind.libraryIcon.setImageResource(R.drawable.icon_tab_library_normal);
-                mBind.searchText.setTextColor(getResources().getColor(R.color.base_red));
-                mBind.libraryText.setTextColor(getResources().getColor(R.color.base_gray));
-                mBind.onlineIcon.setImageResource(R.drawable.icon_tab_hone_normal);
-                mBind.onlineText.setTextColor(getResources().getColor(R.color.base_gray));
-                mViewModel.onSearchTabClick();
+                onTwo();
             }
         });
-
-        mBind.library.setOnClickListener(new OnClickListener() {
+        mBind.tabThree.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                onLibrary();
+                onThree();
+            }
+        });
+        mBind.tabFour.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFour();
+            }
+        });
+        mBind.tabFive.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFifth();
             }
         });
     }
@@ -100,33 +173,6 @@ public class NavigateBarView extends RelativeLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        layoutParams = (RelativeLayout.LayoutParams) getLayoutParams();
-    }
-
-    public void setOnNavigateBarChangeListener(NavigateBarViewModel.NavigateBarChangeListener listener) {
-        mViewModel.setNavigateBarChangeListener(listener);
-    }
-
-    public void scrollTo(float slideOffset) {
-        float scrollY = slideOffset * PROPORTION;
-        layoutParams.bottomMargin = -(int) scrollY;
-        setLayoutParams(layoutParams);
-        setAlpha(1 - slideOffset);
-    }
-
-    public void resetState(int currentIndex) {
-        switch (currentIndex) {
-            case SlidingUpActivity.FIRST:
-                mBind.online.performClick();
-                break;
-            case SlidingUpActivity.SECOND:
-                mBind.search.performClick();
-                break;
-            case SlidingUpActivity.THIRD:
-                mBind.library.performClick();
-                break;
-        }
-        mViewModel.resetState(currentIndex);
     }
 
     public void setNavigateBarChangeListener(NavigateBarChangeListener listener) {
@@ -134,6 +180,6 @@ public class NavigateBarView extends RelativeLayout {
     }
 
     public interface NavigateBarChangeListener {
-        void onTabChaged(int tabPostion, int preTabPostion);
+        void onTabChaged(int tabPostion);
     }
 }
