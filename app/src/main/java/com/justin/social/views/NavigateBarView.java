@@ -19,7 +19,6 @@ public class NavigateBarView extends RelativeLayout {
 
     private NavigateBarChangeListener listener;
     ViewNavigateBarBinding mBind;
-    int current;
 
     public NavigateBarView(Context context) {
         super(context);
@@ -51,8 +50,6 @@ public class NavigateBarView extends RelativeLayout {
     }
 
     public void onOne() {
-        if(current == 0)
-            return;
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_select);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
@@ -68,8 +65,6 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(0);
     }
     public void onTwo() {
-        if(current == 0)
-            return;
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_service_select);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
@@ -85,8 +80,6 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(1);
     }
     public void onThree() {
-        if(current == 0)
-            return;
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
@@ -102,8 +95,6 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(2);
     }
     public void onFour() {
-        if(current == 0)
-            return;
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
@@ -119,8 +110,6 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(3);
     }
     public void onFifth() {
-        if(current == 0)
-            return;
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);

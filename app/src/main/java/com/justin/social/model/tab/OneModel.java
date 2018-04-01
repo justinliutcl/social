@@ -1,6 +1,7 @@
-package com.justin.social.model.one;
+package com.justin.social.model.tab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.view.LayoutInflater;
@@ -10,9 +11,11 @@ import android.widget.ViewFlipper;
 
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.WriteSocialNoteActivity;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.ItemSocialPeopleBinding;
 import com.justin.social.model.base.BaseModel;
@@ -72,6 +75,15 @@ public class OneModel extends BaseModel {
         });
     }
 
+    public void initNewList(){
+        httpConfigManager.getNewListConfig(NewsListConfig.MAIN_NEWS, new BeanConfigCallBack<NewsListConfig>() {
+            @Override
+            public void onDataResponse(NewsListConfig bean) {
+
+            }
+        });
+    }
+
     public void getShortNewsList() {
         list.clear();
         httpConfigManager.shortNewsConfig(new BeanConfigCallBack<ShortNewsConfig>() {
@@ -89,7 +101,7 @@ public class OneModel extends BaseModel {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.social_ll:
-
+                mContext.startActivity(new Intent(mContext, WriteSocialNoteActivity.class));
                 break;
             case R.id.accu_ll:
 

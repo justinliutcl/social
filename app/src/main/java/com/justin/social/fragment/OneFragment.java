@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.justin.social.R;
 import com.justin.social.databinding.FragmentOneBinding;
-import com.justin.social.model.one.OneModel;
+import com.justin.social.model.tab.OneModel;
 
 /**
  * Created by Justinliu on 2018/3/27.
@@ -31,6 +31,7 @@ public class OneFragment extends Fragment {
         model = new OneModel(getActivity());
         model.init(mBinding);
         model.getShortNewsList();
+        model.initNewList();
         mBinding.setModel(model);
     }
 }

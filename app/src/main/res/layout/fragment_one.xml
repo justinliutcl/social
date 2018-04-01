@@ -5,7 +5,7 @@
 
         <variable
             name="model"
-            type="com.justin.social.model.one.OneModel" />
+            type="com.justin.social.model.tab.OneModel" />
     </data>
 
     <android.support.v4.widget.NestedScrollView
@@ -162,7 +162,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center_horizontal"
+                            android:gravity="center"
                             android:onClick="@{model.onClick}"
                             android:orientation="vertical">
 
@@ -174,7 +174,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
+                                android:layout_marginTop="5dp"
                                 android:text="增值服务"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
@@ -185,7 +185,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_horizontal"
+                            android:gravity="center"
                             android:onClick="@{model.onClick}"
                             android:orientation="vertical">
 
@@ -199,8 +199,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
                                 android:text="补缴"
+                                android:layout_marginTop="5dp"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
                         </LinearLayout>
@@ -223,8 +223,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
                                 android:text="存档"
+                                android:layout_marginTop="5dp"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
                         </LinearLayout>
@@ -247,7 +247,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center_horizontal"
+                            android:gravity="center"
                             android:onClick="@{model.onClick}"
                             android:orientation="vertical">
 
@@ -259,7 +259,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
+                                android:layout_marginTop="5dp"
                                 android:text="申请发票"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
@@ -270,7 +270,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_horizontal"
+                            android:gravity="center"
                             android:onClick="@{model.onClick}"
                             android:orientation="vertical">
 
@@ -284,7 +284,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
+                                android:layout_marginTop="5dp"
                                 android:text="上传资料"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
@@ -295,7 +295,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_horizontal"
+                            android:gravity="center"
                             android:onClick="@{model.onClick}"
                             android:orientation="vertical">
 
@@ -308,7 +308,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
+                                android:layout_marginTop="5dp"
                                 android:text="常见问题"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
@@ -413,7 +413,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="10dp"
                         android:text="买房"
                         android:textColor="@color/base_black3"
                         android:textSize="@dimen/one_main_text" />
@@ -437,7 +437,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="10dp"
                         android:text="买车"
                         android:textColor="@color/base_black3"
                         android:textSize="@dimen/one_main_text" />
@@ -460,7 +460,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="10dp"
                         android:text="上学"
                         android:textColor="@color/base_black3"
                         android:textSize="@dimen/one_main_text" />
@@ -484,7 +484,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="10dp"
                         android:text="落户"
                         android:textColor="@color/base_black3"
                         android:textSize="@dimen/one_main_text" />
