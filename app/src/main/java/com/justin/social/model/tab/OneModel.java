@@ -11,11 +11,13 @@ import android.widget.ViewFlipper;
 
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.activity.WriteSocialNoteActivity;
+import com.justin.social.adapter.NewsListAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.ItemSocialPeopleBinding;
 import com.justin.social.model.base.BaseModel;
@@ -30,6 +32,7 @@ import java.util.List;
 
 public class OneModel extends BaseModel {
     FragmentOneBinding mBinding;
+    NewsListAdapter adapter;
     public ObservableField<String> socialPeople;
     private int count = 3;
     private List<SocialPeopleConfig> configs;
@@ -79,6 +82,20 @@ public class OneModel extends BaseModel {
         httpConfigManager.getNewListConfig(NewsListConfig.MAIN_NEWS, new BeanConfigCallBack<NewsListConfig>() {
             @Override
             public void onDataResponse(NewsListConfig bean) {
+                if(bean!=null){
+                    List<NewListBean> list = bean.getData().getData();
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    list.add(list.get(0));
+                    adapter = new NewsListAdapter(list,mContext);
+                    mBinding.list.setAdapter(adapter);
+                }
 
             }
         });

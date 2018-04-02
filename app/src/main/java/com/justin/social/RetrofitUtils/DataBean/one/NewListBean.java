@@ -1,23 +1,28 @@
 package com.justin.social.RetrofitUtils.DataBean.one;
 
+import android.databinding.BindingAdapter;
+import android.widget.TextView;
+
+import com.justin.social.utils.AppUtils;
+
 /**
  * Created by ASUS on 2018/3/31.
  */
 
 public class NewListBean {
-    private String contentId;
-    private String contentTypeId;
-    private String title;
-    private String sort;
-    private String titleImg;
-    private String contentImg;
-    private String link;
-    private String createDate;
-    private String updateDate;
-    private String releaseDate;
-    private String state;
-    private String status;
-    private String txt;
+    public String contentId;
+    public String contentTypeId;
+    public String title;
+    public String sort;
+    public String titleImg;
+    public String contentImg;
+    public String link;
+    public long createDate;
+    public long updateDate;
+    public long releaseDate;
+    public String state;
+    public String status;
+    public String txt;
 
     public String getContentId() {
         return contentId;
@@ -75,27 +80,27 @@ public class NewListBean {
         this.link = link;
     }
 
-    public String getCreateDate() {
+    public long getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(long createDate) {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
+    public long getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(long updateDate) {
         this.updateDate = updateDate;
     }
 
-    public String getReleaseDate() {
+    public long getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(long releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -121,5 +126,10 @@ public class NewListBean {
 
     public void setTxt(String txt) {
         this.txt = txt;
+    }
+
+    @BindingAdapter("time")
+    public static void setTime(TextView view, long time){
+       view.setText( AppUtils.getNewstime(time));
     }
 }

@@ -2,7 +2,9 @@ package com.justin.social.utils;
 
 import android.app.Activity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,5 +33,11 @@ public class AppUtils {
                 activity.finish();
         }
         activityList.clear();
+    }
+
+    public static String getNewstime(long time){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date dt = new Date(time);
+        return sdf.format(dt);
     }
 }

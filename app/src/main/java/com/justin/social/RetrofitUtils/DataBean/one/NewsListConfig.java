@@ -20,7 +20,7 @@ public class NewsListConfig extends BaseConfig {
     private int pageIndex;
     private int pageSize;
 
-    private class NewsListConfigData{
+    public class NewsListConfigData{
         private List<NewListBean>data;
 
         public List<NewListBean> getData() {

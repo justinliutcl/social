@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,7 +11,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -321,24 +323,24 @@
             <ViewFlipper
                 android:id="@+id/marquee_view"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
+                android:layout_height="32dp"
                 android:layout_below="@+id/function"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
                 android:autoStart="true"
-                android:background="@drawable/back_login_edit"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_one_news"
                 android:flipInterval="2500"
                 android:inAnimation="@anim/social_people_in"
                 android:outAnimation="@anim/social_people_out"
-                android:paddingBottom="7dp"
-                android:paddingTop="7dp" />
+                />
 
             <ImageView
                 android:id="@+id/share_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/marquee_view"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/back_one_share"
                 android:onClick="@{model.onClick}" />
 
@@ -584,7 +586,37 @@
                         android:textColor="@color/base_black3"
                         android:textSize="@dimen/one_main_text" />
                 </LinearLayout>
+
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/new_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/pay_type"
+                android:layout_marginTop="12dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热点资讯"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_35"
+                    />
+            </LinearLayout>
+            <com.justin.social.views.LinearRecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/new_title"
+                android:nestedScrollingEnabled="false"
+                >
+
+            </com.justin.social.views.LinearRecyclerView>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 

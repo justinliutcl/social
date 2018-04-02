@@ -34,7 +34,7 @@ public class LinearRecyclerView extends RecyclerView {
         RecyclerView.LayoutManager layoutManager = new SafeLinearLayoutManager(getContext());
         setLayoutManager(layoutManager);
         setItemAnimator(new DefaultItemAnimator());
-        setNestedScrollingEnabled(true);
+        setNestedScrollingEnabled(false);
     }
 
     public class SafeLinearLayoutManager extends LinearLayoutManager {
