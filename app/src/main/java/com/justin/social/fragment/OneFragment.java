@@ -22,7 +22,7 @@ public class OneFragment extends Fragment {
     private OneModel model;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_one, container, false);
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_one, container, false);
         initView();
         return mBinding.getRoot();
     }
