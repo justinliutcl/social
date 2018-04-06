@@ -27,6 +27,10 @@ public class DialogUtils {
 
     }
 
+    public interface ItemClickBack{
+        void onBack(String s);
+    }
+
     public static DialogUtils getDialogUtilInstance() {
         return DialogUtils.DialogInstance.utilInstance;
     }
@@ -70,6 +74,10 @@ public class DialogUtils {
     public void release() {
         builder = null;
         activity = null;
+    }
+
+    public void showDuringDialog(Context context,ItemClickBack back){
+        showSimpleDialog(context,DialogImpl.getDuringView(context,back));
     }
 
 

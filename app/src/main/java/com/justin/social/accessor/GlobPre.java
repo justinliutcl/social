@@ -3,6 +3,7 @@ package com.justin.social.accessor;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.text.TextUtils;
 
@@ -14,92 +15,97 @@ import java.io.ObjectOutputStream;
 
 public class GlobPre {
 
-    private ContentResolver mCR = null;
-    private static String URI_CONFIG ;
+//    private ContentResolver mCR = null;
+//    private static String URI_CONFIG ;
+    private SharedPreferences mPref;
 
+    public void setData(String key, String value , int what) {
+        SharedPreferences.Editor edit = mPref.edit();
+        switch(what){
+            case ConfigProvider.what_boolean:
+                edit.putBoolean(key, Boolean.valueOf(value)) ;
+                break ;
+            case ConfigProvider.what_int:
+                edit.putInt(key, Integer.valueOf(value)) ;
+                break ;
+            case ConfigProvider.what_long:
+                edit.putLong(key, Long.valueOf(value)) ;
+                break ;
+            case ConfigProvider.what_string:
+                edit.putString(key, value);
+                break ;
+        }
+        edit.commit();
+    }
+
+    public String getData(String key , String what) {
+        if(!mPref.contains(key)){
+            return null ;
+        }
+        int what_flags = Integer.valueOf(what) ;
+        String value = null;
+        switch(what_flags){
+            case ConfigProvider.what_boolean:
+                value = mPref.getBoolean(key, true) + "";
+                break ;
+            case ConfigProvider.what_int:
+                value = mPref.getInt(key, 0) + "";
+                break ;
+            case ConfigProvider.what_long:
+                value = mPref.getLong(key, 0) + "";
+                break ;
+            case ConfigProvider.what_string:
+                value = mPref.getString(key, null) + "";
+                break ;
+        }
+        return value;
+    }
 
     protected GlobPre(Context context){
-        URI_CONFIG = "content://" + context.getPackageName() + ".configprovicer";
-        if(mCR == null)
-            mCR = context.getContentResolver();
-    }
-
-    private synchronized String queryProvidor(String key , String what) {
-        try {
-            Uri uri = Uri.parse(URI_CONFIG + "/" + key + "/" + what);
-            return mCR.getType(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-
-    }
-
-
-    private synchronized void updateValue(String key, String value , String what) {
-        try {
-            ContentValues cv = new ContentValues();
-            cv.put(ConfigProvider.CONTENT_KEY, key);
-            cv.put(ConfigProvider.CONTENT_VALUE, value);
-            cv.put(ConfigProvider.CONTENT_WHAT, what);
-            mCR.insert(Uri.parse(URI_CONFIG), cv);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public synchronized boolean deleteKey(String key){
-        int row = mCR.delete(Uri.parse(URI_CONFIG), ConfigProvider.CONTENT_KEY + " = ?", new String[]{key});
-        if(row > 0){
-            return true;
-        }else{
-            return false;
-        }
-
+        mPref = context.getSharedPreferences("user" , context.MODE_PRIVATE) ;
     }
 
     public boolean getBoolean(String key, boolean defValue) {
-        String res = queryProvidor(key , "" + ConfigProvider.what_boolean);
+        String res = getData(key , "" + ConfigProvider.what_boolean);
         if (TextUtils.isEmpty(res))
             return defValue;
         return Boolean.parseBoolean(res);
     }
     public String getString(String key, String defValue) {
-        String res = queryProvidor(key , "" + ConfigProvider.what_string);
+        String res = getData(key , "" + ConfigProvider.what_string);
         if (TextUtils.isEmpty(res))
             return defValue;
         return res;
     }
 
     public int getInt(String key, int defValue) {
-        String res = queryProvidor(key , "" + ConfigProvider.what_int);
+        String res = getData(key , "" + ConfigProvider.what_int);
         if (TextUtils.isEmpty(res))
             return defValue;
         return Integer.parseInt(res);
     }
 
     public long getLong(String key, long defValue) {
-        String res = queryProvidor(key , "" + ConfigProvider.what_long);
+        String res = getData(key , "" + ConfigProvider.what_long);
         if (TextUtils.isEmpty(res))
             return defValue;
         return Long.parseLong(res);
     }
 
     public void putString(String key, String value) {
-        updateValue(key, value  , ConfigProvider.what_string + "");
+        setData(key, value  , ConfigProvider.what_string );
     }
 
     public void putInt(String key, int value) {
-        updateValue(key, value + "" , ConfigProvider.what_int + "");
+        setData(key, value + "" , ConfigProvider.what_int );
     }
 
     public void putLong(String key, long value) {
-        updateValue(key, value + "" , ConfigProvider.what_long + "");
+        setData(key, value + "" , ConfigProvider.what_long);
     }
 
     public void putBoolean(String key, boolean value) {
-        updateValue(key, value + "" , ConfigProvider.what_boolean + "");
+        setData(key, value + "" , ConfigProvider.what_boolean );
     }
 
     public synchronized void putObject(String key, Object obj) {

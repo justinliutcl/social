@@ -2,6 +2,7 @@ package com.justin.social.utils;
 
 import android.app.Activity;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,4 +41,17 @@ public class AppUtils {
         Date dt = new Date(time);
         return sdf.format(dt);
     }
+
+    public static String getTime(String formoat){
+        SimpleDateFormat sdf = new SimpleDateFormat(formoat);
+        Date dt = new Date(System.currentTimeMillis());
+        return sdf.format(dt);
+    }
+
+    public String get2Double(double num) {
+        NumberFormat nbf = NumberFormat.getInstance();
+        nbf.setMinimumFractionDigits(2);
+        return nbf.format(num);
+    }
+
 }

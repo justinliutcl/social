@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,6 +7,10 @@
         <variable
             name="model"
             type="com.justin.social.model.one.OrderTableModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
     </data>
 
     <RelativeLayout
@@ -21,6 +24,7 @@
             android:background="@color/title_green">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -55,84 +59,82 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:background="@drawable/back_order_note"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:paddingLeft="25dp"
                     android:paddingRight="25dp"
-                    android:paddingTop="5dp"
-                    android:background="@drawable/back_order_note"
-                    >
+                    android:paddingTop="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:gravity="center_vertical"
-                        >
+                        android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_success"
-                            />
+                            android:src="@drawable/icon_order_note_success" />
+
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="2dp"
-                            android:background="@color/base_green"
-                            />
+                            android:layout_weight="1"
+                            android:background="@color/base_green" />
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_success"
-                            />
+                            android:src="@drawable/icon_order_note_success" />
+
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="2dp"
-                            android:background="@color/base_line"
-                            />
+                            android:layout_weight="1"
+                            android:background="@color/base_line" />
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_normal"
-                            />
+                            android:src="@drawable/icon_order_note_normal" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginTop="10dp"
-                        >
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:text="个人资料"
+                            android:textColor="@color/text_green"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="13sp"
-                            android:layout_marginLeft="8dp"
-                            android:textColor="@color/text_green"
-                            android:text="个人资料"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="13sp"
                             android:gravity="center"
-                            android:textColor="@color/text_green"
                             android:text="参保信息"
-                            />
+                            android:textColor="@color/text_green"
+                            android:textSize="13sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:gravity="right"
-                            android:layout_weight="1"
                             android:layout_marginRight="8dp"
-                            android:textColor="@color/text_68"
+                            android:layout_weight="1"
+                            android:gravity="right"
                             android:text="确认支付"
-                            />
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -203,7 +205,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="本市城镇职工"
@@ -226,6 +228,7 @@
                         android:background="@color/base_line" />
 
                     <LinearLayout
+                        android:id="@+id/accu_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -233,7 +236,8 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+                        android:visibility="@{model.isAccu?view.visibility:view.GONE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -252,10 +256,10 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="本市城镇职工"
+                            android:text="企12.0%+个12.0%"
                             android:textColor="@color/text_green"
                             android:textSize="13sp"
 
@@ -268,11 +272,13 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/accu_line"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+                        android:visibility="@{model.isAccu?view.visibility:view.GONE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -289,12 +295,13 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/start_tv"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="北京"
+                            android:text="@{model.currentTime}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp"
 
@@ -321,6 +328,7 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
+                        android:onClick="@{model.onClick}"
                         android:paddingTop="14dp">
 
                         <TextView
@@ -331,12 +339,13 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/during"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="本市城镇职工"
+                            android:text="月付"
                             android:textColor="@color/text_green"
                             android:textSize="13sp"
 
@@ -364,9 +373,10 @@
                         android:paddingRight="16dp">
 
                         <TextView
+                            android:id="@+id/base_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="公积金基数"
+                            android:text="@{model.baseType}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
@@ -377,12 +387,22 @@
                             android:layout_marginLeft="5dp"
                             android:src="@drawable/icon_problem" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@{model.section}"
+                            android:textColor="@color/text_a7"
+                            android:textSize="12sp" />
+
                         <EditText
+                            android:id="@+id/base_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:cursorVisible="false"
                             android:hint="3082.00"
+                            android:inputType="number"
                             android:lines="1"
                             android:paddingBottom="14dp"
                             android:paddingTop="14dp"
@@ -490,7 +510,7 @@
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
-                        <EditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
@@ -532,7 +552,7 @@
                             android:layout_marginLeft="5dp"
                             android:src="@drawable/icon_problem" />
 
-                        <EditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
@@ -549,9 +569,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:layout_marginBottom="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingLeft="16dp"
                     android:paddingTop="10dp">
 

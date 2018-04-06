@@ -55,15 +55,15 @@ public class DbManager extends SQLiteOpenHelper {
     private static final String TBL_USER_COLUMN_PHONE           = "phone";
     private static final String TBL_USER_COLUMN_NIKE_NAME       = "nikeName";
     private static final String TBL_USER_COLUMN_HEADIMAGE       = "headImg";
-    private static final String TBL_USER_COLUMN_EMAIL           = "email;";
-    private static final String TBL_USER_COLUMN_IDCARD          = "idCard;";
-    private static final String TBL_USER_COLUMN_INSUREDCITY     = "insuredCity;";
-    private static final String TBL_USER_COLUMN_HOUSEHOLD_TYPE  = "householdType;";
-    private static final String TBL_USER_COLUMN_BANKNAME        = "bankName;";
-    private static final String TBL_USER_COLUMN_BRANCH_NAME     = "branchName;";
-    private static final String TBL_USER_COLUMN_BRANCH_NUM      = "branchNum;";
-    private static final String TBL_USER_COLUMN_TOKEN           = "token;";
-    private static final String TBL_USER_COLUMN_PASSWORD        = "passWord;";
+    private static final String TBL_USER_COLUMN_EMAIL           = "email";
+    private static final String TBL_USER_COLUMN_IDCARD          = "idCard";
+    private static final String TBL_USER_COLUMN_INSUREDCITY     = "insuredCity";
+    private static final String TBL_USER_COLUMN_HOUSEHOLD_TYPE  = "householdType";
+    private static final String TBL_USER_COLUMN_BANKNAME        = "bankName";
+    private static final String TBL_USER_COLUMN_BRANCH_NAME     = "branchName";
+    private static final String TBL_USER_COLUMN_BRANCH_NUM      = "branchNum";
+    private static final String TBL_USER_COLUMN_TOKEN           = "token";
+    private static final String TBL_USER_COLUMN_PASSWORD        = "passWord";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -138,6 +138,24 @@ public class DbManager extends SQLiteOpenHelper {
         Cursor c = null;
         try {
             c = mDb.query(TBL_USER_TABLE_NAME, null, TBL_USER_COLUMN_IDCARD + " = " + idCard + "", null, null, null, null, null);
+            if (null == c || !c.moveToFirst()) {
+                return ret;
+            }
+            ret = getUserByCursor(c);
+            return ret;
+        } finally {
+            if (null != c) {
+                c.close();
+            }
+        }
+    }
+
+    public DbUser getUserFromPhone(String idCard) {
+        getDb();
+        DbUser ret = null;
+        Cursor c = null;
+        try {
+            c = mDb.query(TBL_USER_TABLE_NAME, null, TBL_USER_COLUMN_PHONE + " = " + idCard + "", null, null, null, null, null);
             if (null == c || !c.moveToFirst()) {
                 return ret;
             }

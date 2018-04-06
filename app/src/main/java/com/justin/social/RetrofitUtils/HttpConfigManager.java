@@ -4,6 +4,7 @@ import com.justin.social.LogUtils.CommonLog;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.configRequest.SocialConfigRequest;
@@ -105,6 +106,24 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<NewsListConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                callBack.onDataResponse(null);
+            }
+        });
+    }
+
+    public void getCityListConfig(final BeanConfigCallBack<CityConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<CityConfig> config = configRequest.getCityListConfig();
+        config.enqueue(new Callback<CityConfig>() {
+            @Override
+            public void onResponse(Call<CityConfig> call, Response<CityConfig> response) {
+                CityConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<CityConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 callBack.onDataResponse(null);
             }

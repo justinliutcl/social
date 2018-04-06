@@ -1,5 +1,7 @@
 package com.justin.social.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -93,5 +95,10 @@ public class LoginActivity extends BackActivity {
             }
         });
         binding.setModel(model);
+    }
+
+    public static void JumpToLogin(Context context){
+        Intent intent = new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
     }
 }

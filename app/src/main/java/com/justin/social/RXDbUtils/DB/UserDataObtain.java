@@ -65,6 +65,22 @@ public class UserDataObtain {
         execute(ob, obs);
     }
 
+    public void getUserFromPhoneRxJava(final String phone, IDataObtain.IDBResCallback<DbUser> callback) {
+        ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
+                if (dbManager == null)
+                    init();
+                DbUser dbUser = dbManager.getUserFromPhone(phone);
+                e.onNext(dbUser);
+                e.onComplete();
+            }
+        };
+
+        Observer<DbUser> obs = createObserver(callback);
+        execute(ob, obs);
+    }
+
     public void updataUser(final DbUser user, IDataObtain.IDBResCallback<DbUser> callback){
         ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
             @Override

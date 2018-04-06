@@ -22,7 +22,7 @@ public class SocialPayModel extends BaseModel {
     }
 
     public void onNextClick(View view){
-        mContext.startActivity(new Intent(mContext, SocialPayActivity.class));
-        ((Activity)mContext).finish();
+//        mContext.startActivity(new Intent(mContext, SocialPayActivity.class));
+//        ((Activity)mContext).finish();
     }
 }

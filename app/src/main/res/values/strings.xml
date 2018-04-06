@@ -8,4 +8,21 @@
     <string name="regist_hint_login">登录</string>
     <string name="short_news_title">众人保互联网有限公司</string>
     <string name="social_note">1. 办理社保卡一般在当月成功缴费后2-6个月出卡（不同地区时间不同），期间停保不能办理，办理成功后以邮寄方式寄送，邮费到付\n2. 从上家单位刚离职的人员，请在下单前确认原单位已经为您办理减员\n3. 此业务适于18岁至法定退休年龄之间的朋友\n4. 每年政府会调整社保缴费基数，我们会第一时间通知您</string>
+
+
+    <string name="police_hourse_title_bar">买房</string>
+    <string name="police_hourse_title">北京买房 - 社保必须连续缴纳满五年</string>
+    <string name="police_hourse_top">\t\t\t\t在北京连续满五年（不能中断和补缴）纳税证明（指个人所得税）或者在北京连续满五年的社会保险证明，就可以在北京买房</string>
+    <string name="police_hourse_content">\t\t\t\t连续5年缴纳社保的认证标准为：自提出申请上一个月须为正常参保状态。因工作调转延迟补缴社保与单位月报补缴社保累计超过三个月的，在购房资格审核中不予认可。\n\t\t\t\t1、自2012年12月18日起，补缴社保在购房资格审核中不予认可。购房者如果决定2016年买房，那么从2010年起，需连续在北京缴纳社保或每月纳税不为零。\n    \t\t\t\t2、有北京合法有效的暂住证，北京暂住证有效期为6个月，因此购房者买房时暂住证不能过期。\n    \t\t\t\t3、购房者在北京没有房屋，如果已经结婚，夫妻双方在北京没有房屋，外地人在北京限购一套住房。\n    \t\t\t\t4、身份证、结婚证和户口本。注意:如果在北京以外的地方贷款买过一套房，符合以上条件在北京再贷款买房，首付款要百分之六十以上，包括百分之六十，贷款利率上浮百分之十。</string>
+    
+    
+    <string name="during_month">月付</string>
+    <string name="during_quarter">季付</string>
+    <string name="during_half_year">半年付</string>
+    <string name="during_year">年付</string>
+
+    <string name="hourse_type_local_city">本市城镇职工</string>
+    <string name="hourse_type_local_rural">本市农村劳动力</string>
+    <string name="hourse_type_other_city">外埠城镇职工</string>
+    <string name="hourse_type_other_rural">外埠农村劳动力</string>
 </resources>

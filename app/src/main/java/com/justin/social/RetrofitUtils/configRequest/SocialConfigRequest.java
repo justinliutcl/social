@@ -3,6 +3,7 @@ package com.justin.social.RetrofitUtils.configRequest;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 
@@ -38,5 +39,9 @@ public interface SocialConfigRequest {
     Call<NewsListConfig> getNewListConfig(@Query("contenTypeId") String contenTypeId,
                                           @Query("pageIndex") String pageIndex,
                                           @Query("pageSize") String pageSize
+    );
+
+    @POST("order/getCityNameList")
+    Call<CityConfig> getCityListConfig(
     );
 }

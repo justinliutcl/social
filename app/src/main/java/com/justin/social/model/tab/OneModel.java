@@ -16,6 +16,8 @@ import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.LoginActivity;
+import com.justin.social.activity.PoliceDetialActivity;
 import com.justin.social.activity.WriteSocialNoteActivity;
 import com.justin.social.adapter.NewsListAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
@@ -116,12 +118,16 @@ public class OneModel extends BaseModel {
     }
 
     public void onClick(View view){
+        if(!isLogin()){
+            LoginActivity.JumpToLogin(mContext);
+            return;
+        }
         switch (view.getId()){
             case R.id.social_ll:
-                mContext.startActivity(new Intent(mContext, WriteSocialNoteActivity.class));
+                WriteSocialNoteActivity.JumpWriteSocial(mContext,false);
                 break;
             case R.id.accu_ll:
-
+                WriteSocialNoteActivity.JumpWriteSocial(mContext,true);
                 break;
             case R.id.five_ll:
 
@@ -143,6 +149,18 @@ public class OneModel extends BaseModel {
                 break;
             case R.id.problem_ll:
 
+                break;
+            case R.id.police_hourse:
+                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.HOURSE_TYPE);
+                break;
+            case R.id.police_car:
+                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.CAR_TYPE);
+                break;
+            case R.id.police_school:
+                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.SCHOOL_TYPE);
+                break;
+            case R.id.police_locial:
+                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.LOCIAL_TYPE);
                 break;
         }
     }

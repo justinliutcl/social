@@ -27,7 +27,7 @@ public class ConfigFactory {
     private SharedPreferences mPref;
 
     public ConfigFactory(Context context) {
-        mPref = context.getSharedPreferences("music" , context.MODE_PRIVATE) ;
+        mPref = context.getSharedPreferences("user" , context.MODE_PRIVATE) ;
     }
 
 
