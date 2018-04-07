@@ -7,6 +7,7 @@ import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.configRequest.SocialConfigRequest;
 
 import retrofit2.Call;
@@ -129,4 +130,58 @@ public class HttpConfigManager {
             }
         });
     }
+
+    public void getSocialMoneyConfig(String applyDuration,String insuredCardinal,String cityName,String householdType,final BeanConfigCallBack<SocialMoneyConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<SocialMoneyConfig> config = configRequest.getSocialMoneyConfig(applyDuration,insuredCardinal,cityName,householdType);
+        config.enqueue(new Callback<SocialMoneyConfig>() {
+            @Override
+            public void onResponse(Call<SocialMoneyConfig> call, Response<SocialMoneyConfig> response) {
+                SocialMoneyConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<SocialMoneyConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                callBack.onDataResponse(null);
+            }
+        });
+    }
+
+    public void getSendOrderConfig(String userId,String userName,
+                                   String householdType,String insuredType,
+                                   String bankName,String branchNum,
+                                   String idCard,String insuredCity,
+                                   String applyDuration,String insuredCardinal,
+                                   String insuredCharge,String disabilityCharge,
+                                   String singleCharge,String serviceCharge ,
+                                   String overdueFine,String allCharge ,String insuredTime,
+                                   final BeanConfigCallBack<BaseConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<BaseConfig> config = configRequest.getSendOrderConfig(
+                userId,userName,
+                householdType,insuredType,
+                bankName,branchNum,
+                idCard,insuredCity,
+                applyDuration,insuredCardinal,
+                insuredCharge,disabilityCharge,
+                singleCharge,serviceCharge,
+                overdueFine,allCharge,insuredTime
+                );
+        config.enqueue(new Callback<BaseConfig>() {
+            @Override
+            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
+                BaseConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                callBack.onDataResponse(null);
+            }
+        });
+    }
+
 }

@@ -56,4 +56,20 @@ public class CommonSettingValue extends GlobPre {
     public String getAccuBase(String phone){
         return getString(phone+"accu", null);
     }
+
+    public void setCity(String phone,String city){
+        putString(phone+"city", city);
+    }
+
+    public String getCity(String phone){
+        return getString(phone+"city", "北京");
+    }
+
+    public void setHourseType(String phone,String hourse){
+        putString(phone+"hourse", hourse);
+    }
+
+    public String getHourseType(String phone){
+        return getString(phone+"hourse", "本市城镇职工");
+    }
 }

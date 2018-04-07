@@ -17,6 +17,8 @@ public class OrderTableActivity extends BackActivity {
     public  static final String TYPE = "type";
     public  static final String MIN = "min";
     public  static final String MAX = "max";
+    public  static final String CITY = "city";
+    public  static final String HOURSE_TYPE = "hourse_type";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,16 +26,20 @@ public class OrderTableActivity extends BackActivity {
         model = new OrderTableModel(this);
         model.initType(getIntent().getBooleanExtra(TYPE,false),
                 getIntent().getStringExtra(MIN),
-                getIntent().getStringExtra(MAX));
+                getIntent().getStringExtra(MAX),
+                getIntent().getStringExtra(CITY),
+                getIntent().getStringExtra(HOURSE_TYPE));
         model.initBind(bind);
         bind.setModel(model);
     }
 
-    public static void JumpToOrder(Context context,boolean isAcc,String min,String max){
+    public static void JumpToOrder(Context context,boolean isAcc,String min,String max,String city,String hourseType){
         Intent intent = new Intent(context,OrderTableActivity.class);
         intent.putExtra(TYPE,isAcc);
         intent.putExtra(MIN,min);
         intent.putExtra(MAX,max);
+        intent.putExtra(CITY,city);
+        intent.putExtra(HOURSE_TYPE,hourseType);
         context.startActivity(intent);
     }
 }

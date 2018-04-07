@@ -208,7 +208,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="本市城镇职工"
+                            android:text="@{model.tableType}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp"
 
@@ -225,6 +225,97 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:visibility="@{model.isFirst?view.visibility:view.GONE}"
+                        android:onClick="@{model.onClick}"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="储蓄卡卡号"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/banknum_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:cursorVisible="false"
+                            android:hint="请输入储蓄卡账号"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:textColor="@color/text_68"
+                            android:textDirection="rtl"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_right_green" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:visibility="@{model.isFirst?view.visibility:view.GONE}"
+                        android:background="@color/base_line" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:visibility="@{model.isFirst?view.visibility:view.GONE}"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:onClick="@{model.onClick}"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="储蓄卡"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/bankname_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="请选择储蓄卡名称"
+                            android:textColor="@color/text_green"
+                            android:textSize="13sp"
+
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_right_green" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:visibility="@{model.isFirst?view.visibility:view.GONE}"
                         android:background="@color/base_line" />
 
                     <LinearLayout
@@ -345,7 +436,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="月付"
+                            android:text="@{model.appDur}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp"
 
@@ -483,7 +574,75 @@
                             android:lines="1"
                             android:paddingBottom="16dp"
                             android:paddingTop="16dp"
-                            android:text="0.0"
+                            android:text="@{model.socialSecurity}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个税"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:lines="1"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            android:text="@{model.personalTax}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="残保金"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:lines="1"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            android:text="@{model.disabilityInsurance}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -518,7 +677,7 @@
                             android:lines="1"
                             android:paddingBottom="16dp"
                             android:paddingTop="16dp"
-                            android:text="0.0"
+                            android:text="@{model.serviceCharge}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -559,7 +718,7 @@
                             android:cursorVisible="false"
                             android:gravity="right"
                             android:lines="1"
-                            android:text="0.0"
+                            android:text="@{model.overdue_fine}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -631,7 +790,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="0.00元"
+                android:text="@{model.sum+` 元`}"
                 android:textColor="@color/text_green2"
                 android:textSize="15sp" />
         </LinearLayout>

@@ -6,8 +6,11 @@ import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -43,5 +46,34 @@ public interface SocialConfigRequest {
 
     @POST("order/getCityNameList")
     Call<CityConfig> getCityListConfig(
+    );
+
+    @FormUrlEncoded
+    @POST("order/getSocialsecurityOrderCharge")
+    Call<SocialMoneyConfig> getSocialMoneyConfig(@Field("applyDuration") String applyDuration,
+                                                 @Field("insuredCardinal") String insuredCardinal,
+                                                 @Field("cityName") String cityName,
+                                                 @Field("householdType") String householdType
+    );
+
+    @FormUrlEncoded
+    @POST("order/addSocialsecurityOrder")
+    Call<BaseConfig> getSendOrderConfig(@Field("userId") String userId,
+                                                 @Field("userName") String userName,
+                                                 @Field("householdType") String householdType,
+                                                 @Field("insuredType") String insuredType,
+                                                 @Field("bankName") String bankName,
+                                                 @Field("branchNum") String branchNum,
+                                                 @Field("idCard") String idCard,
+                                                 @Field("insuredCity") String insuredCity,
+                                                 @Field("applyDuration") String applyDuration,
+                                                 @Field("insuredCardinal") String insuredCardinal,
+                                                 @Field("insuredCharge") String insuredCharge,
+                                                 @Field("disabilityCharge") String disabilityCharge,
+                                                 @Field("singleCharge") String singleCharge,
+                                                 @Field("serviceCharge") String serviceCharge,
+                                                 @Field("overdueFine") String overdueFine,
+                                                 @Field("allCharge") String allCharge,
+                                                 @Field("insuredTime") String insuredTime
     );
 }

@@ -25,4 +25,7 @@
     <string name="hourse_type_local_rural">本市农村劳动力</string>
     <string name="hourse_type_other_city">外埠城镇职工</string>
     <string name="hourse_type_other_rural">外埠农村劳动力</string>
+
+    <string name="social_type_dishave">本市首次参保</string>
+    <string name="social_type_have">续缴</string>
 </resources>

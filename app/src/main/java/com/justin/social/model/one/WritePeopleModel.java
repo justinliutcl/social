@@ -3,6 +3,7 @@ package com.justin.social.model.one;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.ObservableField;
 import android.view.View;
 
 import com.justin.social.RXDbUtils.DB.UserDataObtain;
@@ -21,38 +22,61 @@ import com.justin.social.model.base.BaseModel;
  */
 
 public class WritePeopleModel extends BaseModel {
+    String phone;
+    private ActivityWriteSocialNoteBinding bind;
+
     public WritePeopleModel(Context context) {
         super(context);
         manager = new HttpConfigManager();
+        CommonSettingValue value = CommonSettingValue.getIns(mContext);
+        phone = value.getCurrentPhone();
+        city = new ObservableField<>(value.getCity(phone));
+        hourseType = new ObservableField<>(value.getHourseType(phone));
     }
     HttpConfigManager manager;
     CityConfig cityConfig;
     private String min;
     private String max;
     public boolean isAccu;
+    public ObservableField<String>city;
+    public ObservableField<String>hourseType;
+    public DbUser user;
     public void onNextClick(View view){
         if(max == null||min == null){
             toastShow("请检查网络");
             return;
         }
-        OrderTableActivity.JumpToOrder(mContext,isAccu,min,max);
+        user.setIdCard(bind.idcard.getText().toString());
+        user.setUserName(bind.name.getText().toString());
+        user.setHouseholdType(hourseType.get());
+        user.setInsuredCity(city.get());
+        UserDataObtain.getInstance(mContext).updataUser(user, new IDataObtain.IDBResCallback<DbUser>() {
+            @Override
+            public void complete(DbUser dbUser) {
+            }
+        });
+        OrderTableActivity.JumpToOrder(mContext,isAccu,min,max,city.get(),hourseType.get());
     }
 
     public void setData(final ActivityWriteSocialNoteBinding bind) {
-        final String phone = CommonSettingValue.getIns(mContext).getCurrentPhone();
+        this.bind = bind;
         UserDataObtain.getInstance(mContext).getUserFromPhoneRxJava(phone, new IDataObtain.IDBResCallback<DbUser>() {
             @Override
             public void complete(DbUser dbUser) {
+                user = dbUser;
                 if (dbUser.userName != null) {
                     bind.name.setText(dbUser.userName);
                 }
                 if (dbUser.householdType != null) {
-                    bind.registType.setText(dbUser.householdType);
+                    hourseType.set(dbUser.householdType);
                 }
                 if (dbUser.insuredCity != null) {
-                    bind.city.setText(dbUser.insuredCity);
+                    city.set(dbUser.insuredCity);
                 }
-                bind.phone.setText(phone);
+                if (dbUser.idCard != null) {
+                    bind.idcard.setText(dbUser.idCard);
+                }
+
             }
         });
     }

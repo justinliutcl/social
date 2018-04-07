@@ -180,6 +180,7 @@ public class DbManager extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(TBL_USER_COLUMN_USER_NAME,       user.userName     );
         cv.put(TBL_USER_COLUMN_PHONE,           user.phone        );
+        cv.put(TBL_USER_COLUMN_IDCARD,          user.idCard        );
         cv.put(TBL_USER_COLUMN_NIKE_NAME,       user.nikeName     );
         cv.put(TBL_USER_COLUMN_HEADIMAGE,       user.headImg      );
         cv.put(TBL_USER_COLUMN_EMAIL,           user.email        );
@@ -191,10 +192,10 @@ public class DbManager extends SQLiteOpenHelper {
         cv.put(TBL_USER_COLUMN_TOKEN,           user.token        );
         cv.put(TBL_USER_COLUMN_PASSWORD,        user.passWord     );
         int updated = mDb.update(TBL_USER_TABLE_NAME, cv,
-                formatInUkFormat("%1$s=?", TBL_USER_COLUMN_IDCARD),
-                new String[]{"" + user.idCard});
+                formatInUkFormat("%1$s=?", TBL_USER_COLUMN_PHONE),
+                new String[]{"" + user.phone});
         if (updated == 1) {
-            return getUserFromIdCard(user.idCard);
+            return getUserFromPhone(user.phone);
         } else {
             return null;
         }
