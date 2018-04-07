@@ -18,4 +18,10 @@ public class ImageUtils {
                 .placeholder(R.drawable.icon_news_default)
                 .into(view);
     }
+
+    @BindingAdapter("uriIcon")
+    public static void setIcon(ImageView view, String url){
+        Glide.with(view.getContext().getApplicationContext()).load(url)
+                .into(view);
+    }
 }

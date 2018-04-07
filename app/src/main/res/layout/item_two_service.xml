@@ -6,27 +6,39 @@
 
         <variable
             name="model"
-            type="com.justin.social.RetrofitUtils.DataBean.one.NewListBean" />
+            type="com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="13dp"
-        android:paddingBottom="13dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp">
+
+
         <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:uriIcon="@{model.serviceImg}" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="13dp"
+            android:text="@{model.serviceName}"
+            android:textSize="15sp"
+            app:initMinWidth="@{model.serviceName}"
+            app:customColor="@{model.color}" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:textColor="@color/text_68"
+            android:textSize="13sp"
+            app:customText="@{model.txt}" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

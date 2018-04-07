@@ -7,6 +7,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
+import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -75,5 +76,9 @@ public interface SocialConfigRequest {
                                                  @Field("overdueFine") String overdueFine,
                                                  @Field("allCharge") String allCharge,
                                                  @Field("insuredTime") String insuredTime
+    );
+
+    @POST("others/getServiceList")
+    Call<ServiceConfig> getServiceConfig(
     );
 }

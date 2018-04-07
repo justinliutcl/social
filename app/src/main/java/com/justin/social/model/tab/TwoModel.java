@@ -7,6 +7,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.justin.social.R;
@@ -14,7 +15,9 @@ import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
+import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.FragmentTwoBinding;
 import com.justin.social.databinding.ItemSocialPeopleBinding;
@@ -33,10 +36,10 @@ import static android.support.v7.widget.DividerItemDecoration.*;
 public class TwoModel extends BaseModel {
     FragmentTwoBinding mBinding;
     public ObservableField<String> socialPeople;
-    private int count = 3;
     private List<SocialPeopleConfig> configs;
     private List<String> list;
-    HttpConfigManager httpConfigManager;
+    private HttpConfigManager httpConfigManager;
+    private ServiceAdapter adapter;
 
     public TwoModel(Context context) {
         super(context);
@@ -52,17 +55,18 @@ public class TwoModel extends BaseModel {
         mBinding.list.addItemDecoration(new DividerItemDecoration(mContext, VERTICAL));
     }
 
-    public void initList(){
-        httpConfigManager.getNewListConfig(NewsListConfig.MAIN_NEWS, new BeanConfigCallBack<NewsListConfig>() {
-            @Override
-            public void onDataResponse(NewsListConfig bean) {
-
-            }
-        });
-    }
-
     public void onClick(View view){
 
     }
 
+    public void getService() {
+        new HttpConfigManager().getServiceConfig(new BeanConfigCallBack<ServiceConfig>() {
+            @Override
+            public void onDataResponse(ServiceConfig bean) {
+
+                adapter = new ServiceAdapter(bean.getData(),mContext);
+                mBinding.list.setAdapter(adapter);
+            }
+        });
+    }
 }
