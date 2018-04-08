@@ -71,6 +71,7 @@
                 android:background="@color/white"
                 android:hint="请输入手机号"
                 android:lines="1"
+                android:inputType="phone"
                 android:textColor="@color/base_black1"
                 android:textColorHint="@color/base_black1"
                 android:textSize="14sp" />

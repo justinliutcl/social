@@ -73,6 +73,7 @@
                 android:background="@color/white"
                 android:hint="@string/regist_hint_phone"
                 android:lines="1"
+                android:inputType="phone"
                 android:textColor="@color/base_black1"
                 android:textColorHint="@color/base_black1"
                 android:textSize="14sp" />
