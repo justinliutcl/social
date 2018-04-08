@@ -21,5 +21,6 @@ public class RegistActivity extends SmsActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_regist);
         model = new RegistModel(this,binding.phoneEd,binding.codeEd,binding.passwordEd);
         binding.setModel(model);
+        model.initBind(binding);
     }
 }

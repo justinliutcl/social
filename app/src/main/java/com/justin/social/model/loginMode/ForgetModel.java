@@ -11,7 +11,9 @@ import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.databinding.ActivityForgetBinding;
 import com.justin.social.model.base.SmsModel;
+import com.justin.social.utils.AccountUtils;
 import com.justin.social.utils.ConfigUtils;
 
 /**
@@ -23,13 +25,16 @@ public class ForgetModel extends SmsModel {
     public int loginSelectId = R.drawable.select_login;
     public EditText codeEditText;
     public ObservableInt loginBackId;
-
+    ActivityForgetBinding binding;
     public ForgetModel(Context context, EditText phoneEditText, EditText smsEditText, EditText codeEditText) {
         super(context, phoneEditText, smsEditText);
         this.codeEditText = codeEditText;
         loginBackId = new ObservableInt(R.drawable.background_login_unclick);
     }
 
+    public void initBind(ActivityForgetBinding binding){
+        this.binding = binding;
+    }
     public void onSendClick(View view) {
         sendCode(phoneEditText.getText().toString());
     }
@@ -46,6 +51,10 @@ public class ForgetModel extends SmsModel {
     @Override
     public void onSubmitSuccess() {
         super.onSubmitSuccess();
+        if(!AccountUtils.isMobile(binding.phoneEd.getText().toString())){
+            toastShow("请输入正确手机号");
+            return;
+        }
         new HttpConfigManager().forgetConfig( getPhoneNum(), codeEditText.getText().toString(), new BeanConfigCallBack<BaseConfig>() {
             @Override
             public void onDataResponse(BaseConfig bean) {

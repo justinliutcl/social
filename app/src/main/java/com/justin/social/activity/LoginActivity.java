@@ -22,6 +22,7 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.databinding.ActivityLoginBinding;
 import com.justin.social.model.loginMode.LoginModel;
+import com.justin.social.utils.AccountUtils;
 import com.justin.social.utils.ConfigUtils;
 
 /**
@@ -39,6 +40,11 @@ public class LoginActivity extends BackActivity {
         binding.loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!AccountUtils.isMobile(binding.phoneEd.getText().toString())){
+                    toastShow("请输入正确手机号");
+                    return;
+                }
+
                 new HttpConfigManager().loginConfig(binding.phoneEd.getText().toString(), binding.passwordEd.getText().toString(), new BeanConfigCallBack<LoginConfig>() {
                     @Override
                     public void onDataResponse(LoginConfig bean) {

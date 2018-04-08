@@ -10,7 +10,7 @@
     <color name="base_black4">#353535</color>
     <color name="base_black5">#cacaca</color>
     <color name="base_black_back">#F2F2F2</color>
-    <color name="base_line">#d4d4d4</color>
+    <color name="base_line">#e5e5e5</color>
 
     <color name="text_a7">#a7a7a7</color>
     <color name="text_35">#353535</color>
@@ -21,6 +21,7 @@
     <color name="text_green2">#61cb63</color>
 
     <color name="text_red">#df5f71</color>
+    <color name="text_red2">#ea6e52</color>
 
     <color name="white">#ffffff</color>
     <color name="base_green">#60CB63</color>

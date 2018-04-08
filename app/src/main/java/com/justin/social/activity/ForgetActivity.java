@@ -28,6 +28,7 @@ public class ForgetActivity extends SmsActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_forget);
         model = new ForgetModel(this,binding.phoneEd,binding.codeEd,binding.passwordEd);
         binding.setModel(model);
+        model.initBind(binding);
         binding.phoneEd.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
