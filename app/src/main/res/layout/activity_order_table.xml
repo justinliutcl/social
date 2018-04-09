@@ -492,7 +492,60 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:cursorVisible="false"
-                            android:hint="3082.00"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:paddingBottom="14dp"
+                            android:paddingTop="14dp"
+                            android:textColor="@color/text_68"
+                            android:textDirection="rtl"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:visibility="@{model.isFive?view.visibility:view.GONE}"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:visibility="@{model.isFive?view.visibility:view.GONE}"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/five_accu_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.baseFiveType}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/icon_problem" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@{model.fiveSection}"
+                            android:textColor="@color/text_a7"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/five_accu_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:cursorVisible="false"
                             android:inputType="number"
                             android:lines="1"
                             android:paddingBottom="14dp"
@@ -556,6 +609,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:orientation="horizontal"
+                        android:visibility="@{model.isSocial?view.visibility:view.GONE}"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp">
 
@@ -578,12 +632,49 @@
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="@{model.isSocial?view.visibility:view.GONE}"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:visibility="@{model.isAccu?view.visibility:view.GONE}"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="代收公积金费"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:lines="1"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            android:text="@{model.accuSecurity}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
+                        android:visibility="@{model.isAccu?view.visibility:view.GONE}"
                         android:background="@color/base_line" />
                     <LinearLayout
                         android:layout_width="match_parent"

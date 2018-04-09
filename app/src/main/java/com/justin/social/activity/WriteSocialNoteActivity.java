@@ -20,11 +20,12 @@ public class WriteSocialNoteActivity extends BackActivity {
         model = new WritePeopleModel(this);
         model.setData(bind);
         model.getCity();
-        model.isAccu = getIntent().getBooleanExtra(OrderTableActivity.TYPE,false);
+        model.isAccu = getIntent().getIntExtra(OrderTableActivity.TYPE,0)==1;
+        model.type = getIntent().getIntExtra(OrderTableActivity.TYPE,0);
         bind.setModel(model);
     }
 
-    public static void JumpWriteSocial(Context context ,boolean isA){
+    public static void JumpWriteSocial(Context context ,int isA){
         Intent intent = new Intent(context,WriteSocialNoteActivity.class);
         intent.putExtra(OrderTableActivity.TYPE,isA);
         context.startActivity(intent);

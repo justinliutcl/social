@@ -124,13 +124,13 @@ public class OneModel extends BaseModel {
         }
         switch (view.getId()){
             case R.id.social_ll:
-                WriteSocialNoteActivity.JumpWriteSocial(mContext,false);
+                WriteSocialNoteActivity.JumpWriteSocial(mContext,0);
                 break;
             case R.id.accu_ll:
-                WriteSocialNoteActivity.JumpWriteSocial(mContext,true);
+                WriteSocialNoteActivity.JumpWriteSocial(mContext,1);
                 break;
             case R.id.five_ll:
-
+                WriteSocialNoteActivity.JumpWriteSocial(mContext,2);
                 break;
             case R.id.more_ll:
 

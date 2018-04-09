@@ -37,7 +37,10 @@ public class WritePeopleModel extends BaseModel {
     CityConfig cityConfig;
     private String min;
     private String max;
+    private String minAccu;
+    private String maxAccu;
     public boolean isAccu;
+    public int type;
     public ObservableField<String>city;
     public ObservableField<String>hourseType;
     public DbUser user;
@@ -55,7 +58,12 @@ public class WritePeopleModel extends BaseModel {
             public void complete(DbUser dbUser) {
             }
         });
-        OrderTableActivity.JumpToOrder(mContext,isAccu,min,max,city.get(),hourseType.get());
+        if(type == 2){
+            OrderTableActivity.JumpToOrder(mContext,type,min,max,minAccu,maxAccu,city.get(),hourseType.get());
+        }else{
+            OrderTableActivity.JumpToOrder(mContext,type,min,max,city.get(),hourseType.get());
+        }
+
     }
 
     public void setData(final ActivityWriteSocialNoteBinding bind) {
@@ -89,12 +97,19 @@ public class WritePeopleModel extends BaseModel {
                     cityConfig = CommonSettingValue.getIns(mContext).getCity();
                     cityConfig = bean;
                     CommonSettingValue.getIns(mContext).setCity(bean);
-                    if(isAccu){
-                        min = cityConfig.getData().get(0).getAccumulationFundBaseLow();
-                        max = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
-                    }else{
+                    if(type == 2){
                         min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
                         max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
+                        minAccu = cityConfig.getData().get(0).getAccumulationFundBaseLow();
+                        maxAccu = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                    }else{
+                        if(isAccu){
+                            min = cityConfig.getData().get(0).getAccumulationFundBaseLow();
+                            max = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                        }else{
+                            min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
+                            max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
+                        }
                     }
                 }
             }

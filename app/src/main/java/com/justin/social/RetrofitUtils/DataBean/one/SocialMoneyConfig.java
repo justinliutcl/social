@@ -10,6 +10,7 @@ public class SocialMoneyConfig extends BaseConfig {
     private SocialMoneyConfig data;
     private String personalTax;
     private String serviceCharge;
+    private String accumulationFund;
     private String sum;
     private String disabilityInsurance;
     private String socialSecurity;
@@ -69,5 +70,13 @@ public class SocialMoneyConfig extends BaseConfig {
 
     public void setOverdue_fine(String overdue_fine) {
         this.overdue_fine = overdue_fine;
+    }
+
+    public String getAccumulationFund() {
+        return accumulationFund;
+    }
+
+    public void setAccumulationFund(String accumulationFund) {
+        this.accumulationFund = accumulationFund;
     }
 }

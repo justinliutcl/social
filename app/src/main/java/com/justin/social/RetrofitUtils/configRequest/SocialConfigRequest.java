@@ -58,6 +58,22 @@ public interface SocialConfigRequest {
     );
 
     @FormUrlEncoded
+    @POST("order/getAccumulationCharge")
+    Call<SocialMoneyConfig> getAccuMoneyConfig(@Field("applyDuration") String applyDuration,
+                                                 @Field("insuredCardinal") String insuredCardinal,
+                                                 @Field("cityName") String cityName
+    );
+
+    @FormUrlEncoded
+    @POST("order/getAllCharge")
+    Call<SocialMoneyConfig> getAllMoneyConfig(@Field("applyDuration") String applyDuration,
+                                                 @Field("socialsecurityBase") String socialsecurityBase,
+                                                 @Field("accumulationBase") String accumulationBase,
+                                                 @Field("householdType") String householdType,
+                                                 @Field("cityName") String cityName
+    );
+
+    @FormUrlEncoded
     @POST("order/addSocialsecurityOrder")
     Call<BaseConfig> getSendOrderConfig(@Field("userId") String userId,
                                                  @Field("userName") String userName,
@@ -70,6 +86,26 @@ public interface SocialConfigRequest {
                                                  @Field("applyDuration") String applyDuration,
                                                  @Field("insuredCardinal") String insuredCardinal,
                                                  @Field("insuredCharge") String insuredCharge,
+                                                 @Field("disabilityCharge") String disabilityCharge,
+                                                 @Field("singleCharge") String singleCharge,
+                                                 @Field("serviceCharge") String serviceCharge,
+                                                 @Field("overdueFine") String overdueFine,
+                                                 @Field("allCharge") String allCharge,
+                                                 @Field("insuredTime") String insuredTime
+    );
+    @FormUrlEncoded
+    @POST("order/addAccumulationOrder")
+    Call<BaseConfig> getSendAccuOrderConfig(@Field("userId") String userId,
+                                                 @Field("userName") String userName,
+                                                 @Field("householdType") String householdType,
+                                                 @Field("insuredType") String insuredType,
+                                                 @Field("bankName") String bankName,
+                                                 @Field("branchNum") String branchNum,
+                                                 @Field("idCard") String idCard,
+                                                 @Field("insuredCity") String insuredCity,
+                                                 @Field("applyDuration") String applyDuration,
+                                                 @Field("insuredCardinal") String insuredCardinal,
+                                                 @Field("accumulationCharge") String insuredCharge,
                                                  @Field("disabilityCharge") String disabilityCharge,
                                                  @Field("singleCharge") String singleCharge,
                                                  @Field("serviceCharge") String serviceCharge,
