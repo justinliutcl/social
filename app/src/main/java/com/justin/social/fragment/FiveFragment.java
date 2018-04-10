@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.justin.social.R;
 import com.justin.social.databinding.FragmentFiveBinding;
-import com.justin.social.databinding.FragmentOneBinding;
-import com.justin.social.utils.PhotoSelectUtil;
 import com.justin.social.utils.PhotoSelectUtil;
 
 /**
@@ -38,8 +36,9 @@ public class FiveFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         photoUtil.forresult(requestCode,resultCode,data);
     }
+
     public void onImageClick(View view){
-        photoUtil.setimg(mBinding.);
+        photoUtil.setimg(mBinding.titleIv);
         photoUtil.showDialog();
     }
 }
