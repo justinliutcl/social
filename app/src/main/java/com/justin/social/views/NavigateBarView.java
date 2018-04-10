@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.justin.social.R;
+import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.LoginActivity;
 import com.justin.social.databinding.ViewNavigateBarBinding;
 
 
@@ -80,6 +82,10 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(1);
     }
     public void onThree() {
+        if( CommonSettingValue.getIns(getContext()).getCurrentPhone() == null){
+            LoginActivity.JumpToLogin(getContext());
+            return;
+        }
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);
@@ -110,6 +116,10 @@ public class NavigateBarView extends RelativeLayout {
             listener.onTabChaged(3);
     }
     public void onFifth() {
+        if(CommonSettingValue.getIns(getContext()).getCurrentPhone() == null){
+            LoginActivity.JumpToLogin(getContext());
+            return;
+        }
         mBind.oneIv.setImageResource(R.drawable.icon_tab_home_normal);
         mBind.twoIv.setImageResource(R.drawable.icon_tab_servicenormal);
         mBind.threeIv.setImageResource(R.drawable.icon_tab_pay);

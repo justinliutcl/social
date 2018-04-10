@@ -1,6 +1,7 @@
 package com.justin.social.model.tab;
 
 import android.content.Context;
+import android.databinding.ObservableField;
 import android.view.View;
 
 import com.justin.social.model.base.BaseModel;
@@ -10,8 +11,10 @@ import com.justin.social.model.base.BaseModel;
  */
 
 public class FiveModel extends BaseModel {
+    public ObservableField<String>headImage;
     public FiveModel(Context context) {
         super(context);
+        headImage = new ObservableField<>("");
     }
 
     public void onClick(View view){

@@ -22,6 +22,8 @@ public class ImageUtils {
     @BindingAdapter("uriIcon")
     public static void setIcon(ImageView view, String url){
         Glide.with(view.getContext().getApplicationContext()).load(url)
+                .error(R.drawable.back_one_background)
+                .placeholder(R.drawable.back_one_background)
                 .into(view);
     }
 }

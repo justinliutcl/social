@@ -3,6 +3,7 @@ package com.justin.social.RetrofitUtils.configRequest;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
@@ -116,5 +117,11 @@ public interface SocialConfigRequest {
 
     @POST("others/getServiceList")
     Call<ServiceConfig> getServiceConfig(
+    );
+
+    @POST("user/headImg")
+    Call<HeaderImageConfig> getHeadImageConfig(
+            @Query("userId") String userId,
+            @Query("imgData") String imgData
     );
 }

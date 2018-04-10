@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.justin.social.R;
+import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.FragmentTwoBinding;
 import com.justin.social.model.tab.TwoModel;
@@ -30,6 +31,7 @@ public class TwoFragment extends Fragment {
     private void initView() {
         model = new TwoModel(getActivity());
         model.init(mBinding);
+
         model.getService();
     }
 }

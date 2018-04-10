@@ -52,6 +52,7 @@ public class LoginActivity extends BackActivity {
                             MainActivity.JumpTMain(LoginActivity.this);
                             UserDataObtain.getInstance(LoginActivity.this).updataUser(bean.getData().changeToDbUser(),null);
                             CommonSettingValue.getIns(LoginActivity.this).setCurrentPhone(bean.getData().getPhone());
+                            CommonSettingValue.getIns(LoginActivity.this).setCurrentUserID(bean.getData().getUserId());
                         }else {
                             toastShow(bean.getMsg());
                         }

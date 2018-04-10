@@ -17,6 +17,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.FragmentTwoBinding;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.v7.widget.DividerItemDecoration.*;
+import static com.mob.MobSDK.getContext;
 
 /**
  * Created by Justinliu on 2018/3/28.
@@ -60,10 +62,16 @@ public class TwoModel extends BaseModel {
     }
 
     public void getService() {
+        ServiceConfig serviceBean = CommonSettingValue.getIns(getContext()).getService();
+        if(serviceBean!=null){
+            adapter = new ServiceAdapter(serviceBean.getData(),mContext);
+            mBinding.list.setAdapter(adapter);
+        }
         new HttpConfigManager().getServiceConfig(new BeanConfigCallBack<ServiceConfig>() {
             @Override
             public void onDataResponse(ServiceConfig bean) {
-
+                if(bean.isSuccess())
+                    CommonSettingValue.getIns(mContext).setService(bean);
                 adapter = new ServiceAdapter(bean.getData(),mContext);
                 mBinding.list.setAdapter(adapter);
             }

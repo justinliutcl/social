@@ -23,4 +23,8 @@ public class BaseConfig {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public boolean isSuccess() {
+        return code != null && code.equals("000000");
+    }
 }

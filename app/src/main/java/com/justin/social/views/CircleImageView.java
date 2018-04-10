@@ -49,7 +49,7 @@ public class CircleImageView extends AppCompatImageView {
         int size = Math.min(getMeasuredWidth(), getMeasuredHeight());
         mRadius = size / 2;
 
-        setMeasuredDimension(size, size);
+//        setMeasuredDimension(size, size);
     }
 
     @Override

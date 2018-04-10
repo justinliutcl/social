@@ -6,6 +6,7 @@ import com.justin.social.LogUtils.CommonLog;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
@@ -270,6 +271,24 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<ServiceConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getHeadImageConfig(String userIdfinal,String image, final BeanConfigCallBack<HeaderImageConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<HeaderImageConfig> config = configRequest.getHeadImageConfig(userIdfinal,image);
+        config.enqueue(new Callback<HeaderImageConfig>() {
+            @Override
+            public void onResponse(Call<HeaderImageConfig> call, Response<HeaderImageConfig> response) {
+                HeaderImageConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<HeaderImageConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
             }

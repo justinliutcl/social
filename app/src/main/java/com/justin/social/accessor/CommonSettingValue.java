@@ -3,6 +3,7 @@ package com.justin.social.accessor;
 import android.content.Context;
 
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 
 /**
  * Created by Justinliu on 2018/2/7.
@@ -18,8 +19,10 @@ public class CommonSettingValue extends GlobPre {
         }
         return commonValue;
     }
-    private static final String KEY_CURRENT_PHONE           = "key_current_phone";
-    private static final String KEY_CITY                    = "key_city";
+    private static final String KEY_CURRENT_PHONE               = "key_current_phone";
+    private static final String KEY_CURRENT_USER_ID             = "key_current_userid";
+    private static final String KEY_CITY                        = "key_city";
+    private static final String KEY_SERVICE                     = "key_service";
     protected CommonSettingValue(Context context) {
         super(context);
     }
@@ -31,6 +34,13 @@ public class CommonSettingValue extends GlobPre {
 
     public String getCurrentPhone(){
         return getString(KEY_CURRENT_PHONE, null);
+    }
+    public void setCurrentUserID(String id){
+        putString(KEY_CURRENT_USER_ID, id);
+    }
+
+    public String getCurrentUserId(){
+        return getString(KEY_CURRENT_USER_ID, null);
     }
 
     public void setCity(CityConfig phone){
@@ -71,5 +81,21 @@ public class CommonSettingValue extends GlobPre {
 
     public String getHourseType(String phone){
         return getString(phone+"hourse", "本市城镇职工");
+    }
+
+    public void setHeaderImage(String phone,String hourse){
+        putString(phone+"headImage", hourse);
+    }
+
+    public String getHeaderImage(){
+        return getString(getCurrentPhone()+"headImage", "");
+    }
+
+    public void setService(ServiceConfig phone){
+        putObject(KEY_SERVICE, phone);
+    }
+
+    public ServiceConfig getService(){
+        return getObject(KEY_SERVICE, null);
     }
 }
