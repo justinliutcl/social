@@ -1,5 +1,6 @@
 package com.justin.social.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
@@ -7,11 +8,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -19,9 +23,14 @@ import android.widget.Toast;
 
 
 import com.justin.social.R;
+import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.accessor.CommonSettingValue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,6 +41,9 @@ import java.util.Map;
 
 
 public class PhotoSelectUtilA {
+	public interface onGetCallBack{
+		void onBase64Callback(String base64);
+	}
 	String selectitem[]={"打开相机","打开图库","取消"};
 	AlertDialog ad;
 	String encodeString;
@@ -39,16 +51,19 @@ public class PhotoSelectUtilA {
 	private static final int SELECT_BY_STORE=2;
 	private static final int SELECT_BY_caijian=3;
 	private static final String INTENT_key="photo_path";
+	private static final String FILE_NAME="rsdl";
 	Uri photoUri;
 	String photopath;
 	Context context;
 	ImageView img;
-	Activity frag;
+	Activity activity;
 	Bitmap bmap;
 	String afterpath;
-	public PhotoSelectUtilA(Context context, Activity frag){
+	onGetCallBack callBack;
+	public PhotoSelectUtilA(Context context, Activity frag,onGetCallBack callBack){
+		this.callBack = callBack;
 		this.context=context;
-		this.frag=frag;
+		this.activity=frag;
 		setDialog();
 	}
 	public void setimg(ImageView imag){
@@ -77,17 +92,29 @@ public class PhotoSelectUtilA {
 		ab.setItems(selectitem, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+						!= PackageManager.PERMISSION_GRANTED) {
+					if(!PermessionUtils.checkPermission(context,null,activity,
+							Manifest.permission.WRITE_EXTERNAL_STORAGE,0))
+						return;
+				}
 				switch (which) {
-				case 0:
-					openPhoto();
-					break;
-				case 1:
-					openImageStore();
-					break;
-				case 2:
-					break;
-				default:
-					break;
+					case 0:
+						if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+								!= PackageManager.PERMISSION_GRANTED) {
+							if(PermessionUtils.checkPermission(context,null,activity,
+									Manifest.permission.CAMERA,0))
+								return;
+						}
+						openPhoto();
+						break;
+					case 1:
+						openImageStore();
+						break;
+					case 2:
+						break;
+					default:
+						break;
 				}
 			}
 		});
@@ -103,7 +130,7 @@ public class PhotoSelectUtilA {
 			photoUri= Uri.fromFile(getUribyPhoto());
 			photopath=photoUri.getPath();
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-			frag.startActivityForResult(intent, SELECT_BY_PHOTO);
+			activity.startActivityForResult(intent, SELECT_BY_PHOTO);
 			
 		}else{
 			Toast.makeText(context, "请检查sd卡", Toast.LENGTH_SHORT).show();
@@ -112,7 +139,7 @@ public class PhotoSelectUtilA {
 	}
 	//得到拍照的地址
 	public File getUribyPhoto(){
-		File root=new File(Environment.getExternalStorageDirectory(), "csd");
+		File root=new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 		if(!root.exists())
 			root.mkdirs();
 		String filename=new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss").format(new Date())+".jpg";
@@ -126,11 +153,11 @@ public class PhotoSelectUtilA {
 //		intent.setAction(Intent.ACTION_GET_CONTENT);
 		Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-		frag.startActivityForResult(intent, SELECT_BY_STORE);
+		activity.startActivityForResult(intent, SELECT_BY_STORE);
 	}
 
 	public String getUribycaijian(){
-		File root=new File(Environment.getExternalStorageDirectory(), "csd");
+		File root=new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 		if(!root.exists())
 			root.mkdirs();
 		String filename=new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss").format(new Date())+".jpg";
@@ -139,36 +166,64 @@ public class PhotoSelectUtilA {
 	}
 
 	private void go2caijian(Intent data) {
-        // 拿到剪切数据  
-        bmap = data.getParcelableExtra("data");
-        // 显示剪切的图像  
-        img.setImageBitmap(bmap);  
-         
-        // 图像保存到文件中
-        FileOutputStream foutput = null;
-        ByteArrayOutputStream byteout=new ByteArrayOutputStream();
-        try {
+//        // 拿到剪切数据
+//        bmap = data.getParcelableExtra("data");
+//        // 显示剪切的图像
+//        img.setImageBitmap(bmap);
+//
+//        // 图像保存到文件中
+//        FileOutputStream foutput = null;
+//        ByteArrayOutputStream byteout=new ByteArrayOutputStream();
+//        try {
+//			afterpath=getUribycaijian();
+//			photopath=afterpath;
+//			foutput = new FileOutputStream(new File(afterpath));
+//            bmap.compress(Bitmap.CompressFormat.PNG, 100, foutput);
+//            bmap.compress(Bitmap.CompressFormat.PNG, 100, byteout);
+//            byte[] bytes=byteout.toByteArray();
+//
+//            byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
+//            encodeString = new String(encode);
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }finally{
+//            if(null != foutput){
+//                try {
+//                    foutput.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+		ByteArrayOutputStream byteout = null;
+		try {
+			FileInputStream fis = new FileInputStream(photopath);
+			Bitmap bitmap= BitmapFactory.decodeStream(fis);
+//			FileOutputStream foutput = null;
+			byteout=new ByteArrayOutputStream();
+
 			afterpath=getUribycaijian();
 			photopath=afterpath;
-			foutput = new FileOutputStream(new File(afterpath));
-            bmap.compress(Bitmap.CompressFormat.PNG, 100, foutput);
-            bmap.compress(Bitmap.CompressFormat.PNG, 100, byteout);
-            byte[] bytes=byteout.toByteArray();
+//			foutput = new FileOutputStream(new File(afterpath));
 
-            byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
-            encodeString = new String(encode);
+//			bitmap.compress(Bitmap.CompressFormat.PNG, 40, foutput);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteout);
+			byte[] bytes=byteout.toByteArray();
+			byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
+			String encodeString = new String(encode);
+			callBack.onBase64Callback(encodeString);
+		}catch (Exception e){
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }finally{
-            if(null != foutput){
-                try {
-                    foutput.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+		}finally {
+			if (null != byteout) {
+				try {
+					byteout.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 }
 	
 	public void send(String phone){
@@ -196,9 +251,9 @@ public class PhotoSelectUtilA {
 	    intent.putExtra("aspectY", 1);  
 	    intent.putExtra("outputX", 150);// 输出图片大小  
 	    intent.putExtra("outputY", 150);  
-	    intent.putExtra("return-data", true);  
-	      
-	    frag.startActivityForResult(intent, SELECT_BY_caijian); 
+	    intent.putExtra("return-data", true);
+
+		activity.startActivityForResult(intent, SELECT_BY_caijian);
 	}
 	
 	private void doinPhoto(int requestCode,Intent data) {

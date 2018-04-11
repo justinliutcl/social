@@ -6,6 +6,7 @@ import android.util.ArrayMap;
 import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
+import com.justin.social.accessor.CommonSettingValue;
 
 import java.util.List;
 
@@ -81,6 +82,22 @@ public class UserDataObtain {
         execute(ob, obs);
     }
 
+    public void getCurrentUser(IDataObtain.IDBResCallback<DbUser> callback) {
+        ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
+                if (dbManager == null)
+                    init();
+                DbUser dbUser = dbManager.getUserFromPhone(CommonSettingValue.getIns(mContext).getCurrentPhone());
+                e.onNext(dbUser);
+                e.onComplete();
+            }
+        };
+
+        Observer<DbUser> obs = createObserver(callback);
+        execute(ob, obs);
+    }
+
     public void updataUser(final DbUser user, IDataObtain.IDBResCallback<DbUser> callback){
         ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
             @Override
@@ -93,6 +110,26 @@ public class UserDataObtain {
                 else
                     dbManager.updateUser(user);
                 e.onNext(user);
+                e.onComplete();
+            }
+        };
+
+        Observer<DbUser> obs = createObserver(callback);
+        execute(ob, obs);
+    }
+
+    public void updataCurrentHeadImage(final String image, IDataObtain.IDBResCallback<DbUser> callback){
+        ObservableOnSubscribe<DbUser> ob = new ObservableOnSubscribe<DbUser>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
+                if (dbManager == null)
+                    init();
+                DbUser dbUser = dbManager.getUserFromPhone(CommonSettingValue.getIns(mContext).getCurrentPhone());
+                if(dbUser != null) {
+                    dbUser.headImg = image;
+                    dbManager.updateUser(dbUser);
+                }
+                e.onNext(dbUser);
                 e.onComplete();
             }
         };

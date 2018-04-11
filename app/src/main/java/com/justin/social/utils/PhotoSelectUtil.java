@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.view.Gravity;
@@ -24,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.justin.social.R;
-import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
@@ -33,10 +34,7 @@ import com.justin.social.accessor.CommonSettingValue;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,6 +46,7 @@ public class PhotoSelectUtil {
 	private static final int SELECT_BY_STORE=2;
 	private static final int SELECT_BY_caijian=3;
 	private static final String INTENT_key="photo_path";
+	private static final String FILE_NAME="rsdl";
 	Uri photoUri;
 	String photopath;
 	Context context;
@@ -55,7 +54,9 @@ public class PhotoSelectUtil {
 	Fragment frag;
 	Bitmap bmap;
 	String afterpath;
-	public PhotoSelectUtil(Context context, Fragment frag){
+	PhotoSelectUtilA.onGetCallBack callBack;
+	public PhotoSelectUtil(Context context, Fragment frag,PhotoSelectUtilA.onGetCallBack callBack){
+		this.callBack = callBack;
 		this.context=context;
 		this.frag=frag;
 		setDialog();
@@ -86,8 +87,20 @@ public class PhotoSelectUtil {
 		ab.setItems(selectitem, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+						!= PackageManager.PERMISSION_GRANTED) {
+					if(!PermessionUtils.checkPermission(context,frag,null,
+							Manifest.permission.WRITE_EXTERNAL_STORAGE,0))
+						return;
+				}
 				switch (which) {
 				case 0:
+					if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+							!= PackageManager.PERMISSION_GRANTED) {
+						if(PermessionUtils.checkPermission(context,frag,null,
+								Manifest.permission.CAMERA,0))
+							return;
+					}
 					openPhoto();
 					break;
 				case 1:
@@ -137,7 +150,7 @@ public class PhotoSelectUtil {
 	}
 	//得到拍照的地址
 	public File getUribyPhoto(){
-		File root=new File(Environment.getExternalStorageDirectory(), "csd");
+		File root=new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 		if(!root.exists())
 			root.mkdirs();
 		String filename=new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss").format(new Date())+".jpg";
@@ -155,7 +168,7 @@ public class PhotoSelectUtil {
 	}
 
 	public String getUribycaijian(){
-		File root=new File(Environment.getExternalStorageDirectory(), "csd");
+		File root=new File(Environment.getExternalStorageDirectory(), FILE_NAME);
 		if(!root.exists())
 			root.mkdirs();
 		String filename=new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss").format(new Date())+".jpg";
@@ -185,29 +198,20 @@ public class PhotoSelectUtil {
 		try {
 			FileInputStream fis = new FileInputStream(photopath);
 			Bitmap bitmap= BitmapFactory.decodeStream(fis);
-			FileOutputStream foutput = null;
+//			FileOutputStream foutput = null;
 			byteout=new ByteArrayOutputStream();
 
 			afterpath=getUribycaijian();
 			photopath=afterpath;
-			foutput = new FileOutputStream(new File(afterpath));
+//			foutput = new FileOutputStream(new File(afterpath));
 
 //			bitmap.compress(Bitmap.CompressFormat.PNG, 40, foutput);
 			bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteout);
 			byte[] bytes=byteout.toByteArray();
 			byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
 			String encodeString = new String(encode);
-			new HttpConfigManager().getHeadImageConfig(CommonSettingValue.getIns(context).getCurrentUserId(), encodeString,
-					new BeanConfigCallBack<HeaderImageConfig>() {
-				@Override
-				public void onDataResponse(HeaderImageConfig bean) {
-					if(bean.isSuccess()){
-						CommonSettingValue.getIns(context).setHeaderImage(CommonSettingValue.getIns(context).getCurrentPhone(),bean.getData());
-						ImageUtils.setIcon(img,bean.getData());
-						Toast.makeText(context,"上传成功",Toast.LENGTH_SHORT).show();
-					}
-				}
-			});
+			callBack.onBase64Callback(encodeString);
+
 		}catch (Exception e){
 
 		}finally {
@@ -251,33 +255,6 @@ public class PhotoSelectUtil {
 //        }
 	
 }
-	public  String fileToBase64(File file) {
-		String base64 = null;
-		InputStream in = null;
-		try {
-			in = new FileInputStream(file);
-			byte[] bytes = new byte[in.available()];
-			int length = in.read(bytes);
-			base64 = Base64.encodeToString(bytes, 0, length, Base64.DEFAULT);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				if (in != null) {
-					in.close();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return base64;
-	}
-
 
 	private void doincaijian(String path) {
 		Intent intent = new Intent();

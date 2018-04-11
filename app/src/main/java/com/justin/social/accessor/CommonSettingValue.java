@@ -83,13 +83,13 @@ public class CommonSettingValue extends GlobPre {
         return getString(phone+"hourse", "本市城镇职工");
     }
 
-    public void setHeaderImage(String phone,String hourse){
-        putString(phone+"headImage", hourse);
-    }
-
-    public String getHeaderImage(){
-        return getString(getCurrentPhone()+"headImage", "");
-    }
+//    public void setHeaderImage(String phone,String hourse){
+//        putString(phone+"headImage", hourse);
+//    }
+//
+//    public String getHeaderImage(){
+//        return getString(getCurrentPhone()+"headImage", "");
+//    }
 
     public void setService(ServiceConfig phone){
         putObject(KEY_SERVICE, phone);
