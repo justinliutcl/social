@@ -271,8 +271,20 @@ public class OrderTableModel extends BaseModel {
         UserDataObtain.getInstance(mContext).getUserFromPhoneRxJava(CommonSettingValue.getIns(mContext).getCurrentPhone(), new IDataObtain.IDBResCallback<DbUser>() {
             @Override
             public void complete(DbUser dbUser) {
-                if (isFirst.get()) {
-
+                if (isFive.get()) {
+                    new HttpConfigManager().getAllOrderConfig(
+                            dbUser.getUserId(), dbUser.getUserName(), hourseType,
+                            tableType.get(), bind.banknameText.getText().toString(),
+                            bind.banknumText.getText().toString(), dbUser.getIdCard(),
+                            cityName, appDur.get(), defaultBase,defaultFiveBase,
+                            socialSecurity.get(), accuSecurity.get(),disabilityInsurance.get(), personalTax.get(),
+                            serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime, new BeanConfigCallBack<BaseConfig>() {
+                                @Override
+                                public void onDataResponse(BaseConfig bean) {
+                                    toastShow(bean.getMsg());
+                                }
+                            }
+                    );
                 } else {
                     if (isAccu.get()) {
                         new HttpConfigManager().getSendAccuOrderConfig(
@@ -280,7 +292,7 @@ public class OrderTableModel extends BaseModel {
                                 tableType.get(), bind.banknameText.getText().toString(),
                                 bind.banknumText.getText().toString(), dbUser.getIdCard(),
                                 cityName, appDur.get(), defaultBase,
-                                socialSecurity.get(), disabilityInsurance.get(), personalTax.get(),
+                                accuSecurity.get(), disabilityInsurance.get(), personalTax.get(),
                                 serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime, new BeanConfigCallBack<BaseConfig>() {
                                     @Override
                                     public void onDataResponse(BaseConfig bean) {

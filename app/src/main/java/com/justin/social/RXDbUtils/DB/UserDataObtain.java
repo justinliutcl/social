@@ -104,7 +104,7 @@ public class UserDataObtain {
             public void subscribe(@NonNull ObservableEmitter<DbUser> e) throws Exception {
                 if (dbManager == null)
                     init();
-                DbUser dbUser = dbManager.getUserFromIdCard(user.idCard);
+                DbUser dbUser = dbManager.getUserFromPhone(user.phone);
                 if(dbUser == null)
                     dbManager.addUser(user);
                 else

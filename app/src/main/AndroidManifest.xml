@@ -45,6 +45,7 @@
         <activity android:name=".activity.OrderTableActivity"/>
         <activity android:name=".activity.SocialPayActivity"/>
         <activity android:name=".activity.PoliceDetialActivity" />
+        <activity android:name=".activity.NewsActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

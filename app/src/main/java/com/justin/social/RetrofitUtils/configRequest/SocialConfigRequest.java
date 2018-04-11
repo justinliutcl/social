@@ -5,6 +5,7 @@ import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
@@ -115,6 +116,29 @@ public interface SocialConfigRequest {
                                                  @Field("insuredTime") String insuredTime
     );
 
+    @FormUrlEncoded
+    @POST("order/addAllOrder")
+    Call<BaseConfig> getAllOrderConfig(@Field("userId") String userId,
+                                            @Field("userName") String userName,
+                                            @Field("householdType") String householdType,
+                                            @Field("insuredType") String insuredType,
+                                            @Field("bankName") String bankName,
+                                            @Field("branchNum") String branchNum,
+                                            @Field("idCard") String idCard,
+                                            @Field("insuredCity") String insuredCity,
+                                            @Field("applyDuration") String applyDuration,
+                                            @Field("socialSecurityBase") String socialSecurityBase,
+                                            @Field("accumulationBase") String accumulationBase,
+                                            @Field("socialSecurityCharge") String socialSecurityCharge,
+                                            @Field("accumulationCharge") String accumulationCharge,
+                                            @Field("disabilityCharge") String disabilityCharge,
+                                            @Field("singleCharge") String singleCharge,
+                                            @Field("serviceCharge") String serviceCharge,
+                                            @Field("overdueFine") String overdueFine,
+                                            @Field("allCharge") String allCharge,
+                                            @Field("insuredTime") String insuredTime
+    );
+
     @POST("others/getServiceList")
     Call<ServiceConfig> getServiceConfig(
     );
@@ -123,5 +147,9 @@ public interface SocialConfigRequest {
     Call<HeaderImageConfig> getHeadImageConfig(
             @Query("userId") String userId,
             @Query("imgData") String imgData
+    );
+
+    @POST("news/getNewsInfo")
+    Call<NewListBean> getNewsContentConfig(@Query("contentId") String contentId
     );
 }

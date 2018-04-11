@@ -86,15 +86,9 @@ public class OneModel extends BaseModel {
             public void onDataResponse(NewsListConfig bean) {
                 if(bean!=null){
                     List<NewListBean> list = bean.getData().getData();
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
-                    list.add(list.get(0));
+                    for(NewListBean listBean:list){
+                        listBean.context = mContext;
+                    }
                     adapter = new NewsListAdapter(list,mContext);
                     mBinding.list.setAdapter(adapter);
                 }

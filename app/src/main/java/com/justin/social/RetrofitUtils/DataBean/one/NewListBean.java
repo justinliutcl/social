@@ -1,15 +1,19 @@
 package com.justin.social.RetrofitUtils.DataBean.one;
 
+import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.view.View;
 import android.widget.TextView;
 
+import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
+import com.justin.social.activity.NewsActivity;
 import com.justin.social.utils.AppUtils;
 
 /**
  * Created by ASUS on 2018/3/31.
  */
 
-public class NewListBean {
+public class NewListBean extends BaseConfig{
     public String contentId;
     public String contentTypeId;
     public String title;
@@ -23,6 +27,16 @@ public class NewListBean {
     public String state;
     public String status;
     public String txt;
+    public Context context;
+    private NewListBean data;
+
+    public NewListBean getData() {
+        return data;
+    }
+
+    public void setData(NewListBean data) {
+        this.data = data;
+    }
 
     public String getContentId() {
         return contentId;
@@ -131,5 +145,9 @@ public class NewListBean {
     @BindingAdapter("time")
     public static void setTime(TextView view, long time){
        view.setText( AppUtils.getNewstime(time));
+    }
+
+    public void onItemClick(View view){
+        NewsActivity.JumpToNews(context,contentId);
     }
 }

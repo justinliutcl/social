@@ -102,6 +102,7 @@ public class LoginActivity extends BackActivity {
             }
         });
         binding.setModel(model);
+        model.initBind(binding);
     }
 
     public static void JumpToLogin(Context context){

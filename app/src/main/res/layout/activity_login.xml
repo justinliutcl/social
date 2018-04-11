@@ -101,16 +101,26 @@
 
             <EditText
                 android:id="@+id/password_ed"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="5dp"
                 android:background="@color/white"
+                android:inputType="textPassword"
                 android:hint="@string/regist_hint_password"
                 android:lines="1"
                 android:textColor="@color/base_black1"
                 android:textColorHint="@color/base_black1"
                 android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/password_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_password_hide"
+                android:layout_marginRight="20dp"
+                android:onClick="@{model.onPasswordImageClick}"
+                />
         </LinearLayout>
 
         <TextView
