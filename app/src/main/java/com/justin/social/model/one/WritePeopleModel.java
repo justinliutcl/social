@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.justin.social.R;
 import com.justin.social.RXDbUtils.DB.UserDataObtain;
 import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
@@ -16,6 +17,9 @@ import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.OrderTableActivity;
 import com.justin.social.databinding.ActivityWriteSocialNoteBinding;
 import com.justin.social.model.base.BaseModel;
+import com.justin.social.utils.DialogUtils;
+
+import java.util.List;
 
 /**
  * Created by ASUS on 2018/3/31.
@@ -33,6 +37,7 @@ public class WritePeopleModel extends BaseModel {
         city = new ObservableField<>(value.getCity(phone));
         hourseType = new ObservableField<>(value.getHourseType(phone));
     }
+
     HttpConfigManager manager;
     CityConfig cityConfig;
     private String min;
@@ -41,11 +46,12 @@ public class WritePeopleModel extends BaseModel {
     private String maxAccu;
     public boolean isAccu;
     public int type;
-    public ObservableField<String>city;
-    public ObservableField<String>hourseType;
+    public ObservableField<String> city;
+    public ObservableField<String> hourseType;
     public DbUser user;
-    public void onNextClick(View view){
-        if(max == null||min == null){
+
+    public void onNextClick(View view) {
+        if (max == null || min == null) {
             toastShow("请检查网络");
             return;
         }
@@ -58,10 +64,10 @@ public class WritePeopleModel extends BaseModel {
             public void complete(DbUser dbUser) {
             }
         });
-        if(type == 2){
-            OrderTableActivity.JumpToOrder(mContext,type,min,max,minAccu,maxAccu,city.get(),hourseType.get());
-        }else{
-            OrderTableActivity.JumpToOrder(mContext,type,min,max,city.get(),hourseType.get());
+        if (type == 2) {
+            OrderTableActivity.JumpToOrder(mContext, type, min, max, minAccu, maxAccu, city.get(), hourseType.get());
+        } else {
+            OrderTableActivity.JumpToOrder(mContext, type, min, max, city.get(), hourseType.get());
         }
 
     }
@@ -90,23 +96,24 @@ public class WritePeopleModel extends BaseModel {
     }
 
     public void getCity() {
+        cityConfig = CommonSettingValue.getIns(mContext).getCity();
+
         manager.getCityListConfig(new BeanConfigCallBack<CityConfig>() {
             @Override
             public void onDataResponse(CityConfig bean) {
-                if(bean.getData()!=null&&!bean.getData().isEmpty()){
-                    cityConfig = CommonSettingValue.getIns(mContext).getCity();
+                if (bean.getData() != null && !bean.getData().isEmpty()) {
                     cityConfig = bean;
                     CommonSettingValue.getIns(mContext).setCity(bean);
-                    if(type == 2){
+                    if (type == 2) {
                         min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
                         max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
                         minAccu = cityConfig.getData().get(0).getAccumulationFundBaseLow();
                         maxAccu = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
-                    }else{
-                        if(isAccu){
+                    } else {
+                        if (isAccu) {
                             min = cityConfig.getData().get(0).getAccumulationFundBaseLow();
                             max = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
-                        }else{
+                        } else {
                             min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
                             max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
                         }
@@ -116,9 +123,49 @@ public class WritePeopleModel extends BaseModel {
         });
     }
 
-    public void onShowDialogClick(View view){
-        switch (view.getId()){
+    private DialogUtils.ItemClickBack cityCall = new DialogUtils.ItemClickBack() {
+        @Override
+        public void onBack(String s) {
+            DialogUtils.getDialogUtilInstance().dismiss();
+            if (!city.get().equals(s)) {
+                if (cityConfig.getIndex(s) >= 0) {
+                    if (type == 2) {
+                        min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
+                        max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
+                        minAccu = cityConfig.getData().get(0).getAccumulationFundBaseLow();
+                        maxAccu = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                    } else {
+                        if (isAccu) {
+                            min = cityConfig.getData().get(0).getAccumulationFundBaseLow();
+                            max = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                        } else {
+                            min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
+                            max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
+                        }
+                    }
+                }
 
+            }
+        }
+    };
+
+    public void onShowDialogClick(View view) {
+        switch (view.getId()) {
+            case R.id.city_ll:
+                if (cityConfig != null) {
+                    DialogUtils.getDialogUtilInstance().showCityDialog(mContext, cityConfig.getStringListCity(), cityCall);
+
+                }
+                break;
+            case R.id.regist_type_ll:
+                DialogUtils.getDialogUtilInstance().showHourseTypeDialog(mContext, new DialogUtils.ItemClickBack() {
+                    @Override
+                    public void onBack(String s) {
+                        hourseType.set(s);
+                        DialogUtils.getDialogUtilInstance().dismiss();
+                    }
+                });
+                break;
         }
     }
 }

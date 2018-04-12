@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager;
 import com.justin.social.R;
 import com.justin.social.views.AutoHideKeyBoardDialog;
 
+import java.util.List;
+
 
 /**
  * Created by Justinliu on 2017/12/13.
@@ -39,7 +41,7 @@ public class DialogUtils {
         this.activity = activity;
     }
 
-    public AutoHideKeyBoardDialog showSimpleDialog(final Context context, final View view) {
+    private AutoHideKeyBoardDialog showSimpleDialog(final Context context, final View view) {
         builder = new AutoHideKeyBoardDialog(context, R.style.dialog);
         builder.show();
         builder.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
@@ -50,7 +52,7 @@ public class DialogUtils {
     }
 
 
-    public AutoHideKeyBoardDialog showBottomDialog(Context context, View view) {
+    private AutoHideKeyBoardDialog showBottomDialog(Context context, View view) {
         builder = new AutoHideKeyBoardDialog(context, R.style.dialog);
         builder.show();
         builder.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
@@ -78,6 +80,18 @@ public class DialogUtils {
 
     public void showDuringDialog(Context context,ItemClickBack back){
         showSimpleDialog(context,DialogImpl.getDuringView(context,back));
+    }
+
+    public void showCityDialog(Context context, List<String>city,ItemClickBack back){
+        showSimpleDialog(context,DialogImpl.getCityView(context,city,back));
+    }
+
+    public void showHourseTypeDialog(Context context, ItemClickBack back){
+        showSimpleDialog(context,DialogImpl.getHourseTypeView(context,back));
+    }
+
+    public void showSocialTypeDialog(Context context, ItemClickBack back){
+        showSimpleDialog(context,DialogImpl.getSocialTypeView(context,back));
     }
 
 

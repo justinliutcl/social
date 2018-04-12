@@ -3,6 +3,7 @@ package com.justin.social.RetrofitUtils.DataBean.one;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,5 +73,25 @@ public class CityConfig extends BaseConfig implements Serializable{
 
     public void setAccumulationFundBaseHigh(String accumulationFundBaseHigh) {
         this.accumulationFundBaseHigh = accumulationFundBaseHigh;
+    }
+
+    public List<String> getStringListCity(){
+        List<String>list = new ArrayList<>();
+        if(data!=null){
+            for(CityConfig cityConfig:data){
+                list.add(cityConfig.getCityName());
+            }
+        }
+        return list;
+    }
+
+    public int getIndex(String s){
+        List<String>list = new ArrayList<>();
+        if(data!=null){
+            for(CityConfig cityConfig:data){
+                list.add(cityConfig.getCityName());
+            }
+        }
+        return list.indexOf(s);
     }
 }

@@ -21,6 +21,7 @@ import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.databinding.ActivityOrderTableBinding;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.AppUtils;
+import com.justin.social.utils.BankUtils;
 import com.justin.social.utils.DialogUtils;
 
 /**
@@ -320,5 +321,38 @@ public class OrderTableModel extends BaseModel {
             }
         });
 
+    }
+
+    public void initListener() {
+        bind.banknumText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                bind.banknameText.setText(BankUtils.getNameOfBank(String.valueOf(s)));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    public void onDialogShow(View view){
+        switch (view.getId()){
+            case R.id.social_type_ll:
+                DialogUtils.getDialogUtilInstance().showSocialTypeDialog(mContext, new DialogUtils.ItemClickBack() {
+                    @Override
+                    public void onBack(String s) {
+                        tableType.set(s);
+                        DialogUtils.getDialogUtilInstance().dismiss();
+                    }
+                });
+                break;
+        }
     }
 }

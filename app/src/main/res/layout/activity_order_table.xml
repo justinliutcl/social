@@ -179,6 +179,7 @@
                         android:background="@color/base_line" />
 
                     <LinearLayout
+                        android:id="@+id/social_type_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -186,6 +187,7 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
+                        android:onClick="@{model.onDialogShow}"
                         android:paddingTop="14dp">
 
                         <TextView
@@ -251,12 +253,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:cursorVisible="false"
                             android:hint="请输入储蓄卡账号"
                             android:inputType="number"
+                            android:gravity="right"
                             android:lines="1"
                             android:textColor="@color/text_68"
-                            android:textDirection="rtl"
                             android:textSize="13sp" />
 
                         <ImageView
@@ -291,18 +292,17 @@
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/bankname_text"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:hint="储蓄卡名称"
+                            android:inputType="number"
                             android:gravity="right"
-                            android:text="请选择储蓄卡名称"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp"
-
-                            />
+                            android:lines="1"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -491,13 +491,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:cursorVisible="false"
                             android:inputType="number"
                             android:lines="1"
+                            android:gravity="right"
                             android:paddingBottom="14dp"
                             android:paddingTop="14dp"
                             android:textColor="@color/text_68"
-                            android:textDirection="rtl"
                             android:textSize="13sp" />
                     </LinearLayout>
                     <TextView
@@ -545,13 +544,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:cursorVisible="false"
                             android:inputType="number"
                             android:lines="1"
+                            android:gravity="right"
                             android:paddingBottom="14dp"
                             android:paddingTop="14dp"
                             android:textColor="@color/text_68"
-                            android:textDirection="rtl"
                             android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -806,7 +804,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:cursorVisible="false"
                             android:gravity="right"
                             android:lines="1"
                             android:text="@{model.overdue_fine}"

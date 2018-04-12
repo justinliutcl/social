@@ -31,4 +31,42 @@ public class DialogImpl {
         binding.setModel(model);
         return binding.getRoot();
     }
+
+    public static View getCityView(Context context,List<String>list, DialogUtils.ItemClickBack back){
+        DialogDuringBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_during,null,false);
+        DialogNorModel model = new DialogNorModel(context);
+        model.initTitle("请选择参保城市");
+        model.initBind(binding);
+        model.initAdapter(list,back);
+        binding.setModel(model);
+        return binding.getRoot();
+    }
+
+    public static View getHourseTypeView(Context context, DialogUtils.ItemClickBack back){
+        DialogDuringBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_during,null,false);
+        DialogNorModel model = new DialogNorModel(context);
+        List<String> list = new ArrayList<>();
+        model.initTitle("请选择户口性质");
+        list.add(context.getString(R.string.hourse_type_local_city));
+        list.add(context.getString(R.string.hourse_type_local_rural));
+        list.add(context.getString(R.string.hourse_type_other_city));
+        list.add(context.getString(R.string.hourse_type_other_rural));
+        model.initBind(binding);
+        model.initAdapter(list,back);
+        binding.setModel(model);
+        return binding.getRoot();
+    }
+
+    public static View getSocialTypeView(Context context, DialogUtils.ItemClickBack back){
+        DialogDuringBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_during,null,false);
+        DialogNorModel model = new DialogNorModel(context);
+        List<String> list = new ArrayList<>();
+        model.initTitle("请选择户口性质");
+        list.add(context.getString(R.string.social_type_have));
+        list.add(context.getString(R.string.social_type_dishave));
+        model.initBind(binding);
+        model.initAdapter(list,back);
+        binding.setModel(model);
+        return binding.getRoot();
+    }
 }

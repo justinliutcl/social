@@ -51,6 +51,7 @@ public class OrderTableActivity extends BackActivity {
         model.initBind(bind);
         bind.setModel(model);
         bind.baseText.setText(model.defaultBase);
+        model.initListener();
         if(t == FIVECOUNT_TYPE)
             bind.fiveAccuText.setText(model.defaultFiveBase);
     }
