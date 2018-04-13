@@ -372,10 +372,12 @@
                         android:visibility="@{model.isAccu?view.visibility:view.GONE}" />
 
                     <LinearLayout
+                        android:id="@+id/time_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:orientation="horizontal"
+                        android:onClick="@{model.onDialogShow}"
                         android:padding="16dp">
 
                         <TextView

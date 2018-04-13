@@ -46,6 +46,7 @@ public class OrderTableModel extends BaseModel {
     public ObservableField<String> serviceCharge;
     public ObservableField<String> overdue_fine;
     public ObservableField<String> sum;
+    public ObservableField<String> currentTime;
 
     private ActivityOrderTableBinding bind;
     private double minBase;
@@ -54,7 +55,6 @@ public class OrderTableModel extends BaseModel {
     private double maxFiveBase;
     private String cityName;
     private String hourseType;
-    public String currentTime;
     public String defaultBase;
     public String defaultFiveBase;
     public ObservableBoolean isFirst;
@@ -80,7 +80,7 @@ public class OrderTableModel extends BaseModel {
         sum = new ObservableField<>("0.00");
 
         tableType = new ObservableField<>(mContext.getString(R.string.social_type_have));
-        currentTime = AppUtils.getTime("yyyy-MM-dd");
+        currentTime=new ObservableField<>(AppUtils.getTime("yyyy-MM-dd"));
     }
 
     public void onNextClick(View view) {
@@ -279,7 +279,7 @@ public class OrderTableModel extends BaseModel {
                             bind.banknumText.getText().toString(), dbUser.getIdCard(),
                             cityName, appDur.get(), defaultBase,defaultFiveBase,
                             socialSecurity.get(), accuSecurity.get(),disabilityInsurance.get(), personalTax.get(),
-                            serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime, new BeanConfigCallBack<BaseConfig>() {
+                            serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
                                 @Override
                                 public void onDataResponse(BaseConfig bean) {
                                     toastShow(bean.getMsg());
@@ -294,7 +294,7 @@ public class OrderTableModel extends BaseModel {
                                 bind.banknumText.getText().toString(), dbUser.getIdCard(),
                                 cityName, appDur.get(), defaultBase,
                                 accuSecurity.get(), disabilityInsurance.get(), personalTax.get(),
-                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime, new BeanConfigCallBack<BaseConfig>() {
+                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
                                     @Override
                                     public void onDataResponse(BaseConfig bean) {
                                         toastShow(bean.getMsg());
@@ -308,7 +308,7 @@ public class OrderTableModel extends BaseModel {
                                 bind.banknumText.getText().toString(), dbUser.getIdCard(),
                                 cityName, appDur.get(), defaultBase,
                                 accuSecurity.get(), disabilityInsurance.get(), personalTax.get(),
-                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime, new BeanConfigCallBack<BaseConfig>() {
+                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
                                     @Override
                                     public void onDataResponse(BaseConfig bean) {
                                         toastShow(bean.getMsg());
@@ -348,7 +348,21 @@ public class OrderTableModel extends BaseModel {
                 DialogUtils.getDialogUtilInstance().showSocialTypeDialog(mContext, new DialogUtils.ItemClickBack() {
                     @Override
                     public void onBack(String s) {
+                        if(s.equals(mContext.getString(R.string.social_type_have))){
+                            isFirst.set(false);
+                        }else{
+                            isFirst.set(true);
+                        }
                         tableType.set(s);
+                        DialogUtils.getDialogUtilInstance().dismiss();
+                    }
+                });
+                break;
+            case R.id.time_ll:
+                DialogUtils.getDialogUtilInstance().showDuringTimeDialog(mContext, new DialogUtils.ItemClickBack() {
+                    @Override
+                    public void onBack(String s) {
+                        currentTime.set(s);
                         DialogUtils.getDialogUtilInstance().dismiss();
                     }
                 });

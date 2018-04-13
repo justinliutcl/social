@@ -93,6 +93,9 @@ public class DialogUtils {
     public void showSocialTypeDialog(Context context, ItemClickBack back){
         showSimpleDialog(context,DialogImpl.getSocialTypeView(context,back));
     }
+public void showDuringTimeDialog(Context context, ItemClickBack back){
+        showSimpleDialog(context,DialogImpl.getDuringTimeView(context,back));
+    }
 
 
     public static void hideSoftKeyboard(Activity activity) {

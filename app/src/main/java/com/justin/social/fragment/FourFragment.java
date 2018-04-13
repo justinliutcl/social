@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.justin.social.R;
+import com.justin.social.databinding.FragmentFiveBinding;
+import com.justin.social.databinding.FragmentFourBinding;
 import com.justin.social.databinding.FragmentOneBinding;
 
 /**
@@ -15,10 +17,10 @@ import com.justin.social.databinding.FragmentOneBinding;
  */
 
 public class FourFragment extends Fragment {
-    private FragmentOneBinding mBinding;
+    private FragmentFourBinding mBinding;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_one, container, false);
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_four, container, false);
         initView();
         return mBinding.getRoot();
     }

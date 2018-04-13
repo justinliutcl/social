@@ -158,4 +158,15 @@ public class OneModel extends BaseModel {
                 break;
         }
     }
+
+    public void pauseShowNewList() {
+        mBinding.marqueeView.stopFlipping();
+    }
+
+    public void startShowNewList() {
+        if(mBinding!=null&&mBinding.marqueeView!=null&&!mBinding.marqueeView.isFlipping()){
+            mBinding.marqueeView.startFlipping();
+        }
+
+    }
 }

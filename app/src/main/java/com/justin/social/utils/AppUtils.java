@@ -57,6 +57,12 @@ public class AppUtils {
         return sdf.format(dt);
     }
 
+    public static String getTime(String formoat,long time){
+        SimpleDateFormat sdf = new SimpleDateFormat(formoat);
+        Date dt = new Date(time);
+        return sdf.format(dt);
+    }
+
     public String get2Double(double num) {
         NumberFormat nbf = NumberFormat.getInstance();
         nbf.setMinimumFractionDigits(2);

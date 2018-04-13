@@ -69,4 +69,28 @@ public class DialogImpl {
         binding.setModel(model);
         return binding.getRoot();
     }
+    public static View getDuringTimeView(Context context, DialogUtils.ItemClickBack back){
+        DialogDuringBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_during,null,false);
+        DialogNorModel model = new DialogNorModel(context);
+        List<String> list = new ArrayList<>();
+        long oneMonth = 2592000000L;
+        model.initTitle("请选择开始时长");
+        list.add(AppUtils.getTime("yyyy-MM-") + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - oneMonth) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (2 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (3 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (4 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (5 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (6 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (7 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (8 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (9 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (10 * oneMonth)) + "01");
+        list.add(AppUtils.getTime("yyyy-MM-", System.currentTimeMillis() - (11 * oneMonth)) + "01");
+        model.initBind(binding);
+        model.initAdapter(list, back);
+        binding.setModel(model);
+        binding.list.getLayoutParams().height = (int) (DimensionUtils.HEIGHT_PIXELS * 0.7);
+        return binding.getRoot();
+    }
 }
