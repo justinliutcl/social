@@ -16,6 +16,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.InsertServiceActivity;
 import com.justin.social.activity.LoginActivity;
 import com.justin.social.activity.PoliceDetialActivity;
 import com.justin.social.activity.WriteSocialNoteActivity;
@@ -127,13 +128,13 @@ public class OneModel extends BaseModel {
                 WriteSocialNoteActivity.JumpWriteSocial(mContext,2);
                 break;
             case R.id.more_ll:
-
+                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.DEFAULT);
                 break;
             case R.id.add_ll:
-
+                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.REPAIR);
                 break;
             case R.id.save_ll:
-
+                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.FILE);
                 break;
             case R.id.note_ll:
 

@@ -11,6 +11,7 @@ import com.justin.social.R;
 import com.justin.social.databinding.FragmentFiveBinding;
 import com.justin.social.databinding.FragmentFourBinding;
 import com.justin.social.databinding.FragmentOneBinding;
+import com.justin.social.model.tab.FourModel;
 
 /**
  * Created by Justinliu on 2018/3/27.
@@ -18,9 +19,12 @@ import com.justin.social.databinding.FragmentOneBinding;
 
 public class FourFragment extends Fragment {
     private FragmentFourBinding mBinding;
+    public FourModel model;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_four, container, false);
+        model = new FourModel(getActivity());
+        mBinding.setModel(model);
         initView();
         return mBinding.getRoot();
     }

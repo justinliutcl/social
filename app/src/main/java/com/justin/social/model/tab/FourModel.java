@@ -1,15 +1,18 @@
 package com.justin.social.model.tab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableField;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 
+import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.SocialCalculater;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentTwoBinding;
 import com.justin.social.model.base.BaseModel;
@@ -32,7 +35,10 @@ public class FourModel extends BaseModel {
 
     public void onClick(View view){
         switch (view.getId()){
-
+            case R.id.social_ll:
+                Intent intent = new Intent(mContext, SocialCalculater.class);
+                mContext.startActivity(intent);
+                break;
         }
     }
 

@@ -29,7 +29,7 @@ public class DialogUtils {
 
     }
 
-    public interface ItemClickBack{
+    public interface ItemClickBack {
         void onBack(String s);
     }
 
@@ -78,23 +78,24 @@ public class DialogUtils {
         activity = null;
     }
 
-    public void showDuringDialog(Context context,ItemClickBack back){
-        showSimpleDialog(context,DialogImpl.getDuringView(context,back));
+    public void showDuringDialog(Context context, ItemClickBack back) {
+        showSimpleDialog(context, DialogImpl.getDuringView(context, back));
     }
 
-    public void showCityDialog(Context context, List<String>city,ItemClickBack back){
-        showSimpleDialog(context,DialogImpl.getCityView(context,city,back));
+    public void showCityDialog(Context context, List<String> city, ItemClickBack back) {
+        showSimpleDialog(context, DialogImpl.getCityView(context, city, back));
     }
 
-    public void showHourseTypeDialog(Context context, ItemClickBack back){
-        showSimpleDialog(context,DialogImpl.getHourseTypeView(context,back));
+    public void showHourseTypeDialog(Context context, ItemClickBack back) {
+        showSimpleDialog(context, DialogImpl.getHourseTypeView(context, back));
     }
 
-    public void showSocialTypeDialog(Context context, ItemClickBack back){
-        showSimpleDialog(context,DialogImpl.getSocialTypeView(context,back));
+    public void showSocialTypeDialog(Context context, ItemClickBack back) {
+        showSimpleDialog(context, DialogImpl.getSocialTypeView(context, back));
     }
-public void showDuringTimeDialog(Context context, ItemClickBack back){
-        showSimpleDialog(context,DialogImpl.getDuringTimeView(context,back));
+
+    public void showDuringTimeDialog(Context context, ItemClickBack back) {
+        showSimpleDialog(context, DialogImpl.getDuringTimeView(context, back));
     }
 
 

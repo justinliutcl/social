@@ -4,6 +4,7 @@ import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
@@ -71,6 +72,15 @@ public interface SocialConfigRequest {
     Call<SocialMoneyConfig> getAllMoneyConfig(@Field("applyDuration") String applyDuration,
                                                  @Field("socialsecurityBase") String socialsecurityBase,
                                                  @Field("accumulationBase") String accumulationBase,
+                                                 @Field("householdType") String householdType,
+                                                 @Field("cityName") String cityName
+    );
+
+    @FormUrlEncoded
+    @POST("tool/socialSecurity")
+    Call<SocialTool> getToolMoneyConfig(
+                                                 @Field("socialSecurityBase") String socialsecurityBase,
+                                                 @Field("accumulationFundBase") String accumulationBase,
                                                  @Field("householdType") String householdType,
                                                  @Field("cityName") String cityName
     );

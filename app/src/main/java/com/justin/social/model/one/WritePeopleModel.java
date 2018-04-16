@@ -128,19 +128,20 @@ public class WritePeopleModel extends BaseModel {
         public void onBack(String s) {
             DialogUtils.getDialogUtilInstance().dismiss();
             if (!city.get().equals(s)) {
-                if (cityConfig.getIndex(s) >= 0) {
+                int index = cityConfig.getIndex(s);
+                if (index >= 0) {
                     if (type == 2) {
-                        min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
-                        max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
-                        minAccu = cityConfig.getData().get(0).getAccumulationFundBaseLow();
-                        maxAccu = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                        min = cityConfig.getData().get(index).getSocialSecurityBaseLow();
+                        max = cityConfig.getData().get(index).getSocialSecurityBaseHigh();
+                        minAccu = cityConfig.getData().get(index).getAccumulationFundBaseLow();
+                        maxAccu = cityConfig.getData().get(index).getAccumulationFundBaseHigh();
                     } else {
                         if (isAccu) {
-                            min = cityConfig.getData().get(0).getAccumulationFundBaseLow();
-                            max = cityConfig.getData().get(0).getAccumulationFundBaseHigh();
+                            min = cityConfig.getData().get(index).getAccumulationFundBaseLow();
+                            max = cityConfig.getData().get(index).getAccumulationFundBaseHigh();
                         } else {
-                            min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
-                            max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
+                            min = cityConfig.getData().get(index).getSocialSecurityBaseLow();
+                            max = cityConfig.getData().get(index).getSocialSecurityBaseHigh();
                         }
                     }
                 }

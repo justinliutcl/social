@@ -7,6 +7,7 @@ import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
@@ -347,6 +348,25 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<NewListBean> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //tool
+    public void getToolMoneyConfig(String socialBase,String accumulationBase,String hourseType,String cityName,final BeanConfigCallBack<SocialTool> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<SocialTool> config = configRequest.getToolMoneyConfig(socialBase,accumulationBase,hourseType,cityName);
+        config.enqueue(new Callback<SocialTool>() {
+            @Override
+            public void onResponse(Call<SocialTool> call, Response<SocialTool> response) {
+                SocialTool arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<SocialTool> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
             }
