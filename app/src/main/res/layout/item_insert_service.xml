@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`项目名称：`+model.serviceName}"
+            android:textSize="13sp"
+            android:textColor="@color/text_68"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`项目价格：`+model.serviceCharge}"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_68"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`服务说明：`+model.serviceInfo}"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_68"
+            />
+    </LinearLayout>
+</layout>

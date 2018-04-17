@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.databinding.DialogNormalItemBinding;
+import com.justin.social.databinding.ItemInsertServiceBinding;
 import com.justin.social.utils.DialogUtils;
 
 import java.util.List;
@@ -17,21 +18,19 @@ import java.util.List;
  * Created by ASUS on 2018/4/6.
  */
 
-public class DialogNormalAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, String> {
+public class InsertServiceAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, ServiceAddConfig> {
 
-    private List<String> mDataList;
+    private List<ServiceAddConfig> mDataList;
     private Context context;
-    DialogUtils.ItemClickBack back;
-    public DialogNormalAdapter(List<String> mDataList, Context context,DialogUtils.ItemClickBack back) {
+    public InsertServiceAdapter(List<ServiceAddConfig> mDataList, Context context ) {
         this.mDataList = mDataList;
         this.context = context;
-        this.back = back;
     }
 
     @Override
     public BaseHolder<ViewDataBinding> onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ContentHolder(DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.dialog_normal_item, parent, false), this);
+                R.layout.item_insert_service, parent, false), this);
     }
 
     @Override
@@ -45,10 +44,9 @@ public class DialogNormalAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>
     }
 
     @Override
-    public void onbindTo(BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, String model, int position) {
-        if (viewDataBindingBaseHolder.mBinding instanceof DialogNormalItemBinding) {
-            ((DialogNormalItemBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
-            ((DialogNormalItemBinding) viewDataBindingBaseHolder.mBinding).setCall(back);
+    public void onbindTo(BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, ServiceAddConfig model, int position) {
+        if (viewDataBindingBaseHolder.mBinding instanceof ItemInsertServiceBinding) {
+            ((ItemInsertServiceBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
         }
     }
 }

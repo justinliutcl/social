@@ -3,6 +3,7 @@ package com.justin.social.accessor;
 import android.content.Context;
 
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 
 /**
@@ -22,6 +23,7 @@ public class CommonSettingValue extends GlobPre {
     private static final String KEY_CURRENT_PHONE               = "key_current_phone";
     private static final String KEY_CURRENT_USER_ID             = "key_current_userid";
     private static final String KEY_CITY                        = "key_city";
+    private static final String SERVICE_ADD                     = "service_add";
     private static final String KEY_SERVICE                     = "key_service";
     protected CommonSettingValue(Context context) {
         super(context);
@@ -97,5 +99,13 @@ public class CommonSettingValue extends GlobPre {
 
     public ServiceConfig getService(){
         return getObject(KEY_SERVICE, null);
+    }
+
+    public void setServiceAdd(ServiceAddConfig phone){
+        putObject(SERVICE_ADD, phone);
+    }
+
+    public ServiceAddConfig getServiceAdd(){
+        return getObject(SERVICE_ADD, null);
     }
 }

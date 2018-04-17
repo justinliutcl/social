@@ -2,12 +2,16 @@ package com.justin.social.utils;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.justin.social.R;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.databinding.DialogDuringBinding;
+import com.justin.social.databinding.DialogServiceAddBinding;
 import com.justin.social.model.dialog.DialogNorModel;
+import com.justin.social.model.dialog.DialogSelectModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +94,20 @@ public class DialogImpl {
         model.initBind(binding);
         model.initAdapter(list, back);
         binding.setModel(model);
-        binding.list.getLayoutParams().height = (int) (DimensionUtils.HEIGHT_PIXELS * 0.7);
+        binding.list.getLayoutParams().height = (int) (DimensionUtils.HEIGHT_PIXELS * 0.5);
+        return binding.getRoot();
+    }
+
+    public static View getServiceAddView(Context context, ServiceAddConfig config, DialogUtils.ItemObjectClickBack<List<ServiceAddConfig>> back){
+        DialogServiceAddBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_service_add,null,false);
+        DialogSelectModel model = new DialogSelectModel(context);
+        binding.list.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
+        List<ServiceAddConfig> list = config.getData();
+        model.initTitle("请选择服务类型");
+        model.initBind(binding);
+        model.initAdapter(list,back);
+        binding.setModel(model);
+        binding.list.getLayoutParams().height = (int) (DimensionUtils.HEIGHT_PIXELS * 0.5);
         return binding.getRoot();
     }
 }

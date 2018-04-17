@@ -11,6 +11,7 @@ import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
@@ -26,11 +27,11 @@ import retrofit2.Response;
  */
 
 public class HttpConfigManager {
-    private static final int LIMIT  = 20;
-    private              int offset = 0;
+    private static final int LIMIT = 20;
+    private int offset = 0;
 
 
-    public void registerConfig( String q,String code, final BeanConfigCallBack<BaseConfig> callBack) {
+    public void registerConfig(String q, String code, final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<BaseConfig> config = configRequest.getRegistConfig(q, code);
         config.enqueue(new Callback<BaseConfig>() {
@@ -43,12 +44,12 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void forgetConfig( String q,String code, final BeanConfigCallBack<BaseConfig> callBack) {
+    public void forgetConfig(String q, String code, final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<BaseConfig> config = configRequest.getForgetConfig(q, code);
         config.enqueue(new Callback<BaseConfig>() {
@@ -61,12 +62,12 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void loginConfig( String q,String code, final BeanConfigCallBack<LoginConfig> callBack) {
+    public void loginConfig(String q, String code, final BeanConfigCallBack<LoginConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<LoginConfig> config = configRequest.getLoginConfig(q, code);
         config.enqueue(new Callback<LoginConfig>() {
@@ -79,7 +80,7 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<LoginConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -97,14 +98,14 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<ShortNewsConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getNewListConfig(String type,final BeanConfigCallBack<NewsListConfig> callBack) {
+    public void getNewListConfig(String type, final BeanConfigCallBack<NewsListConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<NewsListConfig> config = configRequest.getNewListConfig(type,"1","100");
+        Call<NewsListConfig> config = configRequest.getNewListConfig(type, "1", "100");
         config.enqueue(new Callback<NewsListConfig>() {
             @Override
             public void onResponse(Call<NewsListConfig> call, Response<NewsListConfig> response) {
@@ -115,7 +116,7 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<NewsListConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -133,14 +134,14 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<CityConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getSocialMoneyConfig(String applyDuration,String insuredCardinal,String cityName,String householdType,final BeanConfigCallBack<SocialMoneyConfig> callBack) {
+    public void getSocialMoneyConfig(String applyDuration, String insuredCardinal, String cityName, String householdType, final BeanConfigCallBack<SocialMoneyConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<SocialMoneyConfig> config = configRequest.getSocialMoneyConfig(applyDuration,insuredCardinal,cityName,householdType);
+        Call<SocialMoneyConfig> config = configRequest.getSocialMoneyConfig(applyDuration, insuredCardinal, cityName, householdType);
         config.enqueue(new Callback<SocialMoneyConfig>() {
             @Override
             public void onResponse(Call<SocialMoneyConfig> call, Response<SocialMoneyConfig> response) {
@@ -151,14 +152,14 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<SocialMoneyConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getAccuMoneyConfig(String applyDuration,String insuredCardinal,String cityName,final BeanConfigCallBack<SocialMoneyConfig> callBack) {
+    public void getAccuMoneyConfig(String applyDuration, String insuredCardinal, String cityName, final BeanConfigCallBack<SocialMoneyConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<SocialMoneyConfig> config = configRequest.getAccuMoneyConfig(applyDuration,insuredCardinal,cityName);
+        Call<SocialMoneyConfig> config = configRequest.getAccuMoneyConfig(applyDuration, insuredCardinal, cityName);
         config.enqueue(new Callback<SocialMoneyConfig>() {
             @Override
             public void onResponse(Call<SocialMoneyConfig> call, Response<SocialMoneyConfig> response) {
@@ -169,64 +170,30 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<SocialMoneyConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    public void getSendOrderConfig(String userId,String userName,
-                                   String householdType,String insuredType,
-                                   String bankName,String branchNum,
-                                   String idCard,String insuredCity,
-                                   String applyDuration,String insuredCardinal,
-                                   String insuredCharge,String disabilityCharge,
-                                   String singleCharge,String serviceCharge ,
-                                   String overdueFine,String allCharge ,String insuredTime,
+
+    public void getSendOrderConfig(String userId, String userName,
+                                   String householdType, String insuredType,
+                                   String bankName, String branchNum,
+                                   String idCard, String insuredCity,
+                                   String applyDuration, String insuredCardinal,
+                                   String insuredCharge, String disabilityCharge,
+                                   String singleCharge, String serviceCharge,
+                                   String overdueFine, String allCharge, String insuredTime,
                                    final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<BaseConfig> config = configRequest.getSendOrderConfig(
-                userId,userName,
-                householdType,insuredType,
-                bankName,branchNum,
-                idCard,insuredCity,
-                applyDuration,insuredCardinal,
-                insuredCharge,disabilityCharge,
-                singleCharge,serviceCharge,
-                overdueFine,allCharge,insuredTime
-                );
-        config.enqueue(new Callback<BaseConfig>() {
-            @Override
-            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
-                BaseConfig arr = response.body();
-                callBack.onDataResponse(arr);
-            }
-
-            @Override
-            public void onFailure(Call<BaseConfig> call, Throwable t) {
-                CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void getSendAccuOrderConfig(String userId,String userName,
-                                   String householdType,String insuredType,
-                                   String bankName,String branchNum,
-                                   String idCard,String insuredCity,
-                                   String applyDuration,String insuredCardinal,
-                                   String insuredCharge,String disabilityCharge,
-                                   String singleCharge,String serviceCharge ,
-                                   String overdueFine,String allCharge ,String insuredTime,
-                                   final BeanConfigCallBack<BaseConfig> callBack) {
-        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<BaseConfig> config = configRequest.getSendAccuOrderConfig(
-                userId,userName,
-                householdType,insuredType,
-                bankName,branchNum,
-                idCard,insuredCity,
-                applyDuration,insuredCardinal,
-                insuredCharge,disabilityCharge,
-                singleCharge,serviceCharge,
-                overdueFine,allCharge,insuredTime
+                userId, userName,
+                householdType, insuredType,
+                bankName, branchNum,
+                idCard, insuredCity,
+                applyDuration, insuredCardinal,
+                insuredCharge, disabilityCharge,
+                singleCharge, serviceCharge,
+                overdueFine, allCharge, insuredTime
         );
         config.enqueue(new Callback<BaseConfig>() {
             @Override
@@ -238,34 +205,69 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getAllOrderConfig(String userId,String userName,
-                                       String householdType,String insuredType,
-                                       String bankName,String branchNum,
-                                       String idCard,String insuredCity,
-                                       String applyDuration,
-                                  String socialSecurityBase,String accumulationBase,
-                                  String socialSecurityCharge, String accumulationCharge,
-                                  String disabilityCharge,
-                                       String singleCharge,String serviceCharge ,
-                                       String overdueFine,String allCharge ,String insuredTime,
+    public void getSendAccuOrderConfig(String userId, String userName,
+                                       String householdType, String insuredType,
+                                       String bankName, String branchNum,
+                                       String idCard, String insuredCity,
+                                       String applyDuration, String insuredCardinal,
+                                       String insuredCharge, String disabilityCharge,
+                                       String singleCharge, String serviceCharge,
+                                       String overdueFine, String allCharge, String insuredTime,
                                        final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<BaseConfig> config = configRequest.getSendAccuOrderConfig(
+                userId, userName,
+                householdType, insuredType,
+                bankName, branchNum,
+                idCard, insuredCity,
+                applyDuration, insuredCardinal,
+                insuredCharge, disabilityCharge,
+                singleCharge, serviceCharge,
+                overdueFine, allCharge, insuredTime
+        );
+        config.enqueue(new Callback<BaseConfig>() {
+            @Override
+            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
+                BaseConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getAllOrderConfig(String userId, String userName,
+                                  String householdType, String insuredType,
+                                  String bankName, String branchNum,
+                                  String idCard, String insuredCity,
+                                  String applyDuration,
+                                  String socialSecurityBase, String accumulationBase,
+                                  String socialSecurityCharge, String accumulationCharge,
+                                  String disabilityCharge,
+                                  String singleCharge, String serviceCharge,
+                                  String overdueFine, String allCharge, String insuredTime,
+                                  final BeanConfigCallBack<BaseConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<BaseConfig> config = configRequest.getAllOrderConfig(
-                userId,userName,
-                householdType,insuredType,
-                bankName,branchNum,
-                idCard,insuredCity,
+                userId, userName,
+                householdType, insuredType,
+                bankName, branchNum,
+                idCard, insuredCity,
                 applyDuration,
                 socialSecurityBase, accumulationBase,
                 socialSecurityCharge, accumulationCharge,
                 disabilityCharge,
-                singleCharge,serviceCharge,
-                overdueFine,allCharge,insuredTime
+                singleCharge, serviceCharge,
+                overdueFine, allCharge, insuredTime
         );
         config.enqueue(new Callback<BaseConfig>() {
             @Override
@@ -277,14 +279,14 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getAllMoneyConfig(String applyDuration,String insuredCardinal,String accumulationBase,String hourseType,String cityName,final BeanConfigCallBack<SocialMoneyConfig> callBack) {
+    public void getAllMoneyConfig(String applyDuration, String insuredCardinal, String accumulationBase, String hourseType, String cityName, final BeanConfigCallBack<SocialMoneyConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<SocialMoneyConfig> config = configRequest.getAllMoneyConfig(applyDuration,insuredCardinal,accumulationBase,hourseType,cityName);
+        Call<SocialMoneyConfig> config = configRequest.getAllMoneyConfig(applyDuration, insuredCardinal, accumulationBase, hourseType, cityName);
         config.enqueue(new Callback<SocialMoneyConfig>() {
             @Override
             public void onResponse(Call<SocialMoneyConfig> call, Response<SocialMoneyConfig> response) {
@@ -295,7 +297,7 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<SocialMoneyConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -313,14 +315,14 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<ServiceConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getHeadImageConfig(String userIdfinal,String image, final BeanConfigCallBack<HeaderImageConfig> callBack) {
+    public void getHeadImageConfig(String userIdfinal, String image, final BeanConfigCallBack<HeaderImageConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<HeaderImageConfig> config = configRequest.getHeadImageConfig(userIdfinal,image);
+        Call<HeaderImageConfig> config = configRequest.getHeadImageConfig(userIdfinal, image);
         config.enqueue(new Callback<HeaderImageConfig>() {
             @Override
             public void onResponse(Call<HeaderImageConfig> call, Response<HeaderImageConfig> response) {
@@ -331,12 +333,12 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<HeaderImageConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getNewsContentConfig(String contentId , final BeanConfigCallBack<NewListBean> callBack) {
+    public void getNewsContentConfig(String contentId, final BeanConfigCallBack<NewListBean> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<NewListBean> config = configRequest.getNewsContentConfig(contentId);
         config.enqueue(new Callback<NewListBean>() {
@@ -349,15 +351,15 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<NewListBean> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     //tool
-    public void getToolMoneyConfig(String socialBase,String accumulationBase,String hourseType,String cityName,final BeanConfigCallBack<SocialTool> callBack) {
+    public void getToolMoneyConfig(String socialBase, String accumulationBase, String hourseType, String cityName, final BeanConfigCallBack<SocialTool> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<SocialTool> config = configRequest.getToolMoneyConfig(socialBase,accumulationBase,hourseType,cityName);
+        Call<SocialTool> config = configRequest.getToolMoneyConfig(socialBase, accumulationBase, hourseType, cityName);
         config.enqueue(new Callback<SocialTool>() {
             @Override
             public void onResponse(Call<SocialTool> call, Response<SocialTool> response) {
@@ -368,7 +370,44 @@ public class HttpConfigManager {
             @Override
             public void onFailure(Call<SocialTool> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
-                Toast.makeText(SocialApplication.context,"请检查网络",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //增值服务
+    public void getServiceAddConfig(final BeanConfigCallBack<ServiceAddConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<ServiceAddConfig> config = configRequest.getServiceAddConfig();
+        config.enqueue(new Callback<ServiceAddConfig>() {
+            @Override
+            public void onResponse(Call<ServiceAddConfig> call, Response<ServiceAddConfig> response) {
+                ServiceAddConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<ServiceAddConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void sendServiceAddConfig(String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(userName,idCard,charge,sum);
+        config.enqueue(new Callback<BaseConfig>() {
+            @Override
+            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
+                BaseConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }
         });
     }

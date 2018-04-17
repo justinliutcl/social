@@ -27,6 +27,7 @@ public class InsertServiceActivity extends BackActivity {
         model.type = getIntent().getIntExtra(OrderTableActivity.TYPE,0);
         bind.setModel(model);
         model.setData(bind);
+        model.initService();
     }
 
     public static void JumpInsertServiceActivity(Context context ,int isA){

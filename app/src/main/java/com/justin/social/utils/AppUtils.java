@@ -63,7 +63,7 @@ public class AppUtils {
         return sdf.format(dt);
     }
 
-    public String get2Double(double num) {
+    public static String get2Double(double num) {
         NumberFormat nbf = NumberFormat.getInstance();
         nbf.setMinimumFractionDigits(2);
         return nbf.format(num);

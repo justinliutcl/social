@@ -2,12 +2,12 @@ package com.justin.social.RetrofitUtils.configRequest;
 
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
-import com.justin.social.RetrofitUtils.DataBean.UserConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
@@ -161,5 +161,17 @@ public interface SocialConfigRequest {
 
     @POST("news/getNewsInfo")
     Call<NewListBean> getNewsContentConfig(@Query("contentId") String contentId
+    );
+
+    @POST("others/getAddService")
+    Call<ServiceAddConfig> getServiceAddConfig(
+    );
+
+    @FormUrlEncoded
+    @POST("order/addServiceOrder")
+    Call<BaseConfig> getServiceAddOrderConfig( @Field("userName") String userName,
+                                                     @Field("idCard") String idCard,
+                                                     @Field("serviceType") String serviceType,
+                                                     @Field("allCharge") String allCharge
     );
 }

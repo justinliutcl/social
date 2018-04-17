@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.justin.social.R;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.views.AutoHideKeyBoardDialog;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public class DialogUtils {
 
     public interface ItemClickBack {
         void onBack(String s);
+    }
+
+    public interface ItemObjectClickBack<T> {
+        void onBack(T s);
     }
 
     public static DialogUtils getDialogUtilInstance() {
@@ -96,6 +101,10 @@ public class DialogUtils {
 
     public void showDuringTimeDialog(Context context, ItemClickBack back) {
         showSimpleDialog(context, DialogImpl.getDuringTimeView(context, back));
+    }
+
+    public void showServiceAddDialog(Context context, ServiceAddConfig config, ItemObjectClickBack<List<ServiceAddConfig>> back) {
+        showSimpleDialog(context, DialogImpl.getServiceAddView(context,config, back));
     }
 
 

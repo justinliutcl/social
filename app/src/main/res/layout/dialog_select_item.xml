@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="@{model.onClick}"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@{model.serviceName}"
+            android:textSize="15sp"
+            android:textColor="@color/text_68"
+            />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:icon = "@{model.isSelect?model.SELECT_IMAGE:model.NORMAL_IMAGE}"
+            />
+    </LinearLayout>
+</layout>

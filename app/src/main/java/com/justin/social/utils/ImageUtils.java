@@ -26,4 +26,10 @@ public class ImageUtils {
                 .placeholder(R.drawable.back_one_background)
                 .into(view);
     }
+
+    @BindingAdapter("icon")
+    public static void setResIcon(ImageView view, int res){
+        Glide.with(view.getContext().getApplicationContext()).load(res)
+                .into(view);
+    }
 }
