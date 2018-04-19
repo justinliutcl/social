@@ -18,6 +18,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.activity.InsertServiceActivity;
 import com.justin.social.activity.LoginActivity;
+import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.PoliceDetialActivity;
 import com.justin.social.activity.WriteSocialNoteActivity;
 import com.justin.social.adapter.NewsListAdapter;
@@ -87,11 +88,13 @@ public class OneModel extends BaseModel {
             public void onDataResponse(NewsListConfig bean) {
                 if(bean!=null){
                     List<NewListBean> list = bean.getData().getData();
-                    for(NewListBean listBean:list){
-                        listBean.context = mContext;
+                    if (list != null) {
+                        for (NewListBean listBean : list) {
+                            listBean.context = mContext;
+                        }
+                        adapter = new NewsListAdapter(list, mContext);
+                        mBinding.list.setAdapter(adapter);
                     }
-                    adapter = new NewsListAdapter(list,mContext);
-                    mBinding.list.setAdapter(adapter);
                 }
 
             }
@@ -156,6 +159,10 @@ public class OneModel extends BaseModel {
                 break;
             case R.id.police_locial:
                 PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.LOCIAL_TYPE);
+                break;
+                case R.id.news_list:
+                Intent intent = new Intent(mContext, NewsListActivity.class);
+                mContext.startActivity(intent);
                 break;
         }
     }

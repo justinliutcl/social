@@ -43,7 +43,7 @@ public interface SocialConfigRequest {
     );
 
     @POST("news/newsList")
-    Call<NewsListConfig> getNewListConfig(@Query("contenTypeId") String contenTypeId,
+    Call<NewsListConfig> getNewListConfig(@Query("contentTypeId") String contenTypeId,
                                           @Query("pageIndex") String pageIndex,
                                           @Query("pageSize") String pageSize
     );

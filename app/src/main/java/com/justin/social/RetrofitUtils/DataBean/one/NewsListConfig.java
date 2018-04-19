@@ -19,6 +19,7 @@ public class NewsListConfig extends BaseConfig {
     private int totalPage;
     private int pageIndex;
     private int pageSize;
+    private int notify;
 
     public class NewsListConfigData{
         private List<NewListBean>data;
@@ -70,5 +71,13 @@ public class NewsListConfig extends BaseConfig {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public int getNotify() {
+        return notify;
+    }
+
+    public void setNotify(int notify) {
+        this.notify = notify;
     }
 }

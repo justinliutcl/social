@@ -48,6 +48,8 @@
         <activity android:name=".activity.NewsActivity" />
         <activity android:name=".activity.SocialCalculater" />
         <activity android:name=".activity.InsertServiceActivity" />
+        <activity android:name=".activity.InsertServicePayActivity" />
+        <activity android:name=".activity.NewsListActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

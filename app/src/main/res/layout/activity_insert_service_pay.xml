@@ -7,26 +7,18 @@
 
         <variable
             name="model"
-            type="com.justin.social.model.one.InsertServiceModel" />
-
-        <variable
-            name="view"
-            type="android.view.View" />
+            type="com.justin.social.model.one.InsertServicePayModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/base_black_back"
-        >
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/backview"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/title_green"
-
-            >
+            android:background="@color/title_green">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -50,24 +42,21 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/send_tv"
             android:layout_below="@+id/backview"
-            android:layout_above="@id/send_tv"
-            >
+            android:background="@color/base_black_back">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/base_black_back"
                 android:orientation="vertical"
                 tools:context="com.justin.social.activity.WriteSocialNoteActivity">
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:layout_marginTop="10dp"
-                    android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -90,7 +79,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
-                            android:text="增值服务"
+                            android:text="订单信息"
+                            android:textStyle="bold"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
@@ -107,194 +97,271 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="姓名"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:hint="请输入参保人姓名"
-                            android:gravity="right"
-                            android:lines="1"
-                            android:paddingBottom="14dp"
-                            android:paddingTop="14dp"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="身份证号"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/idcard"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:hint="请输入参保人身份证号"
-                            android:gravity="right"
-                            android:lines="1"
-                            android:paddingBottom="14dp"
-                            android:paddingTop="14dp"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:id="@+id/service_type_ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:onClick="@{model.onShowDialogClick}"
                         android:orientation="horizontal"
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="14dp"
-                        >
+                        android:paddingTop="14dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="服务类型"
+                            android:text="订单金额"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
+
                         <TextView
-                            android:id="@+id/regist_type"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="15dp"
                             android:layout_weight="1"
-                            android:layout_marginLeft="30dp"
-                            android:lines="1"
-                            android:ellipsize="end"
                             android:gravity="right"
-                            android:text="@{model.serviceType}"
-                            android:textColor="@color/text_green"
+                            android:text="@{model.sumMoney}"
+                            android:textColor="@color/text_68"
                             android:textSize="13sp"
 
                             />
 
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="订单类型"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="@{model.orderNumber}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp"
+
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="申请人"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="@{model.name}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp"
+
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="服务内容"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_marginLeft="30dp"
+                            android:text="@{model.serviceType}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp"
+
+                            />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_service_add" />
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_binder_line" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:text="支付方式"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
                     </LinearLayout>
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:paddingBottom="14dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="14dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/icon_binder_line" />
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingTop="14dp"
+                        android:paddingLeft="16dp"
+                        android:gravity="center_vertical"
+                        android:paddingRight="16dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/icon_pay_alipay"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="支付宝支付"
+                            android:layout_marginLeft="11dp"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_pay_select"
+                            />
+
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
-                        android:text="已选项目"
-                        android:textColor="@color/text_68"
-                        android:textSize="13sp" />
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingTop="14dp"
+                        android:paddingLeft="16dp"
+                        android:gravity="center_vertical"
+                        android:paddingRight="16dp">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/icon_pay_wechat"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="微信支付"
+                            android:layout_marginLeft="11dp"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_pay_normal"
+                            />
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:background="@color/base_line" />
-
-                <com.justin.social.views.LinearRecyclerView
-                    android:id="@+id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:nestedScrollingEnabled="false"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    >
-
-                </com.justin.social.views.LinearRecyclerView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingTop="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_service_suggest" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="我已认真阅读并同意"
-                        android:textColor="@color/text_a7"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="《服务代理协议》"
-                        android:textColor="@color/text_green"
-                        android:textSize="13sp" />
-                </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
+
         <TextView
             android:id="@+id/send_tv"
             android:layout_width="130dp"
@@ -304,7 +371,7 @@
             android:background="@color/base_green"
             android:gravity="center"
             android:onClick="@{model.onNextClick}"
-            android:text="提交订单"
+            android:text="支付"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -314,7 +381,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignTop="@+id/send_tv"
             android:layout_toLeftOf="@+id/send_tv"
-            android:background="@color/white"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -329,11 +395,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="@{model.sum+` 元`}"
+                android:text="@{model.payMoney+`元`}"
                 android:textColor="@color/text_green2"
                 android:textSize="15sp" />
         </LinearLayout>
-
     </RelativeLayout>
 
 

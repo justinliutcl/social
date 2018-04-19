@@ -15,6 +15,8 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.InsertServiceActivity;
+import com.justin.social.activity.InsertServicePayActivity;
 import com.justin.social.activity.OrderTableActivity;
 import com.justin.social.adapter.InsertServiceAdapter;
 import com.justin.social.databinding.ActivityInsertServiceBinding;
@@ -62,19 +64,22 @@ public class InsertServiceModel extends BaseModel {
             toastShow("请输入正确身份证号");
             return;
         }
-        if (mList == null || mList.isEmpty()) {
+        if (type==InsertServiceActivity.DEFAULT&&(mList == null || mList.isEmpty())) {
             toastShow("请选择正确增值服务");
             return;
         }
+        switch (type){
+            case InsertServiceActivity.DEFAULT:
+                sendInsertServiceOrder();
+                break;
+            case InsertServiceActivity.REPAIR:
+                sendRePairOrder();
+                break;
+            case InsertServiceActivity.FILE:
+                sendFileOrder();
+                break;
+        }
 
-        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
-            @Override
-            public void onDataResponse(BaseConfig bean) {
-                if(bean.isSuccess()){
-                    toastShow("提交成功");
-                }
-            }
-        });
     }
 
     public void setData(final ActivityInsertServiceBinding bind) {
@@ -106,7 +111,7 @@ public class InsertServiceModel extends BaseModel {
     public void onShowDialogClick(View view) {
         switch (view.getId()) {
             case R.id.service_type_ll:
-                if (config != null) {
+                if (type == InsertServiceActivity.DEFAULT && config != null) {
                     DialogUtils.getDialogUtilInstance().showServiceAddDialog(mContext, config, new DialogUtils.ItemObjectClickBack<List<ServiceAddConfig>>() {
                         @Override
                         public void onBack(List<ServiceAddConfig> s) {
@@ -114,9 +119,11 @@ public class InsertServiceModel extends BaseModel {
                             mList = s;
                             change="";
                             double sums=0;
-                            for (ServiceAddConfig config : mList) {
-                                change+=config.getServiceName();
-                                sums+= Double.parseDouble(config.getServiceCharge());
+                            for (int i=0;i<mList.size(); i++) {
+                                change+=s.get(i).getServiceName();
+                                if(i<mList.size()-1)
+                                    change+=",";
+                                sums+= Double.parseDouble(s.get(i).getServiceCharge());
                             }
                             sum.set(AppUtils.get2Double(sums));
                             DialogUtils.getDialogUtilInstance().dismiss();
@@ -131,6 +138,21 @@ public class InsertServiceModel extends BaseModel {
     }
 
     public void initService() {
+        switch (type){
+            case InsertServiceActivity.DEFAULT:
+                initInsertService();
+                break;
+            case InsertServiceActivity.REPAIR:
+                initRePair();
+                break;
+            case InsertServiceActivity.FILE:
+                initFile();
+                break;
+        }
+
+    }
+
+    private void initInsertService(){
         config = CommonSettingValue.getIns(mContext).getServiceAdd();
         manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
             @Override
@@ -138,6 +160,68 @@ public class InsertServiceModel extends BaseModel {
                 if (bean != null) {
                     config = bean;
                     CommonSettingValue.getIns(mContext).setServiceAdd(bean);
+                }
+            }
+        });
+    }
+    private void initRePair(){
+        serviceType.set("补缴");
+        config = CommonSettingValue.getIns(mContext).getServiceAdd();
+        manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
+            @Override
+            public void onDataResponse(ServiceAddConfig bean) {
+                if (bean != null) {
+                    config = bean;
+                    CommonSettingValue.getIns(mContext).setServiceAdd(bean);
+                }
+            }
+        });
+    }
+    private void initFile(){
+        serviceType.set("存档");
+        config = CommonSettingValue.getIns(mContext).getServiceAdd();
+        manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
+            @Override
+            public void onDataResponse(ServiceAddConfig bean) {
+                if (bean != null) {
+                    config = bean;
+                    CommonSettingValue.getIns(mContext).setServiceAdd(bean);
+                }
+            }
+        });
+    }
+
+    private void sendInsertServiceOrder(){
+        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+            @Override
+            public void onDataResponse(BaseConfig bean) {
+                if(bean.isSuccess()){
+                    toastShow("提交成功");
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
+                }
+            }
+        });
+    }
+
+    private void sendRePairOrder(){
+        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+            @Override
+            public void onDataResponse(BaseConfig bean) {
+                if(bean.isSuccess()){
+                    toastShow("提交成功");
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
+                }
+            }
+        });
+    }
+
+    private void sendFileOrder(){
+        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+            @Override
+            public void onDataResponse(BaseConfig bean) {
+                if(bean.isSuccess()){
+                    toastShow("提交成功");
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
                 }
             }
         });
