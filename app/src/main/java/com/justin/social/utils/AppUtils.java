@@ -7,7 +7,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -112,11 +114,55 @@ public class AppUtils {
      *
      * @param phoneNum 电话号码
      */
-    public void diallPhone(String phoneNum,Context context) {
+    public static void diallPhone(String phoneNum,Context context) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
         context.startActivity(intent);
+    }
+
+    public static String[] getContacts(Context context) {
+        //联系人的Uri，也就是content://com.android.contacts/contacts
+        Uri uri = ContactsContract.Contacts.CONTENT_URI;
+        //指定获取_id和display_name两列数据，display_name即为姓名
+        String[] projection = new String[] {
+                ContactsContract.Contacts._ID,
+                ContactsContract.Contacts.DISPLAY_NAME
+        };
+        //根据Uri查询相应的ContentProvider，cursor为获取到的数据集
+        Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+        String[] arr = new String[cursor.getCount()];
+        int i = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Long id = cursor.getLong(0);
+                //获取姓名
+                String name = cursor.getString(1);
+                //指定获取NUMBER这一列数据
+                String[] phoneProjection = new String[] {
+                        ContactsContract.CommonDataKinds.Phone.NUMBER
+                };
+                arr[i] = id + " , 姓名：" + name;
+
+                //根据联系人的ID获取此人的电话号码
+                Cursor phonesCusor = context.getContentResolver().query(
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                        phoneProjection,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + id,
+                        null,
+                        null);
+                String num = phonesCusor.getString(0);
+                arr[i] += " , 电话号码：" + num;
+                //因为每个联系人可能有多个电话号码，所以需要遍历
+//                if (phonesCusor != null && phonesCusor.moveToFirst()) {
+//                    do {
+//
+//                    }while (phonesCusor.moveToNext());
+//                }
+                i++;
+            } while (cursor.moveToNext());
+        }
+        return arr;
     }
 
 }

@@ -11,6 +11,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <application
         android:name=".SocialApplication"
         android:allowBackup="true"
@@ -50,6 +54,7 @@
         <activity android:name=".activity.InsertServiceActivity" />
         <activity android:name=".activity.InsertServicePayActivity" />
         <activity android:name=".activity.NewsListActivity" />
+        <activity android:name=".activity.FindFriendActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

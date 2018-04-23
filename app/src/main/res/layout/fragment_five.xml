@@ -386,6 +386,7 @@
                         android:layout_marginRight="15dp"
                         />
                     <LinearLayout
+                        android:id="@+id/friend_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.FindFriendActivity;
 import com.justin.social.databinding.FragmentFiveBinding;
 import com.justin.social.model.tab.FiveModel;
 import com.justin.social.utils.ImageUtils;
@@ -60,6 +62,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener{
             }
         });
         mBinding.titleIv.setOnClickListener(this);
+        mBinding.friendLl.setOnClickListener(this);
         model = new FiveModel(getActivity());
         UserDataObtain.getInstance(getActivity()).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
@@ -90,6 +93,33 @@ public class FiveFragment extends Fragment implements View.OnClickListener{
             case R.id.title_iv:
                 onImageClick(v);
                 break;
+            case R.id.friend_ll:
+                if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.READ_CONTACTS)
+                        !=PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{android.Manifest.permission.READ_CONTACTS},
+                            1);
+                }else{
+                    startActivity(new Intent(getActivity(), FindFriendActivity.class));
+                }
+                break;
         }
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(new Intent(getActivity(), FindFriendActivity.class));
+                } else {
+
+                }
+                return;
+            }
+        }
+    }
+
 }

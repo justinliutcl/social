@@ -23,7 +23,7 @@ public class PoliceDetialActivity extends BackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bind = DataBindingUtil.setContentView(this,R.layout.activity_police_detial);
-
+        initContent(getIntent().getIntExtra(TYPE,HOURSE_TYPE));
     }
 
     private void initContent(int type){
@@ -33,22 +33,34 @@ public class PoliceDetialActivity extends BackActivity {
         String content="";
         switch (type){
             case HOURSE_TYPE:
-                titleBar = getString(R.string.police_hourse_title_bar);
-                title = getString(R.string.police_hourse_title);
-                top = getString(R.string.police_hourse_top);
-                content = getString(R.string.police_hourse_content);
+                titleBar =  getString(R.string.police_hourse_title_bar);
+                title =     getString(R.string.police_hourse_title);
+                top =       getString(R.string.police_hourse_top);
+                content =   getString(R.string.police_hourse_content);
                 break;
             case CAR_TYPE:
+                titleBar =  getString(R.string.police_car_title_bar);
+                title =     getString(R.string.police_car_title);
+                top =       getString(R.string.police_car_top);
+                content =   getString(R.string.police_car_content);
                 break;
             case SCHOOL_TYPE:
+                titleBar =  getString(R.string.police_school_title_bar);
+                title =     getString(R.string.police_school_title);
+                top =       getString(R.string.police_school_top);
+                content =   getString(R.string.police_school_content);
                 break;
             case LOCIAL_TYPE:
+                titleBar =  getString(R.string.police_loacl_title_bar);
+                title =     getString(R.string.police_loacl_title);
+                top =       getString(R.string.police_loacl_top);
+                content =   getString(R.string.police_loacl_content);
                 break;
         }
         bind.title.setText(titleBar);
-        bind.title.setText(titleBar);
-        bind.title.setText(titleBar);
-        bind.title.setText(titleBar);
+        bind.newTitle.setText(title);
+        bind.top.setText(top);
+        bind.content.setText(content);
     }
 
     public static void jumpToPoliceDetial(Context context,int type){
