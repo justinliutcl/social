@@ -192,7 +192,7 @@ public class InsertServiceModel extends BaseModel {
     }
 
     private void sendInsertServiceOrder(){
-        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig("增值服务",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
             @Override
             public void onDataResponse(BaseConfig bean) {
                 if(bean.isSuccess()){
@@ -204,7 +204,7 @@ public class InsertServiceModel extends BaseModel {
     }
 
     private void sendRePairOrder(){
-        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig("补缴",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
             @Override
             public void onDataResponse(BaseConfig bean) {
                 if(bean.isSuccess()){
@@ -216,7 +216,7 @@ public class InsertServiceModel extends BaseModel {
     }
 
     private void sendFileOrder(){
-        manager.sendServiceAddConfig(bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig("存档",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
             @Override
             public void onDataResponse(BaseConfig bean) {
                 if(bean.isSuccess()){

@@ -1,6 +1,7 @@
 package com.justin.social.model.tab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,6 +19,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.NewsListActivity;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.FragmentTwoBinding;
@@ -58,7 +60,12 @@ public class TwoModel extends BaseModel {
     }
 
     public void onClick(View view){
-
+        switch (view.getId()){
+            case R.id.news_list:
+                Intent intent = new Intent(mContext, NewsListActivity.class);
+                mContext.startActivity(intent);
+                break;
+        }
     }
 
     public void getService() {

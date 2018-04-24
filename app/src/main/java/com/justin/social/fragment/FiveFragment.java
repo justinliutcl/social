@@ -1,4 +1,5 @@
 package com.justin.social.fragment;
+
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Intent;
@@ -33,7 +34,7 @@ import com.justin.social.utils.PhotoSelectUtilA;
  * Created by Justinliu on 2018/3/27.
  */
 
-public class FiveFragment extends Fragment implements View.OnClickListener{
+public class FiveFragment extends Fragment implements View.OnClickListener {
     private FragmentFiveBinding mBinding;
     PhotoSelectUtil photoUtil;
     FiveModel model;
@@ -45,17 +46,17 @@ public class FiveFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initView() {
-        photoUtil=new PhotoSelectUtil(getActivity(), this, new PhotoSelectUtilA.onGetCallBack() {
+        photoUtil = new PhotoSelectUtil(getActivity(), this, new PhotoSelectUtilA.onGetCallBack() {
             @Override
             public void onBase64Callback(String base64) {
                 new HttpConfigManager().getHeadImageConfig(CommonSettingValue.getIns(getActivity()).getCurrentUserId(), base64,
                         new BeanConfigCallBack<HeaderImageConfig>() {
                             @Override
                             public void onDataResponse(HeaderImageConfig bean) {
-                                if(bean.isSuccess()){
-                                    UserDataObtain.getInstance(getActivity()).updataCurrentHeadImage(bean.getData(),null);
-                                    ImageUtils.setIcon(mBinding.titleIv,bean.getData());
-                                    Toast.makeText(getActivity(),"上传成功",Toast.LENGTH_SHORT).show();
+                                if (bean.isSuccess()) {
+                                    UserDataObtain.getInstance(getActivity()).updataCurrentHeadImage(bean.getData(), null);
+                                    ImageUtils.setIcon(mBinding.titleIv, bean.getData());
+                                    Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -68,6 +69,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener{
             @Override
             public void complete(DbUser user) {
                 model.headImage.set(user.headImg);
+                model.name.set(user.userName);
             }
         });
 
@@ -78,18 +80,17 @@ public class FiveFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        photoUtil.forresult(requestCode,resultCode,data);
+        photoUtil.forresult(requestCode, resultCode, data);
     }
 
-    public void onImageClick(View view){
-
+    public void onImageClick(View view) {
         photoUtil.setimg(mBinding.titleIv);
         photoUtil.showDialog();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.title_iv:
                 onImageClick(v);
                 break;

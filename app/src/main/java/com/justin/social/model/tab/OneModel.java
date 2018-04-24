@@ -160,7 +160,7 @@ public class OneModel extends BaseModel {
             case R.id.police_locial:
                 PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.LOCIAL_TYPE);
                 break;
-                case R.id.news_list:
+            case R.id.news_list:
                 Intent intent = new Intent(mContext, NewsListActivity.class);
                 mContext.startActivity(intent);
                 break;

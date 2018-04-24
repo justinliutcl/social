@@ -7,6 +7,7 @@ import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
@@ -394,9 +395,9 @@ public class HttpConfigManager {
         });
     }
 
-    public void sendServiceAddConfig(String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
+    public void sendServiceAddConfig(String orderType,String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(userName,idCard,charge,sum);
+        Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(orderType,userName,idCard,charge,sum);
         config.enqueue(new Callback<BaseConfig>() {
             @Override
             public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
@@ -406,6 +407,24 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getOrderConfig(String orderType,String userId,final BeanConfigCallBack<OrderConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<OrderConfig> config = configRequest.getOrderConfig(orderType,userId);
+        config.enqueue(new Callback<OrderConfig>() {
+            @Override
+            public void onResponse(Call<OrderConfig> call, Response<OrderConfig> response) {
+                OrderConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<OrderConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }

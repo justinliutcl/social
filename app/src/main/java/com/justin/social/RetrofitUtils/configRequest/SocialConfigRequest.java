@@ -3,6 +3,7 @@ package com.justin.social.RetrofitUtils.configRequest;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
@@ -169,9 +170,16 @@ public interface SocialConfigRequest {
 
     @FormUrlEncoded
     @POST("order/addServiceOrder")
-    Call<BaseConfig> getServiceAddOrderConfig( @Field("userName") String userName,
-                                                     @Field("idCard") String idCard,
-                                                     @Field("serviceType") String serviceType,
-                                                     @Field("allCharge") String allCharge
+    Call<BaseConfig> getServiceAddOrderConfig(@Field("orderType") String orderType,
+                                              @Field("userName") String userName,
+                                              @Field("idCard") String idCard,
+                                              @Field("serviceType") String serviceType,
+                                              @Field("allCharge") String allCharge
+    );
+
+    @FormUrlEncoded
+    @POST("order/getOrder")
+    Call<OrderConfig> getOrderConfig(@Field("userId") String orderType,
+                                     @Field("status") String userName
     );
 }

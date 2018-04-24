@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app2="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{model.onItemClick}"
+        android:paddingBottom="12dp"
+        android:paddingLeft="18dp">
+
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_order_item"
+
+                />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="@{model.title}"
+                android:textColor="@color/text_4b"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/leb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="@{model.title}"
+                android:textColor="@color/text_red"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/top_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/base_line"
+            android:layout_marginLeft="10dp"
+            android:layout_alignBottom="@id/title_ll"
+            />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/top_line"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:text="@{`订单编号:`+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:text="@{`下单日期:`+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:text="@{`缴纳月份:`+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_green"
+                android:textSize="13sp"
+                android:text="@{`订单金额:`+model.orderNum}"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:layout_below="@id/content"
+            >
+
+            <TextView
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="@{model.title}"
+                android:textColor="@color/text_red"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/base_line"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@id/button_ll"
+            />
+    </RelativeLayout>
+</layout>
