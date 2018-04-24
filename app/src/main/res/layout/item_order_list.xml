@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
-                android:text="@{model.title}"
+                android:text="@{model.type}"
                 android:textColor="@color/text_4b"
                 android:textSize="13sp" />
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
-                android:text="@{model.title}"
+                android:text="@{model.status}"
                 android:textColor="@color/text_red"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -80,22 +80,35 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_68"
                 android:textSize="13sp"
-                android:text="@{`下单日期:`+model.orderNum}"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_68"
                 android:textSize="13sp"
-                android:text="@{`缴纳月份:`+model.orderNum}"
+                android:text="@{`缴纳月份:`+model.insuredTime}"
                 />
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_green"
-                android:textSize="13sp"
-                android:text="@{`订单金额:`+model.orderNum}"
-                />
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_68"
+                    android:textSize="13sp"
+                    android:text="订单金额: "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_green"
+                    android:textSize="13sp"
+                    android:text="@{model.allCharge+`元`}"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -114,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
-                android:text="@{model.title}"
+                android:text="支付"
                 android:textColor="@color/text_red"
                 android:textSize="13sp" />
         </LinearLayout>

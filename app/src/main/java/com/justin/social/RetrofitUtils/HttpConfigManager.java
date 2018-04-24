@@ -415,7 +415,7 @@ public class HttpConfigManager {
 
     public void getOrderConfig(String orderType,String userId,final BeanConfigCallBack<OrderConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<OrderConfig> config = configRequest.getOrderConfig(orderType,userId);
+        Call<OrderConfig> config = configRequest.getOrderConfig(userId,orderType);
         config.enqueue(new Callback<OrderConfig>() {
             @Override
             public void onResponse(Call<OrderConfig> call, Response<OrderConfig> response) {

@@ -1,9 +1,13 @@
 package com.justin.social.RetrofitUtils.DataBean.five;
 
+import android.databinding.BindingAdapter;
 import android.view.View;
+import android.widget.TextView;
 
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
+import com.justin.social.utils.AppUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -89,7 +93,10 @@ public class OrderConfig extends BaseConfig{
         this.orderStatus = orderStatus;
     }
 
-    public void onItemClick(View view){
+    public void onItemClick(View view){}
 
+    @BindingAdapter("createTime")
+    public static void changeCreate(TextView text,String time){
+        text.setText("下单日期: "+AppUtils.getTime("yyyy-MM-dd  hh:mm:ss",Long.parseLong(time)));
     }
 }

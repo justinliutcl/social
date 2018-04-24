@@ -26,10 +26,12 @@ public class FiveModel extends BaseModel {
     public ObservableBoolean isShowHavePay;
     public ObservableBoolean isShowPayDur;
     public ObservableBoolean isShowAllPay;
+
+    public OrderConfig allOrderConfig;
     public FiveModel(Context context) {
         super(context);
         headImage = new ObservableField<>("");
-        headImage = new ObservableField<>("");
+        name = new ObservableField<>("");
 
         noPay = new ObservableField<>("");
         havePay = new ObservableField<>("");
@@ -40,6 +42,8 @@ public class FiveModel extends BaseModel {
         isShowHavePay = new ObservableBoolean(false);
         isShowPayDur = new ObservableBoolean(false);
         isShowAllPay = new ObservableBoolean(false);
+
+        initOrder();
     }
 
     public void onClick(View view){
@@ -50,7 +54,9 @@ public class FiveModel extends BaseModel {
         new HttpConfigManager().getOrderConfig(OrderConfig.ALL_PAY, CommonSettingValue.getIns(mContext).getCurrentUserId(), new BeanConfigCallBack<OrderConfig>() {
             @Override
             public void onDataResponse(OrderConfig bean) {
-
+                allOrderConfig = bean;
+                isShowAllPay.set(true);
+                allPay.set(allOrderConfig.getData().size()+"");
             }
         });
     }

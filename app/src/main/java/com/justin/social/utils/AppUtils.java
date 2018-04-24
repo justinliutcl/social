@@ -151,14 +151,14 @@ public class AppUtils {
                         ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + id,
                         null,
                         null);
-                String num = phonesCusor.getString(0);
-                arr[i] += " , 电话号码：" + num;
-                //因为每个联系人可能有多个电话号码，所以需要遍历
-//                if (phonesCusor != null && phonesCusor.moveToFirst()) {
+
+//                因为每个联系人可能有多个电话号码，所以需要遍历
+                if (phonesCusor != null && phonesCusor.moveToFirst()) {
 //                    do {
-//
+                        String num = phonesCusor.getString(0);
+                        arr[i] += " , 电话号码：" + num;
 //                    }while (phonesCusor.moveToNext());
-//                }
+                }
                 i++;
             } while (cursor.moveToNext());
         }
