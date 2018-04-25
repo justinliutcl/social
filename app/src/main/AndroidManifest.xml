@@ -55,6 +55,7 @@
         <activity android:name=".activity.InsertServicePayActivity" />
         <activity android:name=".activity.NewsListActivity" />
         <activity android:name=".activity.FindFriendActivity" />
+        <activity android:name=".activity.OrderListActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

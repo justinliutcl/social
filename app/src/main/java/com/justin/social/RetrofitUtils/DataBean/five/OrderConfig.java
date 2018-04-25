@@ -14,7 +14,7 @@ import java.util.List;
  * Created by ASUS on 2018/4/10.
  */
 
-public class OrderConfig extends BaseConfig{
+public class OrderConfig extends BaseConfig implements Serializable{
     public static final String HAVE_PAY     = "1";
     public static final String NO_PAY       = "0";
     public static final String DURPAY       = "-1";
