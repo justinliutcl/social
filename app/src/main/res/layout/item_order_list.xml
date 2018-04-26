@@ -13,9 +13,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{model.onItemClick}"
-        android:paddingTop="12dp"
-        android:paddingLeft="18dp">
+        android:onClick="@{model.onDetialClick}"
+        android:background="@color/base_black_back"
+        android:paddingBottom="10dp"
+        >
 
         <LinearLayout
             android:id="@+id/title_ll"
@@ -24,6 +25,10 @@
             android:orientation="horizontal"
             android:background="@color/white"
             android:gravity="center_vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="18dp"
+            android:paddingLeft="18dp"
             >
             <ImageView
                 android:layout_width="wrap_content"
@@ -33,17 +38,18 @@
                 />
             <TextView
                 android:id="@+id/title"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
-                android:text="@{model.type}"
-                android:textColor="@color/text_4b"
+                app:titleType="@{model.type}"
+                android:textColor="@color/text_green"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/leb"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
@@ -57,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/base_line"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="18dp"
             android:layout_alignBottom="@id/title_ll"
             />
 
@@ -67,38 +73,46 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@+id/top_line"
+            android:background="@color/white"
+            android:paddingLeft="18dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_68"
+                android:layout_marginTop="10dp"
                 android:textSize="13sp"
-                android:text="@{`订单编号:`+model.orderNum}"
+                android:text="@{`订单编号:  `+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:layout_marginTop="7dp"
+                android:textSize="13sp"
+                app:createTime="@{model.createTime}"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_68"
                 android:textSize="13sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_68"
-                android:textSize="13sp"
-                android:text="@{`缴纳月份:`+model.insuredTime}"
+                android:layout_marginTop="7dp"
+                android:text="@{`缴纳月份:  `+model.insuredTime}"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_68"
                     android:textSize="13sp"
-                    android:text="订单金额: "
+                    android:text="订单金额:  "
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,18 +131,49 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/white"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|right"
             android:layout_below="@id/content"
-            >
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
 
+            >
             <TextView
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/button_detial"
+                android:layout_width="72dp"
+                android:gravity="center"
+                android:layout_height="28dp"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
+                android:text="订单详情"
+                android:background="@drawable/background_order_white"
+                android:textColor="@color/text_68"
+                android:onClick="@{model.onDetialClick}"
+                app:isShowVisiableDetial="@{model.status}"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/button_cancle"
+                android:layout_width="72dp"
+                android:gravity="center"
+                android:layout_height="28dp"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="取消订单"
+                app:isShowVisiableCancle="@{model.status}"
+                android:background="@drawable/background_order_white"
+                android:textColor="@color/text_68"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/button_pay"
+                android:layout_width="72dp"
+                android:gravity="center"
+                android:layout_height="28dp"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                app:isShowVisiableCancle="@{model.status}"
                 android:text="支付"
-                android:textColor="@color/text_red"
+                android:background="@drawable/background_order_green"
+                android:textColor="@color/white"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -137,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/base_line"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="18dp"
             android:layout_alignTop="@id/button_ll"
             />
     </RelativeLayout>
