@@ -1,6 +1,7 @@
 package com.justin.social.model.tab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.OrderListActivity;
+import com.justin.social.activity.SettingActivity;
 import com.justin.social.model.base.BaseModel;
 
 /**
@@ -60,16 +62,20 @@ public class FiveModel extends BaseModel {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.nopay_ll:
-                OrderListActivity.JumpToOrderActivity(mContext,noPayConfig,havePayConfig,durPayConfig,allPayConfig,0);
+                OrderListActivity.JumpToOrderActivity(mContext, noPayConfig, havePayConfig, durPayConfig, allPayConfig, 0);
                 break;
             case R.id.havepay_ll:
-                OrderListActivity.JumpToOrderActivity(mContext,noPayConfig,havePayConfig,durPayConfig,allPayConfig,1);
+                OrderListActivity.JumpToOrderActivity(mContext, noPayConfig, havePayConfig, durPayConfig, allPayConfig, 1);
                 break;
             case R.id.durpay_ll:
-                OrderListActivity.JumpToOrderActivity(mContext,noPayConfig,havePayConfig,durPayConfig,allPayConfig,2);
+                OrderListActivity.JumpToOrderActivity(mContext, noPayConfig, havePayConfig, durPayConfig, allPayConfig, 2);
                 break;
             case R.id.allpay_ll:
-                OrderListActivity.JumpToOrderActivity(mContext,noPayConfig,havePayConfig,durPayConfig,allPayConfig,3);
+                OrderListActivity.JumpToOrderActivity(mContext, noPayConfig, havePayConfig, durPayConfig, allPayConfig, 3);
+                break;
+            case R.id.setting:
+                Intent intent = new Intent(mContext, SettingActivity.class);
+                mContext.startActivity(intent);
                 break;
         }
     }

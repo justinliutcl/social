@@ -16,10 +16,13 @@ import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.CustomSocialAccu;
 import com.justin.social.activity.InsertServiceActivity;
 import com.justin.social.activity.LoginActivity;
 import com.justin.social.activity.NewsListActivity;
+import com.justin.social.activity.NorProblemActivity;
 import com.justin.social.activity.PoliceDetialActivity;
+import com.justin.social.activity.SendMessageActivity;
 import com.justin.social.activity.WriteSocialNoteActivity;
 import com.justin.social.adapter.NewsListAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
@@ -143,10 +146,16 @@ public class OneModel extends BaseModel {
 
                 break;
             case R.id.send_ll:
-
+                mContext.startActivity(new Intent(mContext,SendMessageActivity.class));
                 break;
             case R.id.problem_ll:
-
+                mContext.startActivity(new Intent(mContext,NorProblemActivity.class));
+                break;
+            case R.id.pay_social:
+                CustomSocialAccu.JumpToCustomSocialAccu(mContext,CustomSocialAccu.SOCIAL_TYPE);
+                break;
+            case R.id.pay_accu:
+                CustomSocialAccu.JumpToCustomSocialAccu(mContext,CustomSocialAccu.ACCU_TYPE);
                 break;
             case R.id.police_hourse:
                 PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.HOURSE_TYPE);

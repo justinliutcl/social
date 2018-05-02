@@ -86,6 +86,11 @@ public class PhotoSelectUtil {
 	}
 	
 	private void setDialog() {
+		if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				!= PackageManager.PERMISSION_GRANTED) {
+			PermessionUtils.checkPermission(context,frag,null,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE,0);
+		}
 		AlertDialog.Builder ab=new AlertDialog.Builder(context, R.style.dialog);
 		ab.setItems(selectitem, new OnClickListener() {
 			@Override
@@ -100,7 +105,7 @@ public class PhotoSelectUtil {
 				case 0:
 					if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
 							!= PackageManager.PERMISSION_GRANTED) {
-						if(PermessionUtils.checkPermission(context,frag,null,
+						if(!PermessionUtils.checkPermission(context,frag,null,
 								Manifest.permission.CAMERA,0))
 							return;
 					}
@@ -211,7 +216,7 @@ public class PhotoSelectUtil {
 //			foutput = new FileOutputStream(new File(afterpath));
 
 //			bitmap.compress(Bitmap.CompressFormat.PNG, 40, foutput);
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteout);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 30, byteout);
 			byte[] bytes=byteout.toByteArray();
 			byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
 			String encodeString = new String(encode);

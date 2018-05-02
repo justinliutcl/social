@@ -12,6 +12,7 @@ import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
@@ -26,6 +27,7 @@ import com.justin.social.utils.AccountUtils;
 import com.justin.social.utils.AppUtils;
 import com.justin.social.utils.DialogUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -167,12 +169,27 @@ public class InsertServiceModel extends BaseModel {
     private void initRePair(){
         serviceType.set("补缴");
         config = CommonSettingValue.getIns(mContext).getServiceAdd();
-        manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
+        manager.getServiceAddByNameConfig("补缴",new BeanConfigCallBack<ServiceAddByNameConfig>() {
             @Override
-            public void onDataResponse(ServiceAddConfig bean) {
+            public void onDataResponse(ServiceAddByNameConfig bean) {
                 if (bean != null) {
-                    config = bean;
-                    CommonSettingValue.getIns(mContext).setServiceAdd(bean);
+                    config = bean.getData();
+                    mList = new ArrayList<>();
+                    mList.add(bean.getData());
+                    if(bean.getData()==null)
+                        return;
+                    change="";
+                    double sums=0;
+                    for (int i=0;i<mList.size(); i++) {
+                        change+=mList.get(i).getServiceName();
+                        if(i<mList.size()-1)
+                            change+=",";
+                        sums+= Double.parseDouble(mList.get(i).getServiceCharge());
+                    }
+                    sum.set(AppUtils.get2Double(sums));
+                    DialogUtils.getDialogUtilInstance().dismiss();
+                    adapter = new InsertServiceAdapter(mList, mContext);
+                    bind.list.setAdapter(adapter);
                 }
             }
         });
@@ -180,12 +197,27 @@ public class InsertServiceModel extends BaseModel {
     private void initFile(){
         serviceType.set("存档");
         config = CommonSettingValue.getIns(mContext).getServiceAdd();
-        manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
+        manager.getServiceAddByNameConfig("存档",new BeanConfigCallBack<ServiceAddByNameConfig>() {
             @Override
-            public void onDataResponse(ServiceAddConfig bean) {
+            public void onDataResponse(ServiceAddByNameConfig bean) {
                 if (bean != null) {
-                    config = bean;
-                    CommonSettingValue.getIns(mContext).setServiceAdd(bean);
+                    config = bean.getData();
+                    mList = new ArrayList<>();
+                    mList.add(bean.getData());
+                    if(bean.getData()==null)
+                        return;
+                    change="";
+                    double sums=0;
+                    for (int i=0;i<mList.size(); i++) {
+                        change+=mList.get(i).getServiceName();
+                        if(i<mList.size()-1)
+                            change+=",";
+                        sums+= Double.parseDouble(mList.get(i).getServiceCharge());
+                    }
+                    sum.set(AppUtils.get2Double(sums));
+                    DialogUtils.getDialogUtilInstance().dismiss();
+                    adapter = new InsertServiceAdapter(mList, mContext);
+                    bind.list.setAdapter(adapter);
                 }
             }
         });

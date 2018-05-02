@@ -40,7 +40,14 @@ public class MainActivity extends BaseActivity {
                 switchFragment(mFragmentList.get(tabPostion),mFragmentTagList[tabPostion]);
             }
         });
+        navigateBarView.onOne();
+    }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        initData();
+        initView();
     }
 
     private void initData() {

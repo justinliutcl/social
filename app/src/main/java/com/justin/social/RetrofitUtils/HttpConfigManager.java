@@ -12,6 +12,8 @@ import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
@@ -339,6 +341,24 @@ public class HttpConfigManager {
         });
     }
 
+    public void getMessageImageConfig(String userIdfinal, String image,String type, final BeanConfigCallBack<HeaderImageConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<HeaderImageConfig> config = configRequest.getMessageImageConfig(userIdfinal, image,type);
+        config.enqueue(new Callback<HeaderImageConfig>() {
+            @Override
+            public void onResponse(Call<HeaderImageConfig> call, Response<HeaderImageConfig> response) {
+                HeaderImageConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<HeaderImageConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void getNewsContentConfig(String contentId, final BeanConfigCallBack<NewListBean> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<NewListBean> config = configRequest.getNewsContentConfig(contentId);
@@ -395,6 +415,25 @@ public class HttpConfigManager {
         });
     }
 
+    //增值服务
+    public void getServiceAddByNameConfig(String name,final BeanConfigCallBack<ServiceAddByNameConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<ServiceAddByNameConfig> config = configRequest.getServiceAddByNameConfig(name);
+        config.enqueue(new Callback<ServiceAddByNameConfig>() {
+            @Override
+            public void onResponse(Call<ServiceAddByNameConfig> call, Response<ServiceAddByNameConfig> response) {
+                ServiceAddByNameConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<ServiceAddByNameConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void sendServiceAddConfig(String orderType,String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
         Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(orderType,userName,idCard,charge,sum);
@@ -425,6 +464,42 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<OrderConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getSendAdviceConfig(String content,String phone,String userId,final BeanConfigCallBack<BaseConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<BaseConfig> config = configRequest.getSendAdviceConfig(content,phone,userId);
+        config.enqueue(new Callback<BaseConfig>() {
+            @Override
+            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
+                BaseConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getNormalProblemConfig(final BeanConfigCallBack<NormalProblemListConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<NormalProblemListConfig> config = configRequest.getNormalProblemConfig("100","1");
+        config.enqueue(new Callback<NormalProblemListConfig>() {
+            @Override
+            public void onResponse(Call<NormalProblemListConfig> call, Response<NormalProblemListConfig> response) {
+                NormalProblemListConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<NormalProblemListConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }

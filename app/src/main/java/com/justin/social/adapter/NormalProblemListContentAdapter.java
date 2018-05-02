@@ -7,11 +7,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.justin.social.R;
-import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
-import com.justin.social.databinding.ItemDuringOrderListBinding;
+import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
 import com.justin.social.databinding.ItemNewsContentListBinding;
-import com.justin.social.databinding.ItemOrderListBinding;
+import com.justin.social.databinding.ItemProblemContentListBinding;
 
 import java.util.List;
 
@@ -19,28 +18,20 @@ import java.util.List;
  * Created by Justinliu on 2017/12/4.
  */
 
-public class OrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, OrderConfig> {
+public class NormalProblemListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, NormalProblemListConfig.NormalProblemListConfigData> {
 
-    private List<OrderConfig> mDataList;
+    private List<NormalProblemListConfig.NormalProblemListConfigData> mDataList;
     private Context context;
-    private String type;
 
-    public OrderListContentAdapter(String type,List<OrderConfig> mDataList, Context context) {
+    public NormalProblemListContentAdapter(List<NormalProblemListConfig.NormalProblemListConfigData> mDataList, Context context) {
         this.mDataList = mDataList;
         this.context = context;
-        this.type = type;
     }
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(type.equals(OrderConfig.DURPAY)){
-            return new ContentHolder(DataBindingUtil.inflate(LayoutInflater.from(context),
-                    R.layout.item_during_order_list, parent, false), this);
-        }else{
-            return new ContentHolder(DataBindingUtil.inflate(LayoutInflater.from(context),
-                    R.layout.item_order_list, parent, false), this);
-        }
-
+        return new ContentHolder(DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.item_problem_content_list, parent, false), this);
     }
 
     @Override
@@ -72,11 +63,9 @@ public class OrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBind
 //    }
 
     @Override
-    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final OrderConfig model, int position) {
-        if (viewDataBindingBaseHolder.mBinding instanceof ItemOrderListBinding) {
-            ((ItemOrderListBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
-        }else{
-            ((ItemDuringOrderListBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
+    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final NormalProblemListConfig.NormalProblemListConfigData model, int position) {
+        if (viewDataBindingBaseHolder.mBinding instanceof ItemProblemContentListBinding) {
+            ((ItemProblemContentListBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
         }
 
     }

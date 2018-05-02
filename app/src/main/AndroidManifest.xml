@@ -28,6 +28,9 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
+
+        </activity>
+        <activity android:name=".activity.SplishActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,6 +63,11 @@
         <activity android:name=".activity.OrderFlowActivity" />
         <activity android:name=".activity.ShareFriendActivity" />
         <activity android:name=".activity.FirstActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.SetSuggestActivity" />
+        <activity android:name=".activity.CustomSocialAccu" />
+        <activity android:name=".activity.NorProblemActivity" />
+        <activity android:name=".activity.SendMessageActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

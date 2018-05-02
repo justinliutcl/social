@@ -8,6 +8,8 @@ import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
@@ -160,12 +162,24 @@ public interface SocialConfigRequest {
             @Query("imgData") String imgData
     );
 
+    @POST("others/imgInfo")
+    Call<HeaderImageConfig> getMessageImageConfig(
+            @Query("userId") String userId,
+            @Query("imgData") String imgData,
+            @Query("typeId") String typeId
+    );
+
     @POST("news/getNewsInfo")
     Call<NewListBean> getNewsContentConfig(@Query("contentId") String contentId
     );
 
     @POST("others/getAddService")
     Call<ServiceAddConfig> getServiceAddConfig(
+    );
+
+    @FormUrlEncoded
+    @POST("others/getAddServiceByName")
+    Call<ServiceAddByNameConfig> getServiceAddByNameConfig(@Field("serviceName") String serviceName
     );
 
     @FormUrlEncoded
@@ -181,5 +195,18 @@ public interface SocialConfigRequest {
     @POST("order/getOrder")
     Call<OrderConfig> getOrderConfig(@Field("userId") String orderType,
                                      @Field("status") String userName
+    );
+
+    @FormUrlEncoded
+    @POST("user/addAdvice")
+    Call<BaseConfig> getSendAdviceConfig(@Field("content") String content,
+                                     @Field("phone") String phone,
+                                     @Field("userId") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("question/questionList")
+    Call<NormalProblemListConfig> getNormalProblemConfig(@Field("pageSize") String pageSize,
+                                                         @Field("pageIndex") String pageIndex
     );
 }
