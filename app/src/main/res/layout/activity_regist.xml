@@ -111,7 +111,7 @@
                     android:src="@drawable/icon_sms_code" />
 
                 <EditText
-                    android:id="@+id/password_ed"
+                    android:id="@+id/code_ed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
@@ -161,7 +161,7 @@
                 android:src="@drawable/icon_password" />
 
             <EditText
-                android:id="@+id/code_ed"
+                android:id="@+id/password_ed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"

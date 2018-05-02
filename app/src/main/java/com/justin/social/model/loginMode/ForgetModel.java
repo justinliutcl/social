@@ -40,6 +40,10 @@ public class ForgetModel extends SmsModel {
     }
 
     public void onRegistClick(View view) {
+        if(!AccountUtils.isMobile(binding.phoneEd.getText().toString())){
+            toastShow("请输入正确手机号");
+            return;
+        }
         submitCode(phoneEditText.getText().toString(), smsEditText.getText().toString());
     }
 

@@ -25,6 +25,7 @@ import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.FindFriendActivity;
 import com.justin.social.activity.OrderFlowActivity;
 import com.justin.social.activity.ShareFriendActivity;
+import com.justin.social.activity.UserMessageActivity;
 import com.justin.social.databinding.FragmentFiveBinding;
 import com.justin.social.model.tab.FiveModel;
 import com.justin.social.utils.ImageUtils;
@@ -40,6 +41,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
     private FragmentFiveBinding mBinding;
     PhotoSelectUtil photoUtil;
     FiveModel model;
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_five, container, false);
@@ -68,6 +70,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
         mBinding.friendLl.setOnClickListener(this);
         mBinding.orderFlowLl.setOnClickListener(this);
         mBinding.orderFlowLl.setOnClickListener(this);
+        mBinding.userMessage.setOnClickListener(this);
         model = new FiveModel(getActivity());
         UserDataObtain.getInstance(getActivity()).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
@@ -101,6 +104,9 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
             case R.id.order_flow_ll:
                 startActivity(new Intent(getActivity(), OrderFlowActivity.class));
                 break;
+            case R.id.user_message:
+                startActivity(new Intent(getActivity(), UserMessageActivity.class));
+                break;
             case R.id.friend_ll:
 //                if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.READ_CONTACTS)
 //                        !=PackageManager.PERMISSION_GRANTED) {
@@ -114,6 +120,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

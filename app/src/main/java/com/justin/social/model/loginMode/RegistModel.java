@@ -41,6 +41,10 @@ public class RegistModel extends SmsModel {
     }
 
     public void onRegistClick(View view) {
+        if(!AccountUtils.isMobile(binding.phoneEd.getText().toString())){
+            toastShow("请输入正确手机号");
+            return;
+        }
         submitCode(phoneEditText.getText().toString(), smsEditText.getText().toString());
     }
 
@@ -56,10 +60,6 @@ public class RegistModel extends SmsModel {
     @Override
     public void onSubmitSuccess() {
         super.onSubmitSuccess();
-        if (!AccountUtils.isMobile(binding.phoneEd.getText().toString())) {
-            toastShow("请输入正确手机号");
-            return;
-        }
         new HttpConfigManager().registerConfig(getPhoneNum(), codeEditText.getText().toString(), new BeanConfigCallBack<BaseConfig>() {
             @Override
             public void onDataResponse(BaseConfig bean) {

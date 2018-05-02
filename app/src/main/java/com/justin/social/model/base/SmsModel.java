@@ -44,7 +44,6 @@ public class SmsModel extends BaseModel {
         public void handleMessage(Message msg) {
                 switch (msg.what){
                     case CODE_SEND_SUCCESS:
-                        toastShow("发送成功");
                         break;
                     case CODE_SEND_FAIL:
                         toastShow("发送失败");

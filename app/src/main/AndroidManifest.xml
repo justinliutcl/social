@@ -68,6 +68,8 @@
         <activity android:name=".activity.CustomSocialAccu" />
         <activity android:name=".activity.NorProblemActivity" />
         <activity android:name=".activity.SendMessageActivity" />
+        <activity android:name=".activity.UserMessageActivity" />
+        <activity android:name=".activity.ResetCodeActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
