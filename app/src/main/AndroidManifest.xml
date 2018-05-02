@@ -59,6 +59,7 @@
         <activity android:name=".activity.OrderDetialActivity" />
         <activity android:name=".activity.OrderFlowActivity" />
         <activity android:name=".activity.ShareFriendActivity" />
+        <activity android:name=".activity.FirstActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

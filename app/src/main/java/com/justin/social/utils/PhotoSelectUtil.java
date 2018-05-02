@@ -14,6 +14,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -31,6 +33,7 @@ import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -197,7 +200,9 @@ public class PhotoSelectUtil {
 		ByteArrayOutputStream byteout = null;
 		try {
 			FileInputStream fis = new FileInputStream(photopath);
-			Bitmap bitmap= BitmapFactory.decodeStream(fis);
+//			Bitmap bitmap= BitmapFactory.decodeStream(fis);
+			Bitmap bitmap = comp(BitmapFactory.decodeFile(photopath)); //压缩图片
+			bitmap = ImgUpdateDirection(photopath,bitmap);
 //			FileOutputStream foutput = null;
 			byteout=new ByteArrayOutputStream();
 
@@ -296,6 +301,90 @@ public class PhotoSelectUtil {
 		go2caijian(data);
 //		doincaijian(photopath);
 
+	}
+
+	private Bitmap comp(Bitmap image) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+		if (baos.toByteArray().length / 1024 > 1024) {//判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出
+			baos.reset();//重置baos即清空baos
+			image.compress(Bitmap.CompressFormat.JPEG, 50, baos);//这里压缩50%，把压缩后的数据存放到baos中
+		}
+		ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+		BitmapFactory.Options newOpts = new BitmapFactory.Options();
+		//开始读入图片，此时把options.inJustDecodeBounds 设回true了
+		newOpts.inJustDecodeBounds = true;
+		Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+		newOpts.inJustDecodeBounds = false;
+		int w = newOpts.outWidth;
+		int h = newOpts.outHeight;
+		//现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
+		float hh = 800f;//这里设置高度为800f
+		float ww = 480f;//这里设置宽度为480f
+		//缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+		int be = 1;//be=1表示不缩放
+		if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
+			be = (int) (newOpts.outWidth / ww);
+		} else if (w < h && h > hh) {//如果高度高的话根据宽度固定大小缩放
+			be = (int) (newOpts.outHeight / hh);
+		}
+		if (be <= 0)
+			be = 1;
+		newOpts.inSampleSize = be;//设置缩放比例
+		newOpts.inPreferredConfig = Bitmap.Config.RGB_565;//降低图片从ARGB888到RGB565
+		//重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+		isBm = new ByteArrayInputStream(baos.toByteArray());
+		bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+		return bitmap;//压缩好比例大小后再进行质量压缩
+	}
+
+	private Bitmap ImgUpdateDirection(String filepath,Bitmap bitmap) {
+		int digree = 0;//图片旋转的角度
+		//根据图片的URI获取图片的绝对路径
+		//String filepath = ImgUriDoString.getRealFilePath(getApplicationContext(), uri);
+		//根据图片的filepath获取到一个ExifInterface的对象
+		ExifInterface exif = null;
+		try {
+			exif = new ExifInterface(filepath);
+			if (exif != null) {
+
+				// 读取图片中相机方向信息
+				int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+
+				// 计算旋转角度
+				switch (ori) {
+					case ExifInterface.ORIENTATION_ROTATE_90:
+						digree = 90;
+						break;
+					case ExifInterface.ORIENTATION_ROTATE_180:
+						digree = 180;
+						break;
+					case ExifInterface.ORIENTATION_ROTATE_270:
+						digree = 270;
+						break;
+					default:
+						digree = 0;
+						break;
+
+				}
+
+			}
+			//如果图片不为0
+			if (digree != 0) {
+				// 旋转图片
+				Matrix m = new Matrix();
+				m.postRotate(digree);
+				bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+						bitmap.getHeight(), m, true);
+			}
+			if (bitmap != null) {
+				return bitmap;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			exif = null;
+		}
+		return bitmap;
 	}
 
 }

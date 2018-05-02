@@ -24,6 +24,7 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.FindFriendActivity;
 import com.justin.social.activity.OrderFlowActivity;
+import com.justin.social.activity.ShareFriendActivity;
 import com.justin.social.databinding.FragmentFiveBinding;
 import com.justin.social.model.tab.FiveModel;
 import com.justin.social.utils.ImageUtils;
@@ -66,6 +67,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
         mBinding.titleIv.setOnClickListener(this);
         mBinding.friendLl.setOnClickListener(this);
         mBinding.orderFlowLl.setOnClickListener(this);
+        mBinding.orderFlowLl.setOnClickListener(this);
         model = new FiveModel(getActivity());
         UserDataObtain.getInstance(getActivity()).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
@@ -100,14 +102,15 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), OrderFlowActivity.class));
                 break;
             case R.id.friend_ll:
-                if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.READ_CONTACTS)
-                        !=PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{android.Manifest.permission.READ_CONTACTS},
-                            1);
-                }else{
-                    startActivity(new Intent(getActivity(), FindFriendActivity.class));
-                }
+//                if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.READ_CONTACTS)
+//                        !=PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(getActivity(),
+//                            new String[]{android.Manifest.permission.READ_CONTACTS},
+//                            1);
+//                }else{
+//                    startActivity(new Intent(getActivity(), FindFriendActivity.class));
+//                }
+                startActivity(new Intent(getActivity(), ShareFriendActivity.class));
                 break;
         }
     }
