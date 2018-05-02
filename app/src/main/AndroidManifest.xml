@@ -57,6 +57,8 @@
         <activity android:name=".activity.FindFriendActivity" />
         <activity android:name=".activity.OrderListActivity" />
         <activity android:name=".activity.OrderDetialActivity" />
+        <activity android:name=".activity.OrderFlowActivity" />
+        <activity android:name=".activity.ShareFriendActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
