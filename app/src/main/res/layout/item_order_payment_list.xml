@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app2="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{model.onDetialClick}"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="18dp"
+            android:paddingLeft="18dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_order_item"
+
+                />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                app:titleType="@{model.type}"
+                android:textColor="@color/text_green"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/leb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="@{model.status}"
+                android:textColor="@color/text_red"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/top_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/base_line"
+            android:layout_marginLeft="18dp"
+            android:layout_alignBottom="@id/title_ll"
+            />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/top_line"
+            android:background="@color/white"
+            android:paddingLeft="18dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:text="@{`订单编号:  `+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:layout_marginTop="7dp"
+                android:textSize="13sp"
+                app:createTime="@{model.createTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`缴纳月份:  `+model.insuredTime}"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_68"
+                    android:textSize="13sp"
+                    android:text="订单金额:  "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_green"
+                    android:textSize="13sp"
+                    android:text="@{model.allCharge+`元`}"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`姓    名:  `+model.insuredTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`身份证号:  `+model.insuredTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`参保城市:  `+model.insuredTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`开始时长:  `+model.insuredTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`付款时长:  `+model.insuredTime}"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/base_line"
+                android:layout_alignBottom="@id/title_ll"
+                />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/content"
+            >
+            <LinearLayout
+                android:id="@+id/should_money"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_68"
+                    android:textSize="13sp"
+                    android:layout_marginLeft="18dp"
+                    android:text="应付金额:  "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_red"
+                    android:textSize="13sp"
+                    android:text="@{model.allCharge+`元`}"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/button_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_toRightOf="@+id/should_money"
+                android:gravity="center_vertical|right"
+                android:layout_centerVertical="true"
+                android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/button_pay"
+                    android:layout_width="72dp"
+                    android:gravity="center"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="13dp"
+                    android:lines="1"
+                    app:isShowVisiableCancle="@{model.status}"
+                    android:text="支付"
+                    android:background="@drawable/background_order_green"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

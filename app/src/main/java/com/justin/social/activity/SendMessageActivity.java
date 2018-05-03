@@ -13,6 +13,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.databinding.ActivityNewslistBinding;
 import com.justin.social.databinding.ActivitySendmessageBinding;
 import com.justin.social.fragment.MessageFragment;
+import com.justin.social.fragment.MessageHospFragment;
 import com.justin.social.fragment.NewsFragmentOne;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class SendMessageActivity extends BackActivity {
     private void initData() {
 
         MessageFragment oneFragment = new MessageFragment();
-        MessageFragment twoFragment = new MessageFragment();
+        MessageHospFragment twoFragment = new MessageHospFragment();
         mFragmentList.add(0, oneFragment);
         mFragmentList.add(1, twoFragment);
         mCurrentFragmen = mFragmentList.get(0);

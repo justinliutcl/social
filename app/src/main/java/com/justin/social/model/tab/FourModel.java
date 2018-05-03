@@ -13,6 +13,7 @@ import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.NewsListActivity;
+import com.justin.social.activity.NorProblemActivity;
 import com.justin.social.activity.SocialCalculater;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentTwoBinding;
@@ -34,8 +35,8 @@ public class FourModel extends BaseModel {
         super(context);
     }
 
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.social_ll:
                 Intent intent = new Intent(mContext, SocialCalculater.class);
                 mContext.startActivity(intent);
@@ -43,6 +44,8 @@ public class FourModel extends BaseModel {
             case R.id.news_list:
                 Intent intent2 = new Intent(mContext, NewsListActivity.class);
                 mContext.startActivity(intent2);
+            case R.id.problem_ll:
+                mContext.startActivity(new Intent(mContext, NorProblemActivity.class));
                 break;
         }
     }

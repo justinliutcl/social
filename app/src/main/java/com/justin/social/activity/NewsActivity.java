@@ -32,19 +32,7 @@ public class NewsActivity extends BaseActivity {
             @Override
             public void onDataResponse(NewListBean bean) {
                 String data = bean.getData().txt;
-                String html = "<html>"
-                        + "<body>"
-                        + "图书封面<br>"
-                        + "<table width='200' border='1' >"
-                        + "<tr>"
-                        + "<td><a onclick='alert(\"Java Web开发速学宝典\")' ><img style='margin:10px' src='http://images.china-pub.com/ebook45001-50000/48015/cover.jpg' width='100'/></a></td>"
-                        + "<td><a onclick='alert(\"大象--Thinking in UML\")' ><img style='margin:10px' src='http://images.china-pub.com/ebook125001-130000/129881/zcover.jpg' width='100'/></td>"
-                        + "</tr>"
-                        + "<tr>"
-                        + "<td><img style='margin:10px' src='http://images.china-pub.com/ebook25001-30000/27518/zcover.jpg' width='300'/></td>"
-                        + "<td><img  style='margin:10px' src='http://images.china-pub.com/ebook30001-35000/34838/zcover.jpg' width='1300'/></td>"
-                        + "</tr>" + "</table>" + "</body>" + "</html>";
-                view.loadDataWithBaseURL(null, html, "text/html" , "utf-8", null);
+                view.loadDataWithBaseURL(null, data, "text/html" , "utf-8", null);
 //                view.getSettings().setUseWideViewPort(true);
 //                view.getSettings().setLoadWithOverviewMode(true);
 //                view.setWebChromeClient(new WebChromeClient());

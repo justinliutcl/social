@@ -23,6 +23,7 @@ import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
 import com.justin.social.activity.PoliceDetialActivity;
 import com.justin.social.activity.SendMessageActivity;
+import com.justin.social.activity.ShareFriendActivity;
 import com.justin.social.activity.WriteSocialNoteActivity;
 import com.justin.social.adapter.NewsListAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
@@ -150,6 +151,9 @@ public class OneModel extends BaseModel {
                 break;
             case R.id.problem_ll:
                 mContext.startActivity(new Intent(mContext,NorProblemActivity.class));
+                break;
+            case R.id.share_iv:
+                mContext.startActivity(new Intent(mContext,ShareFriendActivity.class));
                 break;
             case R.id.pay_social:
                 CustomSocialAccu.JumpToCustomSocialAccu(mContext,CustomSocialAccu.SOCIAL_TYPE);
