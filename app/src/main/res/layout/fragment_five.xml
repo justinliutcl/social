@@ -327,6 +327,7 @@
                         android:background="@color/base_line" />
 
                     <LinearLayout
+                       android:id="@+id/reset_code_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"

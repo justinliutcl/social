@@ -17,6 +17,8 @@ import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.databinding.ActivityLoginBinding;
+import com.justin.social.databinding.ActivityResetcodeBinding;
+import com.justin.social.model.five.ResetCodeModel;
 import com.justin.social.model.loginMode.LoginModel;
 import com.justin.social.utils.AccountUtils;
 import com.justin.social.utils.ConfigUtils;
@@ -26,13 +28,13 @@ import com.justin.social.utils.ConfigUtils;
  */
 
 public class ResetCodeActivity extends BackActivity {
-    ActivityLoginBinding binding;
-    LoginModel model;
+    ActivityResetcodeBinding binding;
+    ResetCodeModel model;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_resetcode);
-        model = new LoginModel(this);
+        model = new ResetCodeModel(this);
         binding.loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,47 +58,7 @@ public class ResetCodeActivity extends BackActivity {
                 });
             }
         });
-        binding.phoneEd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (i2 > 0 && !binding.passwordEd.getText().toString().isEmpty()) {
-                    model.loginBackId.set(model.loginSelectId);
-                } else {
-                    model.loginBackId.set(model.loginUnClickId);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.passwordEd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (i2 > 0 && !binding.phoneEd.getText().toString().isEmpty()) {
-                    model.loginBackId.set(model.loginSelectId);
-                } else {
-                    model.loginBackId.set(model.loginUnClickId);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
         binding.setModel(model);
         model.initBind(binding);
     }

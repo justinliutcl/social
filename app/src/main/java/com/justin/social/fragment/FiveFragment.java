@@ -24,6 +24,7 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.FindFriendActivity;
 import com.justin.social.activity.OrderFlowActivity;
+import com.justin.social.activity.ResetCodeActivity;
 import com.justin.social.activity.ShareFriendActivity;
 import com.justin.social.activity.UserMessageActivity;
 import com.justin.social.databinding.FragmentFiveBinding;
@@ -71,6 +72,7 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
         mBinding.orderFlowLl.setOnClickListener(this);
         mBinding.orderFlowLl.setOnClickListener(this);
         mBinding.userMessage.setOnClickListener(this);
+        mBinding.resetCodeLl.setOnClickListener(this);
         model = new FiveModel(getActivity());
         UserDataObtain.getInstance(getActivity()).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
@@ -106,6 +108,9 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.user_message:
                 startActivity(new Intent(getActivity(), UserMessageActivity.class));
+                break;
+            case R.id.reset_code_ll:
+                startActivity(new Intent(getActivity(), ResetCodeActivity.class));
                 break;
             case R.id.friend_ll:
 //                if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.READ_CONTACTS)
