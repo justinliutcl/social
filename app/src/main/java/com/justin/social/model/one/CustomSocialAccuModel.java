@@ -12,9 +12,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.WriteSocialNoteActivity;
-import com.justin.social.adapter.SocialToolNormalAdapter;
 import com.justin.social.databinding.ActivityCustomSocialaccuBinding;
-import com.justin.social.databinding.ActivitySocialCalculaterBinding;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.DialogUtils;
 

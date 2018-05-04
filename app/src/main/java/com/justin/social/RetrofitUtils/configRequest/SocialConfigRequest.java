@@ -184,11 +184,13 @@ public interface SocialConfigRequest {
 
     @FormUrlEncoded
     @POST("order/addServiceOrder")
-    Call<BaseConfig> getServiceAddOrderConfig(@Field("orderType") String orderType,
-                                              @Field("userName") String userName,
-                                              @Field("idCard") String idCard,
-                                              @Field("serviceType") String serviceType,
-                                              @Field("allCharge") String allCharge
+    Call<BaseConfig> getServiceAddOrderConfig(
+            @Field("userId") String userId,
+            @Field("orderType") String orderType,
+            @Field("userName") String userName,
+            @Field("idCard") String idCard,
+            @Field("serviceType") String serviceType,
+            @Field("allCharge") String allCharge
     );
 
     @FormUrlEncoded

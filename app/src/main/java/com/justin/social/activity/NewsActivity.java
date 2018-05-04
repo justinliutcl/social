@@ -19,7 +19,7 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
  * Created by ASUS on 2018/4/11.
  */
 
-public class NewsActivity extends BaseActivity {
+public class NewsActivity extends BackActivity {
     public static final String CONTENT = "content";
     WebView view;
     @Override

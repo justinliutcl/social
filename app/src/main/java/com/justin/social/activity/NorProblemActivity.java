@@ -16,7 +16,7 @@ import com.justin.social.model.one.NormalProblemModel;
  * Created by ASUS on 2018/4/14.
  */
 
-public class NorProblemActivity extends BaseActivity {
+public class NorProblemActivity extends BackActivity {
     ActivityNormalProblemBinding binding;
     NormalProblemModel model;
     @Override

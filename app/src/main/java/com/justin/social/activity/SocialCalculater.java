@@ -12,7 +12,7 @@ import com.justin.social.model.four.SocialCalculaterModel;
  * Created by ASUS on 2018/4/14.
  */
 
-public class SocialCalculater extends BaseActivity {
+public class SocialCalculater extends BackActivity {
     ActivitySocialCalculaterBinding binding;
     SocialCalculaterModel model;
     @Override

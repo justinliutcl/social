@@ -434,9 +434,9 @@ public class HttpConfigManager {
         });
     }
 
-    public void sendServiceAddConfig(String orderType,String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
+    public void sendServiceAddConfig(String userId,String orderType,String userName,String idCard,String charge,String sum,final BeanConfigCallBack<BaseConfig> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(orderType,userName,idCard,charge,sum);
+        Call<BaseConfig> config = configRequest.getServiceAddOrderConfig(userId,orderType,userName,idCard,charge,sum);
         config.enqueue(new Callback<BaseConfig>() {
             @Override
             public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {

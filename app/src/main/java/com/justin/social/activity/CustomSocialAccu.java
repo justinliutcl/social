@@ -14,7 +14,7 @@ import com.justin.social.model.one.CustomSocialAccuModel;
  * Created by ASUS on 2018/4/14.
  */
 
-public class CustomSocialAccu extends BaseActivity {
+public class CustomSocialAccu extends BackActivity {
     ActivityCustomSocialaccuBinding binding;
     CustomSocialAccuModel model;
     public static final String TYPE         = "type";

@@ -13,7 +13,7 @@ import com.justin.social.model.four.SocialCalculaterModel;
  * Created by ASUS on 2018/4/14.
  */
 
-public class ShareFriendActivity extends BaseActivity {
+public class ShareFriendActivity extends BackActivity {
     ActivityShareFriendBinding binding;
     SocialCalculaterModel model;
     @Override
