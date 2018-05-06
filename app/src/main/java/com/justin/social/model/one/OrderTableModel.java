@@ -47,6 +47,7 @@ public class OrderTableModel extends BaseModel {
     public ObservableField<String> overdue_fine;
     public ObservableField<String> sum;
     public ObservableField<String> currentTime;
+    public int status;
 
     private ActivityOrderTableBinding bind;
     private double minBase;
@@ -108,10 +109,12 @@ public class OrderTableModel extends BaseModel {
         this.hourseType = hourseType;
         CommonSettingValue value = CommonSettingValue.getIns(mContext);
         if (isAcc) {
+            status = 1;
             String base = value.getAccuBase(value.getCurrentPhone());
             defaultBase = base == null ? String.valueOf(minBase) : base;
             getAccuMoneyMessage(String.valueOf(defaultBase));
         } else {
+            status = 0;
             String base = value.getSocialBase(value.getCurrentPhone());
             defaultBase = base == null ? String.valueOf(minBase) : base;
             getMoneyMessage(String.valueOf(defaultBase));
@@ -139,7 +142,7 @@ public class OrderTableModel extends BaseModel {
 
         String base2 = value.getSocialBase(value.getCurrentPhone());
         defaultBase = base2 == null ? String.valueOf(minBase) : base2;
-
+        status = 2;
         getAllMoneyMessage(String.valueOf(defaultBase),String.valueOf(defaultFiveBase));
     }
 
@@ -157,15 +160,16 @@ public class OrderTableModel extends BaseModel {
                     return;
                 double text = Double.parseDouble(s.toString());
                 if (text >= minBase && text <= maxBase) {
-                    if (isFirst.get()) {
-                        if (bind.fiveAccuText.getText() != null || !bind.fiveAccuText.getText().toString().isEmpty()) {
-                            double text2 = Double.parseDouble(bind.fiveAccuText.getText().toString());
-                            if (text2 >= minFiveBase && text2 <= maxFiveBase)
-                                getAllMoneyMessage(String.valueOf(text), String.valueOf(text2));
-                        }
-                    } else {
-                        getMoneyMessage(String.valueOf(text));
-                    }
+                    getMessageMoney();
+//                    if (isFirst.get()) {
+//                        if (bind.fiveAccuText.getText() != null || !bind.fiveAccuText.getText().toString().isEmpty()) {
+//                            double text2 = Double.parseDouble(bind.fiveAccuText.getText().toString());
+//                            if (text2 >= minFiveBase && text2 <= maxFiveBase)
+//                                getAllMoneyMessage(String.valueOf(text), String.valueOf(text2));
+//                        }
+//                    } else {
+//                        getMoneyMessage(String.valueOf(text));
+//                    }
 
                 }
 
@@ -262,10 +266,42 @@ public class OrderTableModel extends BaseModel {
         DialogUtils.getDialogUtilInstance().showDuringDialog(mContext, new DialogUtils.ItemClickBack() {
             @Override
             public void onBack(String s) {
-                appDur.set(s);
+                if(!appDur.get().equals(s)){
+                    getMessageMoney();
+                    appDur.set(s);
+                }
                 DialogUtils.getDialogUtilInstance().dismiss();
             }
         });
+    }
+
+    private void getMessageMoney(){
+        switch (status){
+            case 0:
+                if (!bind.baseText.getText().toString().isEmpty()){
+                    double text = Double.parseDouble( bind.baseText.getText().toString());
+                    if(text >= minBase && text <= maxBase){
+                        getMoneyMessage(String.valueOf(text));
+                    }
+                }
+                break;
+            case 1:
+                if (!bind.baseText.getText().toString().isEmpty()){
+                    double text = Double.parseDouble( bind.baseText.getText().toString());
+                    if(text >= minBase && text <= maxBase){
+                        getAccuMoneyMessage(String.valueOf(text));
+                    }
+                }
+                break;
+            case 2:
+                if (!bind.baseText.getText().toString().isEmpty()&&!bind.fiveAccuText.getText().toString().isEmpty()) {
+                    double text2 = Double.parseDouble(bind.fiveAccuText.getText().toString());
+                    double text1 = Double.parseDouble( bind.baseText.getText().toString());
+                    if (text2 >= minFiveBase && text2 <= maxFiveBase&&text1>=minBase&&text1<=maxBase)
+                        getAllMoneyMessage(String.valueOf(text1), String.valueOf(text2));
+                }
+                break;
+        }
     }
 
     public void sendOrder() {
