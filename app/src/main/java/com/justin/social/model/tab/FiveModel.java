@@ -14,6 +14,7 @@ import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.OrderListActivity;
 import com.justin.social.activity.SettingActivity;
 import com.justin.social.model.base.BaseModel;
+import com.justin.social.utils.DialogUtils;
 
 /**
  * Created by ASUS on 2018/4/8.
@@ -76,6 +77,9 @@ public class FiveModel extends BaseModel {
             case R.id.setting:
                 Intent intent = new Intent(mContext, SettingActivity.class);
                 mContext.startActivity(intent);
+                break;
+            case R.id.call_us_ll:
+                DialogUtils.getDialogUtilInstance().showCallUsDialog(mContext);
                 break;
         }
     }

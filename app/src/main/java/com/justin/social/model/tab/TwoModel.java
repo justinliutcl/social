@@ -84,4 +84,8 @@ public class TwoModel extends BaseModel {
             }
         });
     }
+
+    public void onServicePeopleClick(View view){
+
+    }
 }

@@ -107,6 +107,10 @@ public class DialogUtils {
         showSimpleDialog(context, DialogImpl.getServiceAddView(context,config, back));
     }
 
+    public void showCallUsDialog(Context context) {
+        showSimpleDialog(context, DialogImpl.getCallUsView(context));
+    }
+
 
     public static void hideSoftKeyboard(Activity activity) {
         if (activity != null) {

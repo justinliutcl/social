@@ -33,9 +33,6 @@ public class SettingActivity extends BackActivity {
             case R.id.service_ll:
 
                 break;
-            case R.id.about_ll:
-
-                break;
             case R.id.back_button:
                 CommonSettingValue.getIns(this).setCurrentPhone(null);
                 CommonSettingValue.getIns(this).setCurrentUserID(null);

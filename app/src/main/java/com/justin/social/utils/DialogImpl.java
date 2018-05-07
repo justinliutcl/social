@@ -8,8 +8,10 @@ import android.view.View;
 
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
+import com.justin.social.databinding.DialogCallUsBinding;
 import com.justin.social.databinding.DialogDuringBinding;
 import com.justin.social.databinding.DialogServiceAddBinding;
+import com.justin.social.model.dialog.DialogCallModel;
 import com.justin.social.model.dialog.DialogNorModel;
 import com.justin.social.model.dialog.DialogSelectModel;
 
@@ -108,6 +110,12 @@ public class DialogImpl {
         model.initAdapter(list,back);
         binding.setModel(model);
         binding.list.getLayoutParams().height = (int) (DimensionUtils.HEIGHT_PIXELS * 0.5);
+        return binding.getRoot();
+    }
+
+    public static View getCallUsView(Context context){
+        DialogCallUsBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_call_us,null,false);
+        DialogCallModel model = new DialogCallModel(context);
         return binding.getRoot();
     }
 }

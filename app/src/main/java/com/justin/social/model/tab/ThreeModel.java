@@ -54,4 +54,8 @@ public class ThreeModel extends BaseModel {
     public void onClick(View view){
         mContext.startActivity(new Intent(mContext,NewsListActivity.class));
     }
+
+    public void onServicePeopleClick(View view){
+
+    }
 }

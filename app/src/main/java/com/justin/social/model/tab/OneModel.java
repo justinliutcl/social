@@ -17,6 +17,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.activity.CustomSocialAccu;
+import com.justin.social.activity.GroupServiceActivity;
 import com.justin.social.activity.InsertServiceActivity;
 import com.justin.social.activity.LoginActivity;
 import com.justin.social.activity.NewsListActivity;
@@ -86,11 +87,11 @@ public class OneModel extends BaseModel {
         });
     }
 
-    public void initNewList(){
+    public void initNewList() {
         httpConfigManager.getNewListConfig(NewsListConfig.MAIN_NEWS, new BeanConfigCallBack<NewsListConfig>() {
             @Override
             public void onDataResponse(NewsListConfig bean) {
-                if(bean!=null){
+                if (bean != null) {
                     List<NewListBean> list = bean.getData().getData();
                     if (list != null) {
                         for (NewListBean listBean : list) {
@@ -119,59 +120,62 @@ public class OneModel extends BaseModel {
         });
     }
 
-    public void onClick(View view){
-        if(!isLogin()){
+    public void onClick(View view) {
+        if (!isLogin()) {
             LoginActivity.JumpToLogin(mContext);
             return;
         }
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.social_ll:
-                WriteSocialNoteActivity.JumpWriteSocial(mContext,0);
+                WriteSocialNoteActivity.JumpWriteSocial(mContext, 0);
                 break;
             case R.id.accu_ll:
-                WriteSocialNoteActivity.JumpWriteSocial(mContext,1);
+                WriteSocialNoteActivity.JumpWriteSocial(mContext, 1);
                 break;
             case R.id.five_ll:
-                WriteSocialNoteActivity.JumpWriteSocial(mContext,2);
+                WriteSocialNoteActivity.JumpWriteSocial(mContext, 2);
                 break;
             case R.id.more_ll:
-                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.DEFAULT);
+                InsertServiceActivity.JumpInsertServiceActivity(mContext, InsertServiceActivity.DEFAULT);
                 break;
             case R.id.add_ll:
-                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.REPAIR);
+                InsertServiceActivity.JumpInsertServiceActivity(mContext, InsertServiceActivity.REPAIR);
                 break;
             case R.id.save_ll:
-                InsertServiceActivity.JumpInsertServiceActivity(mContext,InsertServiceActivity.FILE);
+                InsertServiceActivity.JumpInsertServiceActivity(mContext, InsertServiceActivity.FILE);
                 break;
             case R.id.note_ll:
 
                 break;
             case R.id.send_ll:
-                mContext.startActivity(new Intent(mContext,SendMessageActivity.class));
+                SendMessageActivity.JumpSendMessage(mContext,SendMessageActivity.TYPE_ONE);
                 break;
             case R.id.problem_ll:
-                mContext.startActivity(new Intent(mContext,NorProblemActivity.class));
+                mContext.startActivity(new Intent(mContext, NorProblemActivity.class));
+                break;
+            case R.id.group_service_ll:
+                mContext.startActivity(new Intent(mContext, GroupServiceActivity.class));
                 break;
             case R.id.share_iv:
-                mContext.startActivity(new Intent(mContext,ShareFriendActivity.class));
+                mContext.startActivity(new Intent(mContext, ShareFriendActivity.class));
                 break;
             case R.id.pay_social:
-                CustomSocialAccu.JumpToCustomSocialAccu(mContext,CustomSocialAccu.SOCIAL_TYPE);
+                CustomSocialAccu.JumpToCustomSocialAccu(mContext, CustomSocialAccu.SOCIAL_TYPE);
                 break;
             case R.id.pay_accu:
-                CustomSocialAccu.JumpToCustomSocialAccu(mContext,CustomSocialAccu.ACCU_TYPE);
+                CustomSocialAccu.JumpToCustomSocialAccu(mContext, CustomSocialAccu.ACCU_TYPE);
                 break;
             case R.id.police_hourse:
-                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.HOURSE_TYPE);
+                PoliceDetialActivity.jumpToPoliceDetial(mContext, PoliceDetialActivity.HOURSE_TYPE);
                 break;
             case R.id.police_car:
-                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.CAR_TYPE);
+                PoliceDetialActivity.jumpToPoliceDetial(mContext, PoliceDetialActivity.CAR_TYPE);
                 break;
             case R.id.police_school:
-                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.SCHOOL_TYPE);
+                PoliceDetialActivity.jumpToPoliceDetial(mContext, PoliceDetialActivity.SCHOOL_TYPE);
                 break;
             case R.id.police_locial:
-                PoliceDetialActivity.jumpToPoliceDetial(mContext,PoliceDetialActivity.LOCIAL_TYPE);
+                PoliceDetialActivity.jumpToPoliceDetial(mContext, PoliceDetialActivity.LOCIAL_TYPE);
                 break;
             case R.id.news_list:
                 Intent intent = new Intent(mContext, NewsListActivity.class);
@@ -185,9 +189,13 @@ public class OneModel extends BaseModel {
     }
 
     public void startShowNewList() {
-        if(mBinding!=null&&mBinding.marqueeView!=null&&!mBinding.marqueeView.isFlipping()){
+        if (mBinding != null && mBinding.marqueeView != null && !mBinding.marqueeView.isFlipping()) {
             mBinding.marqueeView.startFlipping();
         }
+
+    }
+
+    public void onServicePeopleClick(View view){
 
     }
 }
