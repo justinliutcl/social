@@ -59,6 +59,7 @@ public class OrderTableModel extends BaseModel {
     public String defaultBase;
     public String defaultFiveBase;
     public ObservableBoolean isFirst;
+    private boolean canSend;
 
     public OrderTableModel(Context context) {
         super(context);
@@ -82,6 +83,7 @@ public class OrderTableModel extends BaseModel {
 
         tableType = new ObservableField<>(mContext.getString(R.string.social_type_have));
         currentTime=new ObservableField<>(AppUtils.getTime("yyyy-MM-dd"));
+        canSend =true;
     }
 
     public void onNextClick(View view) {
@@ -211,9 +213,11 @@ public class OrderTableModel extends BaseModel {
 
 
     public void getMoneyMessage(final String base) {
+        canSend =false;
         new HttpConfigManager().getSocialMoneyConfig(appDur.get(), base, cityName, hourseType, new BeanConfigCallBack<SocialMoneyConfig>() {
             @Override
             public void onDataResponse(SocialMoneyConfig bean) {
+                canSend =true;
                 if (bean == null || bean.getData() == null)
                     return;
                 defaultBase = base;
@@ -228,9 +232,11 @@ public class OrderTableModel extends BaseModel {
     }
 
     private void getAccuMoneyMessage(final String base) {
+        canSend =false;
         new HttpConfigManager().getAccuMoneyConfig(appDur.get(), base, cityName, new BeanConfigCallBack<SocialMoneyConfig>() {
             @Override
             public void onDataResponse(SocialMoneyConfig bean) {
+                canSend =true;
                 if (bean == null || bean.getData() == null)
                     return;
                 defaultBase = base;
@@ -245,9 +251,11 @@ public class OrderTableModel extends BaseModel {
     }
 
     private void getAllMoneyMessage(final String base,final String baseAccu) {
+        canSend =false;
         new HttpConfigManager().getAllMoneyConfig(appDur.get(), base, baseAccu,hourseType,cityName, new BeanConfigCallBack<SocialMoneyConfig>() {
             @Override
             public void onDataResponse(SocialMoneyConfig bean) {
+                canSend =true;
                 if (bean == null || bean.getData() == null)
                     return;
                 defaultBase = base;
@@ -267,8 +275,8 @@ public class OrderTableModel extends BaseModel {
             @Override
             public void onBack(String s) {
                 if(!appDur.get().equals(s)){
-                    getMessageMoney();
                     appDur.set(s);
+                    getMessageMoney();
                 }
                 DialogUtils.getDialogUtilInstance().dismiss();
             }

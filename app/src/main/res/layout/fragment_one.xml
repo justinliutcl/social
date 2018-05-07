@@ -39,15 +39,15 @@
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
-                <ImageView
-                    android:id="@+id/news_list"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:onClick="@{model.onClick}"
+                   android:text="客服"
+                    android:textColor="@color/white"
                     android:padding="5dp"
+                    android:layout_marginRight="15dp"
                     android:src="@drawable/icon_right_news" />
             </RelativeLayout>
 
@@ -209,6 +209,29 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/group_service_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/icon_group_service" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="团体服务"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:id="@+id/save_ll"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -289,6 +312,30 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="上传资料"
+                                android:textColor="@color/base_black3"
+                                android:textSize="@dimen/one_main_text" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/about_me_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:onClick="@{model.onClick}"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:scaleType="center"
+                                android:src="@drawable/icon_about_me" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="关于我们"
                                 android:textColor="@color/base_black3"
                                 android:textSize="@dimen/one_main_text" />
                         </LinearLayout>
@@ -608,12 +655,30 @@
                     android:layout_marginLeft="20dp"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="热点资讯"
                     android:textSize="15sp"
                     android:textColor="@color/text_35"
+                    />
+                <TextView
+                    android:id="@+id/news_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="更多"
+                    android:textSize="14sp"
+                    android:onClick="@{model.onClick}"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/text_68"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/icon_gray_right"
                     />
             </LinearLayout>
             <com.justin.social.views.LinearRecyclerView
