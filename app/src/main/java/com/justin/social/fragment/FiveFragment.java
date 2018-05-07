@@ -85,6 +85,13 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
         mBinding.setModel(model);
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            initView();
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
