@@ -29,6 +29,7 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener{
 
         if(CommonSettingValue.getIns(this).getFirst()){
             startActivity(new Intent(this, MainActivity.class));
+            CommonSettingValue.getIns(this).setFirst(true);
             finish();
         }
         init();
@@ -66,7 +67,6 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener{
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 if(position==2){
@@ -75,7 +75,6 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener{
                     submit.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -86,6 +85,7 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         startActivity(new Intent(this, MainActivity.class));
+        CommonSettingValue.getIns(this).setFirst(true);
         finish();
     }
 

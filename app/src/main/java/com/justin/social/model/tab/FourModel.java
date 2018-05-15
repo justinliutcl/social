@@ -14,8 +14,10 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
+import com.justin.social.activity.OnlineServiceActivity;
 import com.justin.social.activity.SendMessageActivity;
 import com.justin.social.activity.SocialCalculater;
+import com.justin.social.activity.SocialSearchActivity;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentTwoBinding;
 import com.justin.social.model.base.BaseModel;
@@ -45,13 +47,16 @@ public class FourModel extends BaseModel {
             case R.id.problem_ll:
                 mContext.startActivity(new Intent(mContext, NorProblemActivity.class));
                 break;
+            case R.id.social_search_ll:
+                mContext.startActivity(new Intent(mContext, SocialSearchActivity.class));
+                break;
             case R.id.hosp_ll:
-                SendMessageActivity.JumpSendMessage(mContext,SendMessageActivity.TYPE_TWO);
+                SendMessageActivity.JumpSendMessage(mContext, SendMessageActivity.TYPE_TWO);
                 break;
         }
     }
 
     public void onServicePeopleClick(View view) {
-
+        mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));
     }
 }

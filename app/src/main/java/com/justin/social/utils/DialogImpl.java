@@ -116,6 +116,7 @@ public class DialogImpl {
     public static View getCallUsView(Context context){
         DialogCallUsBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_call_us,null,false);
         DialogCallModel model = new DialogCallModel(context);
+        binding.setModel(model);
         return binding.getRoot();
     }
 }

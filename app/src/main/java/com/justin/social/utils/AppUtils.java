@@ -1,6 +1,7 @@
 package com.justin.social.utils;
 
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -100,7 +101,7 @@ public class AppUtils {
         // 跳转之前，可以先判断手机是否安装QQ
         if (isQQClientAvailable(context)) {
             // 跳转到客服的QQ
-            String url = "mqqwpa://im/chat?chat_type=wpa&uin=qq";
+            String url = "mqqwpa://im/chat?chat_type=wpa&uin="+qq;
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             // 跳转前先判断Uri是否存在，如果打开一个不存在的Uri，App可能会崩溃
             if (isValidIntent(context,intent)) {
@@ -118,6 +119,28 @@ public class AppUtils {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 复制到剪贴板
+     * @param context
+     * @return
+     */
+    public static void copyToClip(String mes,Context context) {
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+
+        cm.setText(mes);
+    }
+
+    /**
+     * 复制到剪贴板
+     * @param context
+     * @return
+     */
+    public static void jumpToUrl(String mes,Context context) {
+        Uri uri = Uri.parse(mes);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         context.startActivity(intent);
     }
 
@@ -142,7 +165,8 @@ public class AppUtils {
                 String[] phoneProjection = new String[] {
                         ContactsContract.CommonDataKinds.Phone.NUMBER
                 };
-                arr[i] = id + " , 姓名：" + name;
+//                arr[i] = id + " , 姓名：" + name;
+                arr[i] =  "姓名：" + name;
 
                 //根据联系人的ID获取此人的电话号码
                 Cursor phonesCusor = context.getContentResolver().query(
@@ -156,7 +180,8 @@ public class AppUtils {
                 if (phonesCusor != null && phonesCusor.moveToFirst()) {
 //                    do {
                         String num = phonesCusor.getString(0);
-                        arr[i] += " , 电话号码：" + num;
+//                        arr[i] += " , 电话号码：" + num;
+                        arr[i] += " " + num;
 //                    }while (phonesCusor.moveToNext());
                 }
                 i++;

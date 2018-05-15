@@ -26,6 +26,7 @@ public class CommonSettingValue extends GlobPre {
     private static final String SERVICE_ADD                     = "service_add";
     private static final String KEY_SERVICE                     = "key_service";
     private static final String IS_FIRST                        = "key_is_first";
+    private static final String CUSTOM_PHONE                    = "key_custom_phone";
     protected CommonSettingValue(Context context) {
         super(context);
     }
@@ -111,10 +112,18 @@ public class CommonSettingValue extends GlobPre {
     }
 
     public boolean getFirst() {
-        return getBoolean(SERVICE_ADD, false);
+        return getBoolean(IS_FIRST, false);
     }
 
     public void setFirst(boolean isFirst) {
-        putBoolean(SERVICE_ADD, isFirst);
+        putBoolean(IS_FIRST, isFirst);
+    }
+
+    public void setCustomPhone(String phone){
+        putString(CUSTOM_PHONE, phone);
+    }
+
+    public String getCustomPhone(){
+        return getString(CUSTOM_PHONE, "");
     }
 }

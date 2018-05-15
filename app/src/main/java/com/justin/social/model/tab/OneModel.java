@@ -22,6 +22,8 @@ import com.justin.social.activity.InsertServiceActivity;
 import com.justin.social.activity.LoginActivity;
 import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
+import com.justin.social.activity.OnlineServiceActivity;
+import com.justin.social.activity.PhysicalActivity;
 import com.justin.social.activity.PoliceDetialActivity;
 import com.justin.social.activity.SendMessageActivity;
 import com.justin.social.activity.ShareFriendActivity;
@@ -181,6 +183,9 @@ public class OneModel extends BaseModel {
                 Intent intent = new Intent(mContext, NewsListActivity.class);
                 mContext.startActivity(intent);
                 break;
+            case R.id.physical_ll:
+                mContext.startActivity(new Intent(mContext, PhysicalActivity.class));
+                break;
         }
     }
 
@@ -196,6 +201,6 @@ public class OneModel extends BaseModel {
     }
 
     public void onServicePeopleClick(View view){
-
+        mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));
     }
 }

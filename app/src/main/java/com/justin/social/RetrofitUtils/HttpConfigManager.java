@@ -13,6 +13,8 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.OnlineServiceConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.PoliceConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
@@ -500,6 +502,78 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<NormalProblemListConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getOnlineServiceConfig(final BeanConfigCallBack<OnlineServiceConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<OnlineServiceConfig> config = configRequest.getOnlineServiceConfig();
+        config.enqueue(new Callback<OnlineServiceConfig>() {
+            @Override
+            public void onResponse(Call<OnlineServiceConfig> call, Response<OnlineServiceConfig> response) {
+                OnlineServiceConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<OnlineServiceConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getSendUserMesConfig(
+            String userName,
+            String idCard,
+            String userId,
+            String insuredCity,
+            String householdType,
+            String phone,
+            String email,
+            String bankName,
+            String branchNum,
+            final BeanConfigCallBack<BaseConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<BaseConfig> config = configRequest.getSendMesConfig(userName,
+                idCard,
+                userId,
+                insuredCity,
+                householdType,
+                phone,
+                email,
+                bankName,
+                branchNum);
+        config.enqueue(new Callback<BaseConfig>() {
+            @Override
+            public void onResponse(Call<BaseConfig> call, Response<BaseConfig> response) {
+                BaseConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getPoliceDetialConfig(int type,final BeanConfigCallBack<PoliceConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<PoliceConfig> config = configRequest.getPoliceDetialConfig(String.valueOf(type));
+        config.enqueue(new Callback<PoliceConfig>() {
+            @Override
+            public void onResponse(Call<PoliceConfig> call, Response<PoliceConfig> response) {
+                PoliceConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<PoliceConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }

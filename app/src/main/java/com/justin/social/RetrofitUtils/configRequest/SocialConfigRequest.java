@@ -9,6 +9,8 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.OnlineServiceConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.PoliceConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
@@ -211,4 +213,25 @@ public interface SocialConfigRequest {
     Call<NormalProblemListConfig> getNormalProblemConfig(@Field("pageSize") String pageSize,
                                                          @Field("pageIndex") String pageIndex
     );
+
+    @POST("custom/customList")
+    Call<OnlineServiceConfig> getOnlineServiceConfig(
+    );
+
+    @FormUrlEncoded
+    @POST("user/changeByUserId")
+    Call<BaseConfig> getSendMesConfig(@Field("userName")        String userName,
+                                      @Field("idCard")          String idCard,
+                                      @Field("userId")          String userId,
+                                      @Field("insuredCity")     String insuredCity,
+                                      @Field("householdType")   String householdType,
+                                      @Field("phone")           String phone,
+                                      @Field("email")           String email,
+                                      @Field("bankName")        String bankName,
+                                      @Field("branchNum")       String branchNum
+    );
+    @FormUrlEncoded
+    @POST("others/getOtherNew")
+    Call<PoliceConfig> getPoliceDetialConfig(@Field("type")  String type );
+
 }

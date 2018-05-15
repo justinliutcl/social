@@ -36,7 +36,7 @@
                 android:text="客服"
                 android:textColor="@color/white"
                 android:padding="5dp"
-                android:onClick="onServicePeopleClick"
+                android:onClick="@{model.onServicePeopleClick}"
                 android:layout_marginRight="15dp"
                 android:src="@drawable/icon_right_news" />
         </RelativeLayout>

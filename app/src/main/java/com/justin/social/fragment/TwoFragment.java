@@ -33,5 +33,6 @@ public class TwoFragment extends Fragment {
         model.init(mBinding);
 
         model.getService();
+        mBinding.setModel(model);
     }
 }

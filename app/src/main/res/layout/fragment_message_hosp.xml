@@ -4,271 +4,273 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="model"
-            type="com.justin.social.model.one.MessageHospModel"/>
+            type="com.justin.social.model.one.MessageHospModel" />
 
     </data>
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/base_black_back">
 
-
-        <android.support.v4.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/base_black_back"
-            >
+
+            android:orientation="vertical"
+            tools:context="com.justin.social.activity.WriteSocialNoteActivity">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:orientation="vertical"
-                tools:context="com.justin.social.activity.WriteSocialNoteActivity">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:layout_marginTop="10dp"
-                    android:focusableInTouchMode="true"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="14dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/icon_binder_line" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
-                            android:text="定点医院"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/icon_binder_line" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:onClick="@{model.onClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定点医院1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/hosp1_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:text="@{model.hosp1}"
-                            android:hint="请输入医院名"
-                            android:gravity="right"
-                            android:lines="1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:onClick="@{model.onClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定点医院1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/hosp2_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:hint="请输入医院名"
-                            android:text="@{model.hosp2}"
-                            android:lines="1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:onClick="@{model.onClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定点医院1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/hosp3_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:hint="请输入医院名"
-                            android:text="@{model.hosp3}"
-                            android:lines="1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:onClick="@{model.onClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定点医院1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/hosp4_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:hint="请输入医院名"
-                            android:text="@{model.hosp4}"
-                            android:lines="1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:onClick="@{model.onClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="定点医院1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <EditText
-                            android:id="@+id/hosp5_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:hint="请输入医院名"
-                            android:text="@{model.hosp5}"
-                            android:lines="1"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
+                        android:layout_marginLeft="13dp"
+                        android:text="定点医院"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定点医院1"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/hosp1_text"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="93dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="70dp"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        android:text="保存信息"
-                        android:onClick="@{model.onClick}"
-                        android:background="@drawable/background_login_normal"
-                        android:textColor="@color/white"
-                        />
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:hint="请输入医院名"
+                        android:lines="1"
+                        android:text="@{model.hosp1}"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定点医院2"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/hosp2_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:hint="请输入医院名"
+                        android:lines="1"
+                        android:text="@{model.hosp2}"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定点医院3"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/hosp3_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:hint="请输入医院名"
+                        android:lines="1"
+                        android:text="@{model.hosp3}"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定点医院4"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/hosp4_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:hint="请输入医院名"
+                        android:lines="1"
+                        android:text="@{model.hosp4}"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{model.onClick}"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定点医院5"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/hosp5_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:hint="请输入医院名"
+                        android:lines="1"
+                        android:text="@{model.hosp5}"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="93dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/background_login_normal"
+                android:gravity="center"
+                android:onClick="@{model.onClick}"
+                android:text="保存信息"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </layout>

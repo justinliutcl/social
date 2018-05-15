@@ -11,6 +11,7 @@ import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
+import com.justin.social.activity.OnlineServiceActivity;
 import com.justin.social.activity.SocialCalculater;
 import com.justin.social.adapter.OrderListContentAdapter;
 import com.justin.social.adapter.ThreeOrderListContentAdapter;
@@ -56,6 +57,6 @@ public class ThreeModel extends BaseModel {
     }
 
     public void onServicePeopleClick(View view){
-
+        mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));
     }
 }

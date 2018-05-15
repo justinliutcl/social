@@ -366,14 +366,16 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/online_service_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
+                        android:onClick="@{model.onClick}"
                         android:orientation="horizontal"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 
-                        <ImageView
+                    <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="19dp"
@@ -415,7 +417,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="19dp"
-                            android:src="@drawable/icon_oder_line" />
+                            android:src="@drawable/icon_share_friend" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -480,10 +482,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/idfriend_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:onClick="@{model.onClick}"
                         android:paddingBottom="15dp"
                         android:paddingTop="15dp">
 

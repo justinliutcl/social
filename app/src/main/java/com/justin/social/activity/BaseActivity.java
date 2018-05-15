@@ -8,7 +8,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.igexin.sdk.PushManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.service.DemoIntentService;
+import com.justin.social.service.MyPushService;
 
 /**
  * Created by ASUS on 2018/3/25.
@@ -18,6 +21,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PushManager.getInstance().initialize(this.getApplicationContext(), MyPushService.class);
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         // 竖屏显示
         if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

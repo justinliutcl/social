@@ -42,4 +42,5 @@
 
     <string name="social_type_dishave">本市首次参保</string>
     <string name="social_type_have">续缴</string>
+    <string name="social_search_log">点击访问可在手机端直接打开当前网址查询单击复制可复制网址信息，方便您分享或者其他方式打开</string>
 </resources>

@@ -20,11 +20,13 @@ import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.NewsListActivity;
+import com.justin.social.activity.OnlineServiceActivity;
 import com.justin.social.adapter.ServiceAdapter;
 import com.justin.social.databinding.FragmentOneBinding;
 import com.justin.social.databinding.FragmentTwoBinding;
 import com.justin.social.databinding.ItemSocialPeopleBinding;
 import com.justin.social.model.base.BaseModel;
+import com.justin.social.utils.AppUtils;
 import com.justin.social.views.AnimationEndListener;
 
 import java.util.ArrayList;
@@ -65,6 +67,16 @@ public class TwoModel extends BaseModel {
                 Intent intent = new Intent(mContext, NewsListActivity.class);
                 mContext.startActivity(intent);
                 break;
+            case R.id.pay_social:
+                mContext.startActivity(new Intent(mContext,OnlineServiceActivity.class));
+                break;
+            case R.id.pay_accu:
+                if(CommonSettingValue.getIns(mContext).getCustomPhone()!=null){
+                    AppUtils.diallPhone(CommonSettingValue.getIns(mContext).getCustomPhone(),mContext);
+                }else{
+
+                }
+                break;
         }
     }
 
@@ -86,6 +98,6 @@ public class TwoModel extends BaseModel {
     }
 
     public void onServicePeopleClick(View view){
-
+        mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));
     }
 }

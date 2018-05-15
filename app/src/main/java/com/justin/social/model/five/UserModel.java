@@ -8,6 +8,7 @@ import com.justin.social.R;
 import com.justin.social.RXDbUtils.DB.UserDataObtain;
 import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
+import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
@@ -32,6 +33,7 @@ public class UserModel extends BaseModel {
     public ObservableField<String> phone;
     CityConfig cityConfig;
     DbUser mUser;
+
     public UserModel(Context context) {
         super(context);
         httpConfigManager = new HttpConfigManager();
@@ -40,8 +42,35 @@ public class UserModel extends BaseModel {
         hourseType = new ObservableField<>("本市城镇职工");
     }
 
-    public void onClick(View view){
-
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back_button:
+                if(mUser==null)
+                    return;
+                httpConfigManager.getSendUserMesConfig(mBinding.numText.getText().toString(),
+                        mBinding.idCardText.getText().toString(),
+                        mUser.getUserId(),
+                        city.get(),
+                        hourseType.get(),
+                        mBinding.phoneText.getText().toString(),
+                        mBinding.emailText.getText().toString(),
+                        mBinding.banknameText.getText().toString(),
+                        mBinding.banknumText.getText().toString(), new BeanConfigCallBack<BaseConfig>() {
+                            @Override
+                            public void onDataResponse(BaseConfig bean) {
+                                toastShow(bean.getMsg());
+                                mUser.setInsuredCity(city.get());
+                                mUser.setIdCard(mBinding.idCardText.getText().toString());
+                                mUser.setHouseholdType(hourseType.get());
+                                mUser.setEmail(mBinding.emailText.getText().toString());
+                                mUser.setBankName( mBinding.banknameText.getText().toString());
+                                mUser.setBranchNum( mBinding.banknumText.getText().toString());
+                                UserDataObtain.getInstance(mContext).updataUser(mUser,null);
+                            }
+                        }
+                );
+                break;
+        }
     }
 
     public void setData(final ActivityUserMessageBinding bind) {

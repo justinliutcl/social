@@ -15,6 +15,13 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <!-- iBeancon功能所需权限 -->;
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- 个推3.0电子围栏功能所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name=".SocialApplication"
         android:allowBackup="true"
@@ -74,6 +81,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.GroupServiceActivity" />
+        <activity android:name=".activity.OnlineServiceActivity" />
+        <activity android:name=".activity.SocialSearchActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
+        <activity android:name=".activity.PhysicalActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -84,6 +95,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <service
+            android:name="com.justin.social.service.MyPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice">
+        </service>
+        <service android:name=".service.DemoIntentService"/>
     </application>
 
 </manifest>
