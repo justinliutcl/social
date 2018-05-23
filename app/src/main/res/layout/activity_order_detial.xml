@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="model"
-            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig" />
+            type="com.justin.social.model.five.OrderDetialModel" />
     </data>
 
     <LinearLayout
@@ -75,7 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:text="社保订单"
+                                android:text="@{model.orderTypeMes}"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -84,7 +85,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:src="@drawable/icon_order_detial_look" />
+                            app:image="@{model.orderState}"
+                            />
                     </LinearLayout>
 
                     <ImageView
@@ -121,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="1675.33元"
+                            android:text="@{model.orderMoney+`元`}"
                             android:textColor="@color/white"
                             android:textSize="17sp"
                             android:textStyle="bold" />
@@ -193,6 +195,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.orderNum}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -229,6 +232,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            app:createTime="@{model.createTime}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -301,6 +305,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.name}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -337,6 +342,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.idCard}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -373,6 +379,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.orderTypeMes}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -409,6 +416,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.city}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -445,6 +453,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.insuredTime}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -518,6 +527,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.insuredCharge}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -554,6 +564,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.serviceCharge}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -590,6 +601,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.insuredCharge}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -626,6 +638,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.overdueFine}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 
@@ -662,6 +675,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:text="@{model.allCharge}"
                             android:textColor="@color/text_green"
                             android:textSize="13sp" />
 

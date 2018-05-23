@@ -7,6 +7,7 @@ import android.view.View;
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
+import com.justin.social.RetrofitUtils.DataBean.three.ThreeConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.NewsListActivity;
@@ -17,6 +18,9 @@ import com.justin.social.adapter.OrderListContentAdapter;
 import com.justin.social.adapter.ThreeOrderListContentAdapter;
 import com.justin.social.databinding.FragmentThreeBinding;
 import com.justin.social.model.base.BaseModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Justinliu on 2018/3/28.
@@ -37,15 +41,19 @@ public class ThreeModel extends BaseModel {
     }
 
     public void initAllOrder() {
-        new HttpConfigManager().getOrderConfig(OrderConfig.ALL_PAY, CommonSettingValue.getIns(mContext).getCurrentUserId(), new BeanConfigCallBack<OrderConfig>() {
+        new HttpConfigManager().getThreeConfig(CommonSettingValue.getIns(mContext).getCurrentUserId(), new BeanConfigCallBack<ThreeConfig>() {
             @Override
-            public void onDataResponse(OrderConfig bean) {
-                if (bean != null && bean.getData() != null && !bean.getData().isEmpty()) {
-                    allOrderConfig = bean;
-                    if (allOrderConfig != null && allOrderConfig.getData() != null && !allOrderConfig.getData().isEmpty()) {
-                        adapter = new ThreeOrderListContentAdapter(allOrderConfig.getData(), mContext);
-                        mBinding.list.setAdapter(adapter);
-                    }
+            public void onDataResponse(ThreeConfig bean) {
+                List<ThreeConfig> mDataList = new ArrayList<>();
+                if (bean != null && bean.getData() != null) {
+                    if (bean.getData().getSocialSecurity() != null)
+                        mDataList.add(bean.getData().getSocialSecurity());
+                    if (bean.getData().getAccumulation() != null)
+                        mDataList.add(bean.getData().getAccumulation());
+                }
+                if (!mDataList.isEmpty()){
+                    adapter = new ThreeOrderListContentAdapter(mDataList, mContext);
+                    mBinding.list.setAdapter(adapter);
                 }
 
             }

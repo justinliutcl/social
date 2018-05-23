@@ -7,9 +7,7 @@ import android.os.Bundle;
 
 import com.justin.social.R;
 import com.justin.social.databinding.ActivityInsertServicePayBinding;
-import com.justin.social.databinding.ActivitySocialPayBinding;
 import com.justin.social.model.one.InsertServicePayModel;
-import com.justin.social.model.one.SocialPayModel;
 
 public class InsertServicePayActivity extends BackActivity {
     ActivityInsertServicePayBinding bind;
@@ -18,6 +16,7 @@ public class InsertServicePayActivity extends BackActivity {
     public static final String ORDER_NUM = "orderNum";
     public static final String NAME = "name";
     public static final String SERVICE_TYPE = "serviceType";
+    public static final String ORDER_TYPE = "type";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +24,19 @@ public class InsertServicePayActivity extends BackActivity {
         model = new InsertServicePayModel(this);
         Intent intent = getIntent();
         model.initDes(intent.getStringExtra(ORDER_MONEY),intent.getStringExtra(ORDER_NUM),
-                intent.getStringExtra(NAME),intent.getStringExtra(SERVICE_TYPE),intent.getStringExtra(ORDER_MONEY));
+                intent.getStringExtra(NAME),intent.getStringExtra(SERVICE_TYPE),intent.getStringExtra(ORDER_MONEY)
+                ,intent.getStringExtra(ORDER_TYPE));
         bind.setModel(model);
     }
 
     public static void JumpToInsertServicePay(Context context,String orderMoney,
-                                              String orderNum,String name,String serviceType){
+                                              String orderNum,String name,String serviceType,String type){
         Intent intent = new Intent(context,InsertServicePayActivity.class);
         intent.putExtra(ORDER_MONEY,orderMoney);
         intent.putExtra(ORDER_NUM,orderNum);
         intent.putExtra(NAME,name);
         intent.putExtra(SERVICE_TYPE,serviceType);
+        intent.putExtra(ORDER_TYPE,type);
         context.startActivity(intent);
 
     }

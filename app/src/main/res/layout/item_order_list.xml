@@ -7,13 +7,13 @@
 
         <variable
             name="model"
-            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig" />
+            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig2" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{model.onDetialClick}"
+
         android:background="@color/base_black_back"
         android:paddingBottom="10dp"
         >
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:lines="1"
-                app:titleType="@{model.type}"
+                app:orderTitleType="@{model.type}"
                 android:textColor="@color/text_green"
                 android:textSize="13sp" />
 
@@ -75,6 +75,7 @@
             android:layout_below="@+id/top_line"
             android:background="@color/white"
             android:paddingLeft="18dp"
+            android:onClick="@{model.onDetialClick}"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -162,6 +163,7 @@
                 app:isShowVisiableCancle="@{model.status}"
                 android:background="@drawable/background_order_white"
                 android:textColor="@color/text_68"
+                android:onClick="@{model.onCancelClick}"
                 android:textSize="13sp" />
             <TextView
                 android:id="@+id/button_pay"
@@ -172,6 +174,7 @@
                 android:lines="1"
                 app:isShowVisiableCancle="@{model.status}"
                 android:text="支付"
+                android:onClick="@{model.onPayClick}"
                 android:background="@drawable/background_order_green"
                 android:textColor="@color/white"
                 android:textSize="13sp" />

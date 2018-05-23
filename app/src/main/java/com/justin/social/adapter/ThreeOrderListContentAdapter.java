@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
+import com.justin.social.RetrofitUtils.DataBean.three.ThreeConfig;
 import com.justin.social.databinding.ItemDuringOrderListBinding;
 import com.justin.social.databinding.ItemOrderListBinding;
 import com.justin.social.databinding.ItemOrderPaymentListBinding;
@@ -18,12 +19,12 @@ import java.util.List;
  * Created by Justinliu on 2017/12/4.
  */
 
-public class ThreeOrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, OrderConfig> {
+public class ThreeOrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, ThreeConfig> {
 
-    private List<OrderConfig> mDataList;
+    private List<ThreeConfig> mDataList;
     private Context context;
 
-    public ThreeOrderListContentAdapter( List<OrderConfig> mDataList, Context context) {
+    public ThreeOrderListContentAdapter( List<ThreeConfig> mDataList, Context context) {
         this.mDataList = mDataList;
         this.context = context;
     }
@@ -41,7 +42,7 @@ public class ThreeOrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDat
 
     @Override
     public int getItemCount() {
-        return 1;
+        return mDataList.size();
     }
 
 //    @Override
@@ -63,7 +64,7 @@ public class ThreeOrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDat
 //    }
 
     @Override
-    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final OrderConfig model, int position) {
+    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final ThreeConfig model, int position) {
         if (viewDataBindingBaseHolder.mBinding instanceof ItemOrderPaymentListBinding) {
             ((ItemOrderPaymentListBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
         }

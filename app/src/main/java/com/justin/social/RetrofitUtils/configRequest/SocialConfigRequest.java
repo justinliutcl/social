@@ -4,17 +4,25 @@ import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderDetialConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderNumConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.UserInfoConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
+import com.justin.social.RetrofitUtils.DataBean.one.AboutMeConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.HosptialConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NormalProblemListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.OnlineServiceConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.PoliceConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ResultConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.SendImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
+import com.justin.social.RetrofitUtils.DataBean.three.ThreeConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 
 import retrofit2.Call;
@@ -92,27 +100,27 @@ public interface SocialConfigRequest {
 
     @FormUrlEncoded
     @POST("order/addSocialsecurityOrder")
-    Call<BaseConfig> getSendOrderConfig(@Field("userId") String userId,
-                                                 @Field("userName") String userName,
-                                                 @Field("householdType") String householdType,
-                                                 @Field("insuredType") String insuredType,
-                                                 @Field("bankName") String bankName,
-                                                 @Field("branchNum") String branchNum,
-                                                 @Field("idCard") String idCard,
-                                                 @Field("insuredCity") String insuredCity,
-                                                 @Field("applyDuration") String applyDuration,
-                                                 @Field("insuredCardinal") String insuredCardinal,
-                                                 @Field("insuredCharge") String insuredCharge,
-                                                 @Field("disabilityCharge") String disabilityCharge,
-                                                 @Field("singleCharge") String singleCharge,
-                                                 @Field("serviceCharge") String serviceCharge,
-                                                 @Field("overdueFine") String overdueFine,
-                                                 @Field("allCharge") String allCharge,
-                                                 @Field("insuredTime") String insuredTime
+    Call<ResultConfig> getSendOrderConfig(@Field("userId") String userId,
+                                          @Field("userName") String userName,
+                                          @Field("householdType") String householdType,
+                                          @Field("insuredType") String insuredType,
+                                          @Field("bankName") String bankName,
+                                          @Field("branchNum") String branchNum,
+                                          @Field("idCard") String idCard,
+                                          @Field("insuredCity") String insuredCity,
+                                          @Field("applyDuration") String applyDuration,
+                                          @Field("insuredCardinal") String insuredCardinal,
+                                          @Field("insuredCharge") String insuredCharge,
+                                          @Field("disabilityCharge") String disabilityCharge,
+                                          @Field("singleCharge") String singleCharge,
+                                          @Field("serviceCharge") String serviceCharge,
+                                          @Field("overdueFine") String overdueFine,
+                                          @Field("allCharge") String allCharge,
+                                          @Field("insuredTime") String insuredTime
     );
     @FormUrlEncoded
     @POST("order/addAccumulationOrder")
-    Call<BaseConfig> getSendAccuOrderConfig(@Field("userId") String userId,
+    Call<ResultConfig> getSendAccuOrderConfig(@Field("userId") String userId,
                                                  @Field("userName") String userName,
                                                  @Field("householdType") String householdType,
                                                  @Field("insuredType") String insuredType,
@@ -133,7 +141,7 @@ public interface SocialConfigRequest {
 
     @FormUrlEncoded
     @POST("order/addAllOrder")
-    Call<BaseConfig> getAllOrderConfig(@Field("userId") String userId,
+    Call<ResultConfig> getAllOrderConfig(@Field("userId") String userId,
                                             @Field("userName") String userName,
                                             @Field("householdType") String householdType,
                                             @Field("insuredType") String insuredType,
@@ -175,8 +183,9 @@ public interface SocialConfigRequest {
     Call<NewListBean> getNewsContentConfig(@Query("contentId") String contentId
     );
 
+    @FormUrlEncoded
     @POST("others/getAddService")
-    Call<ServiceAddConfig> getServiceAddConfig(
+    Call<ServiceAddConfig> getServiceAddConfig(@Field("userId") String userId
     );
 
     @FormUrlEncoded
@@ -186,7 +195,7 @@ public interface SocialConfigRequest {
 
     @FormUrlEncoded
     @POST("order/addServiceOrder")
-    Call<BaseConfig> getServiceAddOrderConfig(
+    Call<ResultConfig> getServiceAddOrderConfig(
             @Field("userId") String userId,
             @Field("orderType") String orderType,
             @Field("userName") String userName,
@@ -233,5 +242,59 @@ public interface SocialConfigRequest {
     @FormUrlEncoded
     @POST("others/getOtherNew")
     Call<PoliceConfig> getPoliceDetialConfig(@Field("type")  String type );
+
+    @POST("others/getAboutMe")
+    Call<AboutMeConfig> getAboutMeConfig();
+
+    @FormUrlEncoded
+    @POST("user/getUserInfo")
+    Call<UserInfoConfig> getUserInfoConfig(@Field("userId")  String userId );
+
+    @FormUrlEncoded
+    @POST("order/getOrderInfo")
+    Call<OrderDetialConfig> getOrderDetialConfig(@Field("orderNum") String userId
+            , @Field("type") String type);
+
+    @FormUrlEncoded
+    @POST("others/getAddOrderNum")
+    Call<OrderNumConfig> getOrderNumConfig(@Field("userId")  String userId );
+
+    @FormUrlEncoded
+    @POST("others/delAddOrderNum")
+    Call<BaseConfig> getDelOrderConfig(@Field("userId")  String userId,
+                                           @Field("type")  String type);
+
+    @FormUrlEncoded
+    @POST("user/saveUserHospitalInfo")
+    Call<BaseConfig> getDelOrderConfig(@Field("userId")  String userId,
+                                       @Field("hospitalOne")  String hospitalOne,
+                                       @Field("hospitalTwo")  String hospitalTwo,
+                                       @Field("hospitalThree")  String hospitalThree,
+                                       @Field("hospitalFour")  String hospitalFour,
+                                       @Field("hospitalFive")  String hospitalFive);
+    @FormUrlEncoded
+    @POST("user/getUserHospitalInfo")
+    Call<HosptialConfig> getHospatalConfig(@Field("userId")  String userId);
+
+    @FormUrlEncoded
+    @POST("others/getImgInfo")
+    Call<SendImageConfig> getSendImageConfig(@Field("userId")  String userId);
+
+    @FormUrlEncoded
+    @POST("order/getOrderNow")
+    Call<ThreeConfig> getThreeConfig(@Field("userId")  String userId);
+
+    @FormUrlEncoded
+    @POST("order/delOrder")
+    Call<BaseConfig> cancelOrderConfig(@Field("orderNum")  String orderNum,
+                                       @Field("type")  String type);
+
+    @FormUrlEncoded
+    @POST("receipts/addOrder")
+    Call<ResultConfig> sendInvoiceConfig(@Field("userName")  String userName,
+                                       @Field("userId")  String userId,
+                                       @Field("allCharge")  String allCharge,
+                                       @Field("orderNums")  String orderNums);
+
 
 }

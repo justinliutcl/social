@@ -38,6 +38,7 @@ public class OrderFragmentOne extends Fragment {
         model = new OrderListModel(getActivity());
         model.init(mBinding);
         model.initNewsList(getArguments().getString(TYPE, OrderConfig.ALL_PAY), (OrderConfig) getArguments().getSerializable(ORDER_TYPE_ONE));
+        model.deleteOrderNum();
     }
 
 }

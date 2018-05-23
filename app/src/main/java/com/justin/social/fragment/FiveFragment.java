@@ -86,11 +86,9 @@ public class FiveFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(!hidden){
-            initView();
-        }
+    public void onResume() {
+        super.onResume();
+        initView();
     }
 
     @Override

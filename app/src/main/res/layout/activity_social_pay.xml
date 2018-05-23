@@ -200,7 +200,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="0.00元"
+                            android:text="@{model.money+`元`}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -237,7 +237,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="姓名"
+                            android:text="@{model.name}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -274,7 +274,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="45738627364876342146317"
+                            android:text="@{model.idCard}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -311,7 +311,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="社保"
+                            android:text="@{model.typeName}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -347,7 +347,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="北京"
+                            android:text="@{model.city}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -384,7 +384,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="3082.00"
+                            android:text="@{model.base}"
                             android:textColor="@color/text_red"
                             android:textSize="13sp"
 
@@ -420,7 +420,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="2018-03-09至2018-04-09"
+                            android:text="@{model.starTime}"
                             android:textColor="@color/text_red"
                             android:textSize="13sp"
 
@@ -673,7 +673,7 @@
             android:layout_alignParentRight="true"
             android:background="@color/base_green"
             android:gravity="center"
-            android:onClick="@{model.onNextClick}"
+            android:onClick="@{model.onClick}"
             android:text="支付"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -698,7 +698,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="0.00元"
+                android:text="@{model.money+`元`}"
                 android:textColor="@color/text_green2"
                 android:textSize="15sp" />
         </LinearLayout>

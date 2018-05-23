@@ -11,7 +11,9 @@ import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderDetialConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.ResultConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddByNameConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
@@ -156,7 +158,7 @@ public class InsertServiceModel extends BaseModel {
 
     private void initInsertService(){
         config = CommonSettingValue.getIns(mContext).getServiceAdd();
-        manager.getServiceAddConfig(new BeanConfigCallBack<ServiceAddConfig>() {
+        manager.getServiceAddConfig(CommonSettingValue.getIns(mContext).getCurrentUserId(),new BeanConfigCallBack<ServiceAddConfig>() {
             @Override
             public void onDataResponse(ServiceAddConfig bean) {
                 if (bean != null) {
@@ -224,36 +226,36 @@ public class InsertServiceModel extends BaseModel {
     }
 
     private void sendInsertServiceOrder(){
-        manager.sendServiceAddConfig(user.getUserId(),"增值服务",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig(user.getUserId(),"增值服务",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<ResultConfig>() {
             @Override
-            public void onDataResponse(BaseConfig bean) {
+            public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
                 }
             }
         });
     }
 
     private void sendRePairOrder(){
-        manager.sendServiceAddConfig(user.getUserId(),"补缴",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig(user.getUserId(),"补缴",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<ResultConfig>() {
             @Override
-            public void onDataResponse(BaseConfig bean) {
+            public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
                 }
             }
         });
     }
 
     private void sendFileOrder(){
-        manager.sendServiceAddConfig(user.getUserId(),"存档",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<BaseConfig>() {
+        manager.sendServiceAddConfig(user.getUserId(),"存档",bind.name.getText().toString(), bind.idcard.getText().toString(), change, sum.get(), new BeanConfigCallBack<ResultConfig>() {
             @Override
-            public void onDataResponse(BaseConfig bean) {
+            public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),"008",bind.name.getText().toString(),change);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
                 }
             }
         });

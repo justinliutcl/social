@@ -14,6 +14,7 @@ import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.AboutMeConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.OnlineServiceConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
@@ -48,7 +49,7 @@ public class OnlineServiceModel extends BaseModel {
     public String qq2;
 
     HttpConfigManager manager;
-
+    AboutMeConfig aboutMeConfig;
     public OnlineServiceModel(Context context) {
         super(context);
         image1 = new ObservableField<>("");
@@ -61,6 +62,27 @@ public class OnlineServiceModel extends BaseModel {
         email = new ObservableField<>("");
         local = new ObservableField<>("");
         manager = new HttpConfigManager();
+
+        aboutMeConfig = CommonSettingValue.getIns(mContext).getAboutConfig();
+        if(aboutMeConfig!=null){
+            phone.set(aboutMeConfig.getCommanyPhone());
+            email.set(aboutMeConfig.getCommanyEmail());
+            local.set(aboutMeConfig.getCommanyAdress());
+        }
+        manager.getAboutMeConfig(new BeanConfigCallBack<AboutMeConfig>() {
+            @Override
+            public void onDataResponse(AboutMeConfig bean) {
+                if(bean!=null){
+                    aboutMeConfig = bean;
+                    CommonSettingValue.getIns(mContext).setAboutConfig(aboutMeConfig);
+                    phone.set(bean.getCommanyPhone());
+                    email.set(bean.getCommanyEmail());
+                    local.set(bean.getCommanyAdress());
+                    CommonSettingValue.getIns(mContext).setCustomPhone(phone.get());
+                }
+
+            }
+        });
     }
 
     public void onClick(View view){

@@ -58,7 +58,7 @@
                     android:textSize="17sp"
                     android:textColor="@color/text_47"
                     android:textStyle="bold"
-                    android:text="@string/police_hourse_title"
+                    android:text=""
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,13 +78,12 @@
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/text_47"
 
-                    android:text="@string/police_hourse_top"
+                    android:text=""
                     />
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_police_hourse"
                     android:scaleType="fitXY"
                     />
                 <TextView
@@ -95,7 +94,7 @@
                     android:textSize="15sp"
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/text_47"
-                    android:text="@string/police_hourse_content"
+                    android:text=""
                     />
             </LinearLayout>
 

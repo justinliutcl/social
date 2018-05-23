@@ -19,6 +19,7 @@ import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
+import com.justin.social.RetrofitUtils.DataBean.one.SendImageConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.databinding.FragmentMessageBinding;
@@ -42,6 +43,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     public static final int TYPE_USER            = 1;
     private int type;
     PhotoSelectUtil photoUtil;
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_message, container, false);
@@ -55,6 +57,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
         mBinding.homePost.setOnClickListener(this);
         mBinding.homeNaga.setOnClickListener(this);
         mBinding.userPhoto.setOnClickListener(this);
+        initImage();
         photoUtil = new PhotoSelectUtil(getActivity(), this, new PhotoSelectUtilA.onGetCallBack() {
             @Override
             public void onBase64Callback(String base64) {
@@ -124,5 +127,18 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         photoUtil.forresult(requestCode, resultCode, data);
+    }
+
+    private void initImage(){
+        new HttpConfigManager().getSendImageConfig(CommonSettingValue.getIns(getActivity()).getCurrentUserId(), new BeanConfigCallBack<SendImageConfig>() {
+            @Override
+            public void onDataResponse(SendImageConfig bean) {
+                ImageUtils.setImageNoDefault(mBinding.idcardPost,bean.getData().getIdCardImgTrueSide());
+                ImageUtils.setImageNoDefault(mBinding.idcardNaga,bean.getData().getIdCardImgFalseSide());
+                ImageUtils.setImageNoDefault(mBinding.homePost,bean.getData().getHokouFirst());
+                ImageUtils.setImageNoDefault(mBinding.homeNaga,bean.getData().getHukouMy());
+                ImageUtils.setImageNoDefault(mBinding.userPhoto,bean.getData().getImgUser());
+            }
+        });
     }
 }

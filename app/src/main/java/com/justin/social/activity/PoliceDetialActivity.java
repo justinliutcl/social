@@ -15,10 +15,14 @@ import com.justin.social.model.one.OrderTableModel;
 import com.justin.social.utils.ImageUtils;
 
 public class PoliceDetialActivity extends BackActivity {
-    public static final int HOURSE_TYPE     = 1;
-    public static final int CAR_TYPE        = 2;
-    public static final int SCHOOL_TYPE     = 3;
-    public static final int LOCIAL_TYPE     = 4;
+    public static final int HOURSE_TYPE             = 1;
+    public static final int CAR_TYPE                = 2;
+    public static final int SCHOOL_TYPE             = 3;
+    public static final int LOCIAL_TYPE             = 4;
+    public static final int PHYSICAL_LOCAL_TYPE     = 5;
+    public static final int GROUP_TYPE              = 6;
+    public static final int SERVICE_RULE_TYPE       = 7;
+    public static final int PHYSICAL_INTER_TYPE       = 8;
     public static final String      TYPE    = "detial_type";
     ActivityPoliceDetialBinding bind;
     private OrderTableModel model;

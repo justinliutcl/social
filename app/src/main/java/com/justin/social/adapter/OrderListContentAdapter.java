@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig2;
 import com.justin.social.RetrofitUtils.DataBean.one.NewListBean;
 import com.justin.social.databinding.ItemDuringOrderListBinding;
 import com.justin.social.databinding.ItemNewsContentListBinding;
@@ -19,13 +20,14 @@ import java.util.List;
  * Created by Justinliu on 2017/12/4.
  */
 
-public class OrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, OrderConfig> {
+public class OrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, OrderConfig2> {
 
-    private List<OrderConfig> mDataList;
+    public List<OrderConfig2> mDataList;
     private Context context;
     private String type;
 
-    public OrderListContentAdapter(String type,List<OrderConfig> mDataList, Context context) {
+
+    public OrderListContentAdapter(String type,List<OrderConfig2> mDataList, Context context) {
         this.mDataList = mDataList;
         this.context = context;
         this.type = type;
@@ -72,7 +74,7 @@ public class OrderListContentAdapter extends BaseAdapter<BaseHolder<ViewDataBind
 //    }
 
     @Override
-    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final OrderConfig model, int position) {
+    public void onbindTo(final BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, final OrderConfig2 model, int position) {
         if (viewDataBindingBaseHolder.mBinding instanceof ItemOrderListBinding) {
             ((ItemOrderListBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
         }else{

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+
+        android:background="@color/white">
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/new_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/text_47"
+                    android:textStyle="bold"
+                    android:text=""
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_a7"
+                    android:text="社保家资讯"
+                    />
+
+                <TextView
+                    android:id="@+id/top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/text_47"
+
+                    android:text=""
+                    />
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    />
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/text_47"
+                    android:text=""
+                    />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</layout>

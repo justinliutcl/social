@@ -10,10 +10,14 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,6 +74,13 @@ public class AppUtils {
         NumberFormat nbf = NumberFormat.getInstance();
         nbf.setMinimumFractionDigits(2);
         return nbf.format(num);
+    }
+
+    public static double getTwoDecimal(double num) {
+        DecimalFormat dFormat=new DecimalFormat("#.00");
+        String yearString=dFormat.format(num);
+        Double temp= Double.valueOf(yearString);
+        return temp;
     }
 
     /**
@@ -129,12 +140,12 @@ public class AppUtils {
      */
     public static void copyToClip(String mes,Context context) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-
         cm.setText(mes);
+        Toast.makeText(context,"已复制",Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * 复制到剪贴板
+     * 跳转
      * @param context
      * @return
      */
@@ -189,5 +200,12 @@ public class AppUtils {
         }
         return arr;
     }
-
+    public static String getURLencode(String text){
+        try {
+            return java.net.URLEncoder.encode(text,"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

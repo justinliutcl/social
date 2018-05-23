@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.AboutMeConfig;
+import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.BaseActivity;
 import com.justin.social.fragment.FiveFragment;
 import com.justin.social.fragment.FourFragment;
@@ -30,6 +34,16 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initData();
         initView();
+        new HttpConfigManager().getAboutMeConfig(new BeanConfigCallBack<AboutMeConfig>() {
+            @Override
+            public void onDataResponse(AboutMeConfig bean) {
+                if(bean!=null){
+                    CommonSettingValue.getIns(MainActivity.this).setAboutConfig(bean);
+                    CommonSettingValue.getIns(MainActivity.this).setCustomPhone(bean.getCommanyPhone());
+                }
+
+            }
+        });
     }
 
     private void initView() {

@@ -16,9 +16,11 @@ import com.justin.social.RetrofitUtils.DataBean.one.NewsListConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ShortNewsConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
+import com.justin.social.activity.AboutUsActivity;
 import com.justin.social.activity.CustomSocialAccu;
 import com.justin.social.activity.GroupServiceActivity;
 import com.justin.social.activity.InsertServiceActivity;
+import com.justin.social.activity.InvoicActivity;
 import com.justin.social.activity.LoginActivity;
 import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
@@ -147,7 +149,7 @@ public class OneModel extends BaseModel {
                 InsertServiceActivity.JumpInsertServiceActivity(mContext, InsertServiceActivity.FILE);
                 break;
             case R.id.note_ll:
-
+                mContext.startActivity(new Intent(mContext, InvoicActivity.class));
                 break;
             case R.id.send_ll:
                 SendMessageActivity.JumpSendMessage(mContext,SendMessageActivity.TYPE_ONE);
@@ -185,6 +187,9 @@ public class OneModel extends BaseModel {
                 break;
             case R.id.physical_ll:
                 mContext.startActivity(new Intent(mContext, PhysicalActivity.class));
+                break;
+                case R.id.about_me_ll:
+                mContext.startActivity(new Intent(mContext, AboutUsActivity.class));
                 break;
         }
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.OrderNumConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.FindFriendActivity;
@@ -60,6 +61,40 @@ public class FiveModel extends BaseModel {
         initDurOrder();
         initHaveOrder();
         initNoPayOrder();
+        initOrderNum();
+    }
+
+    private void initOrderNum() {
+        new HttpConfigManager().getOrderNumConfig(CommonSettingValue.getIns(mContext).getCurrentUserId(), new BeanConfigCallBack<OrderNumConfig>() {
+            @Override
+            public void onDataResponse(OrderNumConfig bean) {
+                if(bean.getData().getOrderNoapply().equals("0")){
+                    isShowNoPay.set(false);
+                }else{
+                    isShowNoPay.set(true);
+                    noPay.set(bean.getData().getOrderNoapply());
+                }
+                if(bean.getData().getOrderApply().equals("0")){
+                    isShowHavePay.set(false);
+                }else{
+                    isShowHavePay.set(true);
+                    havePay.set(bean.getData().getOrderApply());
+                }
+                if(bean.getData().getOrderApply().equals("0")){
+                    isShowPayDur.set(false);
+                }else{
+                    isShowPayDur.set(true);
+                    PayDur.set(bean.getData().getOrderApply());
+                }
+                if(bean.getData().getOrderAll().equals("0")){
+                    isShowAllPay.set(false);
+                }else{
+                    isShowAllPay.set(true);
+                    allPay.set(bean.getData().getOrderAll());
+                }
+            }
+        });
+
     }
 
     public void onClick(View view) {
@@ -98,9 +133,8 @@ public class FiveModel extends BaseModel {
             public void onDataResponse(OrderConfig bean) {
                 if (bean != null && bean.getData() != null && !bean.getData().isEmpty()) {
                     allOrderConfig = bean;
-                    isShowAllPay.set(true);
                     allPayConfig = bean;
-                    allPay.set(allOrderConfig.getData().size() + "");
+
                 }
 
             }
@@ -112,9 +146,8 @@ public class FiveModel extends BaseModel {
             @Override
             public void onDataResponse(OrderConfig bean) {
                 if (bean != null && bean.getData() != null && !bean.getData().isEmpty()) {
-                    isShowPayDur.set(true);
                     durPayConfig = bean;
-                    PayDur.set(bean.getData().size() + "");
+
                 }
             }
         });
@@ -125,9 +158,8 @@ public class FiveModel extends BaseModel {
             @Override
             public void onDataResponse(OrderConfig bean) {
                 if (bean != null && bean.getData() != null && !bean.getData().isEmpty()) {
-                    isShowHavePay.set(true);
                     havePayConfig = bean;
-                    havePay.set(bean.getData().size() + "");
+
                 }
             }
         });
@@ -138,9 +170,8 @@ public class FiveModel extends BaseModel {
             @Override
             public void onDataResponse(OrderConfig bean) {
                 if (bean != null && bean.getData() != null && !bean.getData().isEmpty()) {
-                    isShowNoPay.set(true);
                     noPayConfig = bean;
-                    noPay.set(bean.getData().size() + "");
+
                 }
             }
         });

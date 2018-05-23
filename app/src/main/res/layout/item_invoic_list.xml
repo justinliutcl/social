@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.justin.social.RetrofitUtils.DataBean.five.OrderConfig" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginBottom="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:onClick="@{model.onDetialClick}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="18dp"
+            android:paddingLeft="18dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_order_item"
+
+                />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                app:titleType="@{model.type}"
+                android:textColor="@color/text_green"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/leb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:lines="1"
+                android:text="详情"
+                android:textColor="@color/text_68"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/top_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/base_line"
+            android:layout_marginLeft="18dp"
+            android:layout_alignBottom="@id/title_ll"
+            />
+
+        <ImageView
+            android:id="@+id/select_iv"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/content"
+            android:layout_alignTop="@+id/content"
+            android:src="@drawable/icon_invoic_normal"
+            android:scaleType="center"
+            android:onClick="@{model.onSelectClick}"
+            app:selectImage="@{model.isSelect}"
+            />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/top_line"
+            android:background="@color/white"
+            android:paddingLeft="18dp"
+            android:layout_toRightOf="@+id/select_iv"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:text="@{`订单编号:  `+model.orderNum}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:layout_marginTop="7dp"
+                android:textSize="13sp"
+                app:createTime="@{model.createTime}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_68"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                android:text="@{`缴纳月份:  `+model.insuredTime}"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_68"
+                    android:textSize="13sp"
+                    android:text="订单金额:  "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_green"
+                    android:textSize="13sp"
+                    android:text="@{model.allCharge+`元`}"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

@@ -14,6 +14,7 @@ import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.one.ResultConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
@@ -97,7 +98,7 @@ public class OrderTableModel extends BaseModel {
             return;
         }
         sendOrder();
-        mContext.startActivity(new Intent(mContext, SocialPayActivity.class));
+
     }
 
     public void initType(boolean isAcc, String min, String max, String city, String hourseType) {
@@ -323,10 +324,19 @@ public class OrderTableModel extends BaseModel {
                             bind.banknumText.getText().toString(), dbUser.getIdCard(),
                             cityName, appDur.get(), defaultBase,defaultFiveBase,
                             socialSecurity.get(), accuSecurity.get(),disabilityInsurance.get(), personalTax.get(),
-                            serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
+                            serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<ResultConfig>() {
                                 @Override
-                                public void onDataResponse(BaseConfig bean) {
+                                public void onDataResponse(final ResultConfig bean) {
                                     toastShow(bean.getMsg());
+                                    UserDataObtain.getInstance(mContext).getCurrentUser( new IDataObtain.IDBResCallback<DbUser>() {
+                                        @Override
+                                        public void complete(DbUser dbUser) {
+                                            SocialPayActivity.JumpToSocialPay(mContext,
+                                                    bean.getData().orderNum,bean.getData().type,bean.getData().allCharge,
+                                                    dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"公积金"
+                                            );
+                                        }
+                                    });
                                 }
                             }
                     );
@@ -338,10 +348,19 @@ public class OrderTableModel extends BaseModel {
                                 bind.banknumText.getText().toString(), dbUser.getIdCard(),
                                 cityName, appDur.get(), defaultBase,
                                 accuSecurity.get(), disabilityInsurance.get(), personalTax.get(),
-                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
+                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<ResultConfig>() {
                                     @Override
-                                    public void onDataResponse(BaseConfig bean) {
+                                    public void onDataResponse(final ResultConfig bean) {
                                         toastShow(bean.getMsg());
+                                        UserDataObtain.getInstance(mContext).getCurrentUser( new IDataObtain.IDBResCallback<DbUser>() {
+                                            @Override
+                                            public void complete(DbUser dbUser) {
+                                                SocialPayActivity.JumpToSocialPay(mContext,
+                                                        bean.getData().orderNum,bean.getData().type,bean.getData().allCharge,
+                                                        dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"公积金"
+                                                );
+                                            }
+                                        });
                                     }
                                 }
                         );
@@ -352,10 +371,20 @@ public class OrderTableModel extends BaseModel {
                                 bind.banknumText.getText().toString(), dbUser.getIdCard(),
                                 cityName, appDur.get(), defaultBase,
                                 accuSecurity.get(), disabilityInsurance.get(), personalTax.get(),
-                                serviceCharge.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<BaseConfig>() {
+                                socialSecurity.get(), overdue_fine.get(), sum.get(), currentTime.get(), new BeanConfigCallBack<ResultConfig>() {
                                     @Override
-                                    public void onDataResponse(BaseConfig bean) {
+                                    public void onDataResponse(final ResultConfig bean) {
                                         toastShow(bean.getMsg());
+                                        UserDataObtain.getInstance(mContext).getCurrentUser( new IDataObtain.IDBResCallback<DbUser>() {
+                                            @Override
+                                            public void complete(DbUser dbUser) {
+                                                SocialPayActivity.JumpToSocialPay(mContext,
+                                                        bean.getData().orderNum,bean.getData().type,bean.getData().allCharge,
+                                                        dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"社保"
+                                                        );
+                                            }
+                                        });
+
                                     }
                                 }
                         );

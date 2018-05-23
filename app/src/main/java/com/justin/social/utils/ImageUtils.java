@@ -32,4 +32,9 @@ public class ImageUtils {
         Glide.with(view.getContext().getApplicationContext()).load(res)
                 .into(view);
     }
+    @BindingAdapter("noDefaultImage")
+    public static void setImageNoDefault(ImageView view, String url){
+        Glide.with(view.getContext().getApplicationContext()).load(url)
+                .into(view);
+    }
 }
