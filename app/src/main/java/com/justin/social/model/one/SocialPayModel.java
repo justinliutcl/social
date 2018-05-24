@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.view.View;
 
+import com.justin.social.MainActivity;
 import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
@@ -42,12 +43,12 @@ public class SocialPayModel extends BaseModel {
     }
 
     public void onClick(View view){
-        AliPayUse pay = new AliPayUse( mContext, "社保付款", 0.01, type,num, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+        AliPayUse pay = new AliPayUse( mContext, typeName, 0.01, type,num, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
 
                 toastShow("支付成功");
-
+                MainActivity.JumpTMain(mContext);
             }
 
             @Override
@@ -56,5 +57,6 @@ public class SocialPayModel extends BaseModel {
             }
         });
         pay.pay();
+
     }
 }

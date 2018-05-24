@@ -12,9 +12,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.justin.social.model.five.PhoneModel;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
@@ -155,7 +158,7 @@ public class AppUtils {
         context.startActivity(intent);
     }
 
-    public static String[] getContacts(Context context) {
+    public static List<PhoneModel> getContacts(Context context) {
         //联系人的Uri，也就是content://com.android.contacts/contacts
         Uri uri = ContactsContract.Contacts.CONTENT_URI;
         //指定获取_id和display_name两列数据，display_name即为姓名
@@ -165,7 +168,7 @@ public class AppUtils {
         };
         //根据Uri查询相应的ContentProvider，cursor为获取到的数据集
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
-        String[] arr = new String[cursor.getCount()];
+        List<PhoneModel> arr = new ArrayList<>();
         int i = 0;
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -177,7 +180,7 @@ public class AppUtils {
                         ContactsContract.CommonDataKinds.Phone.NUMBER
                 };
 //                arr[i] = id + " , 姓名：" + name;
-                arr[i] =  "姓名：" + name;
+//                arr[i] =  "姓名：" + name;
 
                 //根据联系人的ID获取此人的电话号码
                 Cursor phonesCusor = context.getContentResolver().query(
@@ -192,7 +195,8 @@ public class AppUtils {
 //                    do {
                         String num = phonesCusor.getString(0);
 //                        arr[i] += " , 电话号码：" + num;
-                        arr[i] += " " + num;
+//                        arr[i] += " " + num;
+                    arr.add(new PhoneModel(name,num));
 //                    }while (phonesCusor.moveToNext());
                 }
                 i++;
@@ -207,5 +211,18 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 调起系统发短信功能
+     * @param phoneNumber
+     * @param message
+     */
+    public static void doSendSMSTo(Context context,String phoneNumber,String message){
+        if(PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)){
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+phoneNumber));
+            intent.putExtra("sms_body", message);
+            context.startActivity(intent);
+        }
     }
 }

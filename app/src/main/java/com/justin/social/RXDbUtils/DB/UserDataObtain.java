@@ -7,6 +7,7 @@ import com.justin.social.RXDbUtils.DBbean.DbUser;
 import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.LoginConfig;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.model.five.PhoneModel;
 import com.justin.social.utils.AppUtils;
 
 import java.util.List;
@@ -180,17 +181,17 @@ public class UserDataObtain {
     }
 
 
-    public void getFriend(IDataObtain.IDBResCallback<String[]> callback){
-        ObservableOnSubscribe<String[]> ob = new ObservableOnSubscribe<String[]>() {
+    public void getFriend(IDataObtain.IDBResCallback<List<PhoneModel>> callback){
+        ObservableOnSubscribe<List<PhoneModel>> ob = new ObservableOnSubscribe<List<PhoneModel>>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<String[]> e) throws Exception {
+            public void subscribe(@NonNull ObservableEmitter<List<PhoneModel>> e) throws Exception {
 
                 e.onNext(AppUtils.getContacts(mContext));
                 e.onComplete();
             }
         };
 
-        Observer<String[]> obs = createObserver(callback);
+        Observer<List<PhoneModel>> obs = createObserver(callback);
         execute(ob, obs);
     }
 

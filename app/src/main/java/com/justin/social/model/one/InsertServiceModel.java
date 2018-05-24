@@ -231,7 +231,7 @@ public class InsertServiceModel extends BaseModel {
             public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.getData().orderNum,bind.name.getText().toString(),change,bean.getData().type);
                 }
             }
         });
@@ -243,7 +243,7 @@ public class InsertServiceModel extends BaseModel {
             public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.getData().orderNum,bind.name.getText().toString(),change,bean.getData().type);
                 }
             }
         });
@@ -255,7 +255,7 @@ public class InsertServiceModel extends BaseModel {
             public void onDataResponse(ResultConfig bean) {
                 if(bean.isSuccess()){
                     toastShow("提交成功");
-                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.orderNum,bind.name.getText().toString(),change,bean.type);
+                    InsertServicePayActivity.JumpToInsertServicePay(mContext,sum.get(),bean.getData().orderNum,bind.name.getText().toString(),change,bean.getData().type);
                 }
             }
         });

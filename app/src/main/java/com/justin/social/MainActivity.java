@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -131,6 +132,12 @@ public class MainActivity extends BaseActivity {
         activity.startActivity(intent);
         activity.finish();
     }
+    public static void JumpTMain(Context context) {
+//        AppUtils.getAppUtilsInstance().finish();
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
 
 }
 

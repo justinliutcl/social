@@ -55,7 +55,7 @@ public class InvoicModel extends BaseModel {
                 new HttpConfigManager().getInvoicConfig(dbUser.userName, dbUser.userId, getAllOrderNum(), getAllMoney(), new BeanConfigCallBack<ResultConfig>() {
                     @Override
                     public void onDataResponse(ResultConfig bean) {
-                        InsertServicePayActivity.JumpToInsertServicePay(mContext, bean.getAllCharge(), bean.orderNum, dbUser.userName, "申请发票", bean.type);
+                        InsertServicePayActivity.JumpToInsertServicePay(mContext, bean.getData().getAllCharge(), bean.getData().orderNum, dbUser.userName, "申请发票", bean.getData().type);
 
                     }
                 });

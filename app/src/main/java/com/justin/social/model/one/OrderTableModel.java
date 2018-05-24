@@ -333,7 +333,7 @@ public class OrderTableModel extends BaseModel {
                                         public void complete(DbUser dbUser) {
                                             SocialPayActivity.JumpToSocialPay(mContext,
                                                     bean.getData().orderNum,bean.getData().type,bean.getData().allCharge,
-                                                    dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"公积金"
+                                                    dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"五险一金"
                                             );
                                         }
                                     });
