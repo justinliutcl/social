@@ -74,7 +74,7 @@ public class InvoicModel extends BaseModel {
                 }
             }
         }
-        return String.valueOf(AppUtils.getTwoDecimal(num * 0.05));
+        return AppUtils.getTwoDecimal(num * 0.05);
     }
 
     public String getAllOrderNum() {

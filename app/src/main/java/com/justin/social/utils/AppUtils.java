@@ -79,11 +79,10 @@ public class AppUtils {
         return nbf.format(num);
     }
 
-    public static double getTwoDecimal(double num) {
+    public static String getTwoDecimal(double num) {
         DecimalFormat dFormat=new DecimalFormat("#.00");
         String yearString=dFormat.format(num);
-        Double temp= Double.valueOf(yearString);
-        return temp;
+        return yearString;
     }
 
     /**

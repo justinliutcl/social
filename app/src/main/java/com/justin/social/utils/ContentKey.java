@@ -5,7 +5,7 @@ package com.justin.social.utils;
  */
 
 public class ContentKey {
-    public static final String ALIPAY_URL ="http://39.107.72.34:8080/app-api/alipay/pay/notify.do";
+    public static final String ALIPAY_URL ="http://www.youxuanzhijia.top/app-api/alipay/pay/notify.do";
     public static final String ORDER_TYPE_SOCIAL    ="1";
     public static final String ORDER_TYPE_ACCU      ="2";
     public static final String ORDER_TYPE_FIVE      ="3";
