@@ -25,6 +25,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.DataBean.three.ThreeConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -296,5 +297,8 @@ public interface SocialConfigRequest {
                                        @Field("allCharge")  String allCharge,
                                        @Field("orderNums")  String orderNums);
 
-
+    @POST("weixin/pay")
+    Call<ResponseBody> sendWeChatConfig(@Query("cashnum")  double cashnum,
+                                        @Query("mercid")  String mercid
+                                         );
 }

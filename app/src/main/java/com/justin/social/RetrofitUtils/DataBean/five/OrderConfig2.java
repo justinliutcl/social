@@ -14,6 +14,7 @@ import com.justin.social.activity.OrderDetialActivity;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.utils.AppUtils;
 import com.justin.social.utils.ContentKey;
+import com.justin.social.utils.DialogUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -213,18 +214,19 @@ public class OrderConfig2 extends BaseConfig {
                 t = ContentKey.ORDER_TYPE_FIVE;
                 break;
         }
-        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
-            @Override
-            public void SuccessCallBack(String mes) {
-                Toast.makeText(view.getContext(),"支付成功",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void failCallBack(String mes) {
-                Toast.makeText(view.getContext(),"支付失败",Toast.LENGTH_SHORT).show();
-            }
-        });
-        pay.pay();
+        DialogUtils.getDialogUtilInstance().showPayChoseDialog(view.getContext(),title,t,orderNum,0.01);
+//        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+//            @Override
+//            public void SuccessCallBack(String mes) {
+//                Toast.makeText(view.getContext(),"支付成功",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void failCallBack(String mes) {
+//                Toast.makeText(view.getContext(),"支付失败",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        pay.pay();
     }
 
     public void onCancelClick(final View view){

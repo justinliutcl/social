@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.utils.ContentKey;
+import com.justin.social.utils.DialogUtils;
 
 /**
  * Created by ASUS on 2018/5/21.
@@ -263,18 +264,19 @@ public class ThreeConfig extends BaseConfig {
                 t = ContentKey.ORDER_TYPE_ACCU;
                 break;
         }
-        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
-            @Override
-            public void SuccessCallBack(String mes) {
-                Toast.makeText(view.getContext(),"支付成功",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void failCallBack(String mes) {
-                Toast.makeText(view.getContext(),"支付失败",Toast.LENGTH_SHORT).show();
-            }
-        });
-        pay.pay();
+        DialogUtils.getDialogUtilInstance().showPayChoseDialog(view.getContext(),title,t,orderNum,0.01);
+//        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+//            @Override
+//            public void SuccessCallBack(String mes) {
+//                Toast.makeText(view.getContext(),"支付成功",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void failCallBack(String mes) {
+//                Toast.makeText(view.getContext(),"支付失败",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        pay.pay();
     }
 
     @BindingAdapter("titleType")

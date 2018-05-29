@@ -54,15 +54,15 @@ public class PoliceDetialActivity extends BackActivity {
                 break;
             case CAR_TYPE:
                 titleBar =  getString(R.string.police_car_title_bar);
-                new HttpConfigManager().getPoliceDetialConfig(HOURSE_TYPE,callBack);
+                new HttpConfigManager().getPoliceDetialConfig(CAR_TYPE,callBack);
                 break;
             case SCHOOL_TYPE:
                 titleBar =  getString(R.string.police_school_title_bar);
-                new HttpConfigManager().getPoliceDetialConfig(HOURSE_TYPE,callBack);
+                new HttpConfigManager().getPoliceDetialConfig(SCHOOL_TYPE,callBack);
                 break;
             case LOCIAL_TYPE:
                 titleBar =  getString(R.string.police_loacl_title_bar);
-                new HttpConfigManager().getPoliceDetialConfig(HOURSE_TYPE,callBack);
+                new HttpConfigManager().getPoliceDetialConfig(LOCIAL_TYPE,callBack);
                 break;
         }
         bind.title.setText(titleBar);

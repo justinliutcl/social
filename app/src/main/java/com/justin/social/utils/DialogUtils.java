@@ -111,6 +111,10 @@ public class DialogUtils {
         showSimpleDialog(context, DialogImpl.getCallUsView(context));
     }
 
+    public void showPayChoseDialog(Context context,String typeName,String type,String orderNum,double money) {
+        showSimpleDialog(context, DialogImpl.getPayChoseView(context,typeName,type,orderNum,money));
+    }
+
 
     public static void hideSoftKeyboard(Activity activity) {
         if (activity != null) {

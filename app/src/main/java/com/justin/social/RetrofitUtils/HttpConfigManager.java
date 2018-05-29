@@ -31,6 +31,9 @@ import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.configRequest.SocialConfigRequest;
 import com.justin.social.SocialApplication;
 
+import java.io.IOException;
+
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -786,4 +789,28 @@ public class HttpConfigManager {
             }
         });
     }
+
+    public void getWeChatConfig(double cashnum,String mercid,final BeanConfigCallBack<String> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<ResponseBody> config = configRequest.sendWeChatConfig(cashnum,mercid);
+        config.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                try {
+                    String str = new String(response.body().bytes());
+                    callBack.onDataResponse(str);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

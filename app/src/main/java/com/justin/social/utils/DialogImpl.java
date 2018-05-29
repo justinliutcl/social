@@ -10,9 +10,11 @@ import com.justin.social.R;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.databinding.DialogCallUsBinding;
 import com.justin.social.databinding.DialogDuringBinding;
+import com.justin.social.databinding.DialogPayChoseBinding;
 import com.justin.social.databinding.DialogServiceAddBinding;
 import com.justin.social.model.dialog.DialogCallModel;
 import com.justin.social.model.dialog.DialogNorModel;
+import com.justin.social.model.dialog.DialogPayChoseModel;
 import com.justin.social.model.dialog.DialogSelectModel;
 
 import java.util.ArrayList;
@@ -116,6 +118,13 @@ public class DialogImpl {
     public static View getCallUsView(Context context){
         DialogCallUsBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_call_us,null,false);
         DialogCallModel model = new DialogCallModel(context);
+        binding.setModel(model);
+        return binding.getRoot();
+    }
+
+    public static View getPayChoseView(Context context,String typeName,String type,String orderNum,double money){
+        DialogPayChoseBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_pay_chose,null,false);
+        DialogPayChoseModel model = new DialogPayChoseModel(context,typeName,type,orderNum,money);
         binding.setModel(model);
         return binding.getRoot();
     }
