@@ -86,7 +86,7 @@ public class SocialPayModel extends BaseModel {
     }
 
     public void weiPay(){
-        WePayUser.wePay(mContext,num,0.01);
+        WePayUser.wePay(mContext,num,type,0.01);
     }
 
     @BindingAdapter("selectType")

@@ -5,9 +5,11 @@ import android.databinding.ObservableBoolean;
 import android.view.View;
 import android.widget.Toast;
 
+import com.justin.social.MainActivity;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.ContentKey;
+import com.justin.social.wxapi.WePayUser;
 
 /**
  * Created by ASUS on 2018/3/31.
@@ -23,7 +25,7 @@ public class InsertServicePayModel extends BaseModel {
     public String type;
     public InsertServicePayModel(Context context) {
         super(context);
-        isSelect = new ObservableBoolean();
+        isSelect = new ObservableBoolean(true);
     }
 
     public void initDes(String sumMoney, String orderNumber, String name, String serviceType, String payMoney,String type){
@@ -36,17 +38,39 @@ public class InsertServicePayModel extends BaseModel {
     }
 
     public void onNextClick(View view){
-        AliPayUse pay = new AliPayUse( view.getContext(), serviceType, 0.01, type, orderNumber, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+        if(isSelect.get()){
+            aliPay();
+        }else {
+            weiPay();
+        }
+    }
+
+    public void aliPay(){
+        AliPayUse pay = new AliPayUse( mContext, serviceType, 0.01, type,orderNumber, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
-                Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+
+                toastShow("支付成功");
+                MainActivity.JumpTMain(mContext);
             }
 
             @Override
             public void failCallBack(String mes) {
-                Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
+                toastShow("支付失败");
             }
         });
         pay.pay();
+    }
+
+    public void weiPay(){
+        WePayUser.wePay(mContext,orderNumber,type,0.01);
+    }
+
+    public void onAlipyClick(View view){
+        isSelect.set(true);
+    }
+
+    public void onWechatClick(View view){
+        isSelect.set(false);
     }
 }

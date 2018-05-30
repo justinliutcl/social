@@ -207,11 +207,11 @@ public class OrderConfig2 extends BaseConfig {
                 break;
             case "4":
                 title= "增值服务订单";
-                t = ContentKey.ORDER_TYPE_FIVE;
+                t = ContentKey.ORDER_TYPE_INSERT;
                 break;
             case "5":
                 title= "申请发票订单";
-                t = ContentKey.ORDER_TYPE_FIVE;
+                t = ContentKey.ORDER_TYPE_INVOIC;
                 break;
         }
         DialogUtils.getDialogUtilInstance().showPayChoseDialog(view.getContext(),title,t,orderNum,0.01);

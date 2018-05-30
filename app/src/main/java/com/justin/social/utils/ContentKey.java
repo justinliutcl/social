@@ -10,6 +10,7 @@ public class ContentKey {
     public static final String ORDER_TYPE_ACCU      ="2";
     public static final String ORDER_TYPE_FIVE      ="3";
     public static final String ORDER_TYPE_INSERT    ="4";
+    public static final String ORDER_TYPE_INVOIC    ="5";
     public static final String ORDER_STATUS_NOPAY           ="0";//未支付
     public static final String ORDER_STATUS_SEEING          ="1";//正在审查
     public static final String ORDER_STATUS_SENDING         ="2";//正在提交

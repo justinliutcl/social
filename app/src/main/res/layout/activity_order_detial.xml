@@ -7,6 +7,10 @@
         <variable
             name="model"
             type="com.justin.social.model.five.OrderDetialModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -85,8 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            app:image="@{model.orderState}"
-                            />
+                            app:image="@{model.orderState}" />
                     </LinearLayout>
 
                     <ImageView
@@ -232,9 +235,9 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            app:createTime="@{model.createTime}"
                             android:textColor="@color/text_green"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"
+                            app:createTime="@{model.createTime}" />
 
                     </LinearLayout>
 
@@ -316,7 +319,8 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+                        android:visibility="@{model.idCard==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -326,7 +330,8 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+                        android:visibility="@{model.idCard==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -390,7 +395,8 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+                        android:visibility="@{model.city==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -400,7 +406,8 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+                        android:visibility="@{model.city==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -427,7 +434,8 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+                        android:visibility="@{model.insuredTime==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -437,7 +445,8 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+                        android:visibility="@{model.insuredTime==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -501,7 +510,9 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+
+                        android:visibility="@{model.insuredCharge==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -511,7 +522,9 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+
+                        android:visibility="@{model.insuredCharge==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -538,7 +551,9 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+
+                        android:visibility="@{model.serviceCharge==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -548,7 +563,9 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+
+                        android:visibility="@{model.serviceCharge==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -575,7 +592,9 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+
+                        android:visibility="@{model.insuredCharge==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -585,7 +604,9 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+
+                        android:visibility="@{model.insuredCharge==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -612,7 +633,9 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
+                        android:background="@color/base_line"
+
+                        android:visibility="@{model.overdueFine==null?view.GONE:view.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -622,7 +645,9 @@
                         android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingTop="14dp"
+
+                        android:visibility="@{model.overdueFine==null?view.GONE:view.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"

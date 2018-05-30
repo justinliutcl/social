@@ -299,6 +299,7 @@ public interface SocialConfigRequest {
 
     @POST("weixin/pay")
     Call<ResponseBody> sendWeChatConfig(@Query("cashnum")  double cashnum,
-                                        @Query("mercid")  String mercid
+                                        @Query("mercid")  String mercid,
+                                        @Query("type")  int type
                                          );
 }

@@ -242,13 +242,62 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_binder_line" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:text="收货地址"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+                    <EditText
+                        android:id="@+id/address_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="20dp"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:hint="请输入收货地址，不填默认到店自取"
+                        />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -269,9 +318,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
                             android:text="支付方式"
-                            android:textStyle="bold"
                             android:textColor="@color/text_68"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -286,34 +335,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:onClick="@{model.onAlipyClick}"
                         android:orientation="horizontal"
                         android:paddingBottom="14dp"
-                        android:paddingTop="14dp"
                         android:paddingLeft="16dp"
-                        android:gravity="center_vertical"
-                        android:paddingRight="16dp">
+                        android:paddingRight="16dp"
+                        android:paddingTop="14dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            android:src="@drawable/icon_pay_alipay"
-                            />
+                            android:src="@drawable/icon_pay_alipay" />
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
                             android:text="支付宝支付"
-                            android:layout_marginLeft="11dp"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_pay_select"
-                            />
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:scaleType="fitXY"
+                            app:selectType="@{model.isSelect}" />
 
                     </LinearLayout>
 
@@ -323,38 +372,39 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@color/base_line" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:onClick="@{model.onWechatClick}"
                         android:orientation="horizontal"
                         android:paddingBottom="14dp"
-                        android:paddingTop="14dp"
                         android:paddingLeft="16dp"
-                        android:gravity="center_vertical"
-                        android:paddingRight="16dp">
+                        android:paddingRight="16dp"
+                        android:paddingTop="14dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            android:src="@drawable/icon_pay_wechat"
-                            />
+                            android:src="@drawable/icon_pay_wechat" />
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="微信支付"
                             android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
+                            android:text="微信支付"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_pay_normal"
-                            />
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:scaleType="fitXY"
+                            app:selectType="@{!model.isSelect}" />
 
                     </LinearLayout>
                 </LinearLayout>

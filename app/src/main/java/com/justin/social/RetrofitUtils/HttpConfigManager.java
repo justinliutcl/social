@@ -790,9 +790,9 @@ public class HttpConfigManager {
         });
     }
 
-    public void getWeChatConfig(double cashnum,String mercid,final BeanConfigCallBack<String> callBack) {
+    public void getWeChatConfig(double cashnum,String mercid,String type,final BeanConfigCallBack<String> callBack) {
         SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
-        Call<ResponseBody> config = configRequest.sendWeChatConfig(cashnum,mercid);
+        Call<ResponseBody> config = configRequest.sendWeChatConfig(cashnum,mercid,Integer.parseInt(type));
         config.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
