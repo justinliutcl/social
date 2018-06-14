@@ -45,6 +45,10 @@ public class InsertServicePayModel extends BaseModel {
         }
     }
 
+    public void pay(){
+        onNextClick(null);
+    }
+
     public void aliPay(){
         AliPayUse pay = new AliPayUse( mContext, serviceType, 0.01, type,orderNumber, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override

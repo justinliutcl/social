@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.justin.social.MainActivity;
 import com.justin.social.R;
+import com.justin.social.activity.OrderTableDetailActivity;
 import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
@@ -24,14 +25,16 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
  */
 
 public class SocialPayModel extends BaseModel {
-    public  String name,idCard,base,starTime,city,typeName;
+    public  String name,idCard,base,accu,starTime,city,typeName;
+    private String individual, residual, serviceMoney, overdel;
     public ObservableBoolean isSelect;
     public String num,type,money;
 
 
     public SocialPayModel(Context context,String num,String type,String money,
                           String name,String idCard,String base,String starTime,String city,
-                          String typeName) {
+                          String typeName,String individual,String residual,String serviceMoney,
+                          String overdel,String accu) {
         super(context);
         isSelect = new ObservableBoolean(true);
         this.num = num;
@@ -43,6 +46,12 @@ public class SocialPayModel extends BaseModel {
         this.starTime = starTime;
         this.city = city;
         this.typeName = typeName;
+        this.individual = individual;
+        this.residual = residual;
+        this.serviceMoney = serviceMoney;
+        this.overdel = overdel;
+        this.accu = accu;
+
     }
 
     public void onNextClick(View view){
@@ -59,7 +68,10 @@ public class SocialPayModel extends BaseModel {
 
 
     }
-
+    public void onOrderDetialClick(View view){
+        OrderTableDetailActivity.JumpToOrder(mContext,num,type,money,name,idCard,base,starTime,city,typeName,
+                individual, residual, serviceMoney, overdel,accu);
+    }
     public void onAlipyClick(View view){
         isSelect.set(true);
     }

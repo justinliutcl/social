@@ -14,6 +14,8 @@ import com.justin.social.RetrofitUtils.DataBean.one.ResultConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
 import com.justin.social.activity.InsertServicePayActivity;
+import com.justin.social.activity.InvoicActivity;
+import com.justin.social.activity.InvoicPayActivity;
 import com.justin.social.adapter.InvoicAdapter;
 import com.justin.social.databinding.ActivityInvoicBinding;
 import com.justin.social.model.base.BaseModel;
@@ -55,7 +57,8 @@ public class InvoicModel extends BaseModel {
                 new HttpConfigManager().getInvoicConfig(dbUser.userName, dbUser.userId, getAllOrderNum(), getAllMoney(), new BeanConfigCallBack<ResultConfig>() {
                     @Override
                     public void onDataResponse(ResultConfig bean) {
-                        InsertServicePayActivity.JumpToInsertServicePay(mContext, bean.getData().getAllCharge(), bean.getData().orderNum, dbUser.userName, "申请发票", bean.getData().type);
+                        if(bean.getData()!=null)
+                            InvoicPayActivity.JumpToInsertServicePay(mContext, bean.getData().getAllCharge(), bean.getData().orderNum, dbUser.userName, "申请发票", bean.getData().type);
 
                     }
                 });

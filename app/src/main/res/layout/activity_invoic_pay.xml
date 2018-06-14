@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.justin.social.model.one.SocialPayModel" />
+            type="com.justin.social.model.one.InsertServicePayModel" />
     </data>
 
     <RelativeLayout
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="提交订单"
+                android:text="增值服务"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -55,90 +55,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/back_order_note"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingLeft="25dp"
-                    android:paddingRight="25dp"
-                    android:paddingTop="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_success" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/base_green" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_success" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/base_green" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_order_note_success" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_weight="1"
-                            android:text="个人资料"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="参保信息"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="确认支付"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -162,9 +80,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
                             android:text="订单信息"
+                            android:textStyle="bold"
                             android:textColor="@color/text_68"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -198,7 +116,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="@{model.money+`元`}"
+                            android:text="@{model.sumMoney}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -225,7 +143,44 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="参保人姓名"
+                            android:text="订单类型"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="@{model.orderNumber}"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp"
+
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/base_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="申请人"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
@@ -262,7 +217,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="身份证号"
+                            android:text="服务内容"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
@@ -272,7 +227,10 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="@{model.idCard}"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_marginLeft="30dp"
+                            android:text="@{model.serviceType}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp"
 
@@ -280,204 +238,17 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="14dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="参保项目"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="@{model.typeName}"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp"
-
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="参保城市"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="@{model.city}"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp"
-
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="社保基数"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="@{model.base}"
-                            android:textColor="@color/text_red"
-                            android:textSize="13sp"
-
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="缴纳月份"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="@{model.starTime}"
-                            android:textColor="@color/text_red"
-                            android:textSize="13sp"
-
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:onClick="@{model.onOrderDetialClick}"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="订单明细"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="查看明细"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:src="@drawable/icon_gray_right" />
-                    </LinearLayout>
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
-                    android:orientation="vertical">
-
+                    >
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -495,10 +266,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
-                            android:text="优惠信息"
+                            android:text="收货地址"
+                            android:textStyle="bold"
                             android:textColor="@color/text_68"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
+                            android:textSize="13sp" />
+
 
                     </LinearLayout>
 
@@ -508,42 +280,16 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:background="@color/base_line" />
-
-
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/address_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="14dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="使用优惠券"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="请选择优惠券"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:src="@drawable/icon_gray_right" />
-                    </LinearLayout>
-
+                        android:padding="20dp"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:hint="请输入收货地址，不填默认到店自取"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -674,7 +420,6 @@
             android:layout_alignParentRight="true"
             android:background="@color/base_green"
             android:gravity="center"
-            android:onClick="@{model.onClick}"
             android:text="支付"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -699,7 +444,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="@{model.money+`元`}"
+                android:text="@{model.payMoney+`元`}"
                 android:textColor="@color/text_green2"
                 android:textSize="15sp" />
         </LinearLayout>

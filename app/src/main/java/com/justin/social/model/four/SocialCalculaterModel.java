@@ -131,7 +131,7 @@ public class SocialCalculaterModel extends BaseModel {
     public void onNextClick(View view) {
         text = binding.baseText.getText().toString();
         accuText = binding.fiveAccuText.getText().toString();
-        if (text.isEmpty() || !(Double.parseDouble(text) >= Double.parseDouble(min) && Double.parseDouble(text) <= Double.parseDouble(max))) {
+        if (text.isEmpty() || accuText.isEmpty() || !(Double.parseDouble(text) >= Double.parseDouble(min) && Double.parseDouble(text) <= Double.parseDouble(max))) {
             toastShow("请输入正确社保金额");
             return;
         }

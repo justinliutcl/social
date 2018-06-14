@@ -163,6 +163,7 @@ public class WritePeopleModel extends BaseModel {
                     @Override
                     public void onBack(String s) {
                         hourseType.set(s);
+                        CommonSettingValue.getIns(mContext).setHourseType(phone,s);
                         DialogUtils.getDialogUtilInstance().dismiss();
                     }
                 });

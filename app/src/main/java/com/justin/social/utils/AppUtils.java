@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -18,7 +19,14 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.justin.social.model.five.PhoneModel;
+import com.justin.social.wxapi.Constants;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -223,5 +231,25 @@ public class AppUtils {
             intent.putExtra("sms_body", message);
             context.startActivity(intent);
         }
+    }
+
+    public static void shareToWechat(Context context,String url,String title,String des,Bitmap bitmap){
+        WXWebpageObject wxWebpageObject = new WXWebpageObject();
+        wxWebpageObject.webpageUrl = url;
+        WXMediaMessage message = new WXMediaMessage(wxWebpageObject);
+        message.title = title;
+        message.description = des;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] datas = baos.toByteArray();
+        message.thumbData = datas;
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = "newSocial";
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneSession;
+        IWXAPI api = WXAPIFactory.createWXAPI(context, Constants.APP_ID,true);
+        api.registerApp(Constants.APP_ID);
+        api.sendReq(req);
+
     }
 }

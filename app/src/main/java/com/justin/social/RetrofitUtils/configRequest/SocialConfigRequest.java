@@ -300,6 +300,13 @@ public interface SocialConfigRequest {
     @POST("weixin/pay")
     Call<ResponseBody> sendWeChatConfig(@Query("cashnum")  double cashnum,
                                         @Query("mercid")  String mercid,
-                                        @Query("type")  int type
-                                         );
+                                        @Query("type") int type
+    );
+
+    @FormUrlEncoded
+    @POST("receipts/addSendAddress")
+    Call<BaseConfig> addSendAddressConfig(@Field("orderNum") String orderNum,
+                                            @Field("sendAddress") String sendAddress
+
+    );
 }

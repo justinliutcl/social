@@ -11,8 +11,8 @@ import retrofit2.Retrofit;
 
 public class RetrofitManager {
 
-//    private static String SOUND_CLOUD_BASE_URL = "http://www.youxuanzhijia.top/app-api/";
-    private static String SOUND_CLOUD_BASE_URL = "http://39.107.72.34:8080/app-api/";
+    private static String SOUND_CLOUD_BASE_URL = "http://www.youxuanzhijia.top/app-api/";
+//    private static String SOUND_CLOUD_BASE_URL = "http://39.107.72.34:8080/app-api/";
 
     public static Retrofit getSoundCloudRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

@@ -6,15 +6,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.justin.social.R;
+import com.justin.social.databinding.ActivityOrderDetialTableBinding;
 import com.justin.social.databinding.ActivityOrderTableBinding;
-import com.justin.social.databinding.ActivitySocialPayBinding;
+import com.justin.social.model.five.OrderDetialModel;
+import com.justin.social.model.one.OrderTableDetialModel;
 import com.justin.social.model.one.OrderTableModel;
-import com.justin.social.model.one.SocialPayModel;
 
-public class SocialPayActivity extends BackActivity {
-    ActivitySocialPayBinding bind;
-    private SocialPayModel model;
-
+public class OrderTableDetailActivity extends BackActivity {
+    ActivityOrderDetialTableBinding bind;
+    private OrderTableDetialModel model;
     public static final String ORDER_NUM        = "order_num";
     public static final String ORDER_TYPE       = "order_type";
     public static final String ORDER_MONEY      = "order_money";
@@ -32,9 +32,9 @@ public class SocialPayActivity extends BackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bind = DataBindingUtil.setContentView(this,R.layout.activity_social_pay);
+        bind = DataBindingUtil.setContentView(this,R.layout.activity_order_detial_table);
         Intent intent = getIntent();
-        model = new SocialPayModel(this,intent.getStringExtra(ORDER_NUM),
+        model = new OrderTableDetialModel(this,intent.getStringExtra(ORDER_NUM),
                 intent.getStringExtra(ORDER_TYPE),
                 intent.getStringExtra(ORDER_MONEY),
                 intent.getStringExtra(ORDER_name),
@@ -48,14 +48,16 @@ public class SocialPayActivity extends BackActivity {
                 intent.getStringExtra(ORDER_serviceMoney),
                 intent.getStringExtra(ORDER_overdel),
                 intent.getStringExtra(ORDER_ACCU));
+
+        model.initBind(bind);
         bind.setModel(model);
     }
 
-    public static void JumpToSocialPay(Context context,String orderNum,String type,String money,
-                                       String name,String idCard,String base,String starTime,String city,
-                                       String typeName,String individual,String residual,String serviceMoney,
-                                       String overdel,String accu){
-        Intent intent = new Intent(context,SocialPayActivity.class);
+    public static void JumpToOrder(Context context,String orderNum,String type,String money,
+                                   String name,String idCard,String base,String starTime,String city,
+                                   String typeName,String individual,String residual,String serviceMoney,
+                                   String overdel,String accu){
+        Intent intent = new Intent(context,OrderTableDetailActivity.class);
         intent.putExtra(ORDER_NUM, orderNum);
         intent.putExtra(ORDER_TYPE, type);
         intent.putExtra(ORDER_MONEY, money);
@@ -72,6 +74,4 @@ public class SocialPayActivity extends BackActivity {
         intent.putExtra(ORDER_ACCU, accu);
         context.startActivity(intent);
     }
-
-
 }
