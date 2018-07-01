@@ -336,6 +336,77 @@
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="14dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/icon_binder_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:text="上传简历"
+                        android:textColor="@color/text_68"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
+
+                    <FrameLayout
+                        android:layout_width="80dp"
+                        android:layout_height="110dp">
+
+                        <ImageView
+                            android:id="@+id/user_jianli_back"
+                            android:layout_width="70dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/background_radio_gray_6"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/icon_send_add" />
+
+                        <ImageView
+                            android:id="@+id/user_jianli"
+                            android:layout_width="80dp"
+                            android:layout_height="110dp"
+                            android:scaleType="fitXY" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="简历"
+                        android:textColor="@color/text_68"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

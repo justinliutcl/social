@@ -136,4 +136,12 @@ public class CommonSettingValue extends GlobPre {
     public AboutMeConfig getAboutConfig(){
         return getObject(ABOUT_CONFIG, null);
     }
+
+    public void setUserJianLi(String url){
+        putString(getCurrentPhone(), url);
+    }
+
+    public String getUserJianLi(){
+        return getString(getCurrentPhone(), null);
+    }
 }

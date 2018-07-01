@@ -18,6 +18,14 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.justin.social.RXDbUtils.DB.UserDataObtain;
+import com.justin.social.RXDbUtils.DBbean.DbUser;
+import com.justin.social.RXDbUtils.DBbean.IDataObtain;
+import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
+import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.five.HeaderImageConfig;
+import com.justin.social.RetrofitUtils.RetrofitManager;
+import com.justin.social.RetrofitUtils.configRequest.FileUploadService;
 import com.justin.social.model.five.PhoneModel;
 import com.justin.social.wxapi.Constants;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -27,6 +35,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -36,6 +45,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by ASUS on 2018/3/26.
@@ -250,6 +267,52 @@ public class AppUtils {
         IWXAPI api = WXAPIFactory.createWXAPI(context, Constants.APP_ID,true);
         api.registerApp(Constants.APP_ID);
         api.sendReq(req);
+
+    }
+
+    public static void uploadFile(Uri fileUri, final Context context,final BeanConfigCallBack<HeaderImageConfig> callBack) {
+        // create upload service client
+        final FileUploadService service =
+                RetrofitManager.getSoundCloudRetrofit().create(FileUploadService.class);
+
+        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
+        // use the FileUtils to get the actual file by uri
+        File file = FileUtils.getFile(context, fileUri);
+
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        // MultipartBody.Part is used to send also the actual file name
+        final MultipartBody.Part body =
+                MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+        // add another part within the multipart request
+         UserDataObtain.getInstance(context).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
+            @Override
+            public void complete(DbUser dbUser) {
+                String descriptionString =dbUser.getUserId();
+                RequestBody description =
+                        RequestBody.create(
+                                MediaType.parse("multipart/form-data"), descriptionString);
+
+                // finally, execute the request
+                Call<HeaderImageConfig> call = service.upload(description, body);
+                call.enqueue(new Callback<HeaderImageConfig>() {
+                    @Override
+                    public void onResponse(Call<HeaderImageConfig> call,
+                                           Response<HeaderImageConfig> response) {
+                        HeaderImageConfig arr = response.body();
+                        callBack.onDataResponse(arr);
+                    }
+
+                    @Override
+                    public void onFailure(Call<HeaderImageConfig> call, Throwable t) {
+                        Toast.makeText(context,"error",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
     }
 }

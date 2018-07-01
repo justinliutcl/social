@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ipaulpro.afilechooser.utils;
+package com.justin.social.utils;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -31,7 +31,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.ianhanniballake.localstorage.LocalStorageProvider;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -161,15 +160,6 @@ public class FileUtils {
 
     /**
      * @param uri The Uri to check.
-     * @return Whether the Uri authority is {@link LocalStorageProvider}.
-     * @author paulburke
-     */
-    public static boolean isLocalStorageDocument(Uri uri) {
-        return LocalStorageProvider.AUTHORITY.equals(uri.getAuthority());
-    }
-
-    /**
-     * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      * @author paulburke
      */
@@ -272,12 +262,8 @@ public class FileUtils {
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
             // LocalStorageProvider
-            if (isLocalStorageDocument(uri)) {
-                // The path is the id
-                return DocumentsContract.getDocumentId(uri);
-            }
             // ExternalStorageProvider
-            else if (isExternalStorageDocument(uri)) {
+             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
                 final String type = split[0];

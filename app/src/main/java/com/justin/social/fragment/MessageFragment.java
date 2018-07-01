@@ -2,8 +2,10 @@ package com.justin.social.fragment;
 
 
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -26,6 +28,8 @@ import com.justin.social.databinding.FragmentMessageBinding;
 import com.justin.social.databinding.FragmentNewslistOneBinding;
 import com.justin.social.model.one.NewsListModel;
 import com.justin.social.model.tab.FiveModel;
+import com.justin.social.utils.AppUtils;
+import com.justin.social.utils.FileUtils;
 import com.justin.social.utils.ImageUtils;
 import com.justin.social.utils.PhotoSelectUtil;
 import com.justin.social.utils.PhotoSelectUtilA;
@@ -41,6 +45,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     public static final int TYPE_HOME_POST       = 4;
     public static final int TYPE_HOME_NAGA       = 5;
     public static final int TYPE_USER            = 1;
+    public static final int TYPE_USER_jianli            = 6;
     private int type;
     PhotoSelectUtil photoUtil;
 
@@ -57,6 +62,10 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
         mBinding.homePost.setOnClickListener(this);
         mBinding.homeNaga.setOnClickListener(this);
         mBinding.userPhoto.setOnClickListener(this);
+        mBinding.userJianli.setOnClickListener(this);
+        if (CommonSettingValue.getIns(getActivity()).getUserJianLi() != null) {
+            ImageUtils.setImage(mBinding.userJianliBack, CommonSettingValue.getIns(getActivity()).getUserJianLi());
+        }
         initImage();
         photoUtil = new PhotoSelectUtil(getActivity(), this, new PhotoSelectUtilA.onGetCallBack() {
             @Override
@@ -117,8 +126,25 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
                 onImageClick(mBinding.userPhoto);
                 type = TYPE_USER;
                 break;
+            case R.id.user_jianli:
+                onSendFile();
+                type = TYPE_USER_jianli;
+                break;
         }
     }
+
+    public void onSendFile(){
+        Intent target = FileUtils.createGetContentIntent();
+        // Create the chooser Intent
+        Intent intent = Intent.createChooser(
+                target, "上传简历");
+        try {
+            startActivityForResult(intent, 12);
+        } catch (ActivityNotFoundException e) {
+            // The reason for the existence of aFileChooser
+        }
+    }
+
     public void onImageClick(ImageView view) {
         photoUtil.setimg(view);
         photoUtil.showDialog();
@@ -126,7 +152,27 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        photoUtil.forresult(requestCode, resultCode, data);
+        if(requestCode == 12) {
+            if (data != null) {
+                // Get the URI of the selected file
+                final Uri uri = data.getData();
+                try {
+                    // Get the file path from the URI
+                    AppUtils.uploadFile(uri, getActivity(), new BeanConfigCallBack<HeaderImageConfig>() {
+                        @Override
+                        public void onDataResponse(HeaderImageConfig bean) {
+                            ImageUtils.setImage(mBinding.userJianliBack,bean.getData());
+                            CommonSettingValue.getIns(getActivity()).setUserJianLi(bean.getData());
+                        }
+                    });
+                } catch (Exception e) {
+                }
+            }
+
+        } else {
+            photoUtil.forresult(requestCode, resultCode, data);
+        }
+
     }
 
     private void initImage(){
