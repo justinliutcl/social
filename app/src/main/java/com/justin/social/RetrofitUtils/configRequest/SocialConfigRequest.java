@@ -7,6 +7,7 @@ import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderDetialConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderNumConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.UserInfoConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.YouhuijuanConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.AboutMeConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
@@ -307,6 +308,17 @@ public interface SocialConfigRequest {
     @POST("receipts/addSendAddress")
     Call<BaseConfig> addSendAddressConfig(@Field("orderNum") String orderNum,
                                             @Field("sendAddress") String sendAddress
+    );
 
+    @FormUrlEncoded
+    @POST("coupon/getCouponByUserId")
+    Call<YouhuijuanConfig> getYouhuiJuanConfig(@Field("userId") String orderNum
+    );
+
+    @FormUrlEncoded
+    @POST("tool/overPayTool")
+    Call<HeaderImageConfig> getAddCalculaterConfig(@Field("cityName") String cityName,
+                                                @Field("days") String days,
+                                                @Field("chargeBase") String chargeBase
     );
 }

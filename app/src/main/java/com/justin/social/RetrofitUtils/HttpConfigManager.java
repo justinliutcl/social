@@ -11,6 +11,7 @@ import com.justin.social.RetrofitUtils.DataBean.five.OrderConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderDetialConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.OrderNumConfig;
 import com.justin.social.RetrofitUtils.DataBean.five.UserInfoConfig;
+import com.justin.social.RetrofitUtils.DataBean.five.YouhuijuanConfig;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
 import com.justin.social.RetrofitUtils.DataBean.one.AboutMeConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
@@ -826,6 +827,44 @@ public class HttpConfigManager {
 
             @Override
             public void onFailure(Call<BaseConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getYouhuiJuanConfig(String userId,final BeanConfigCallBack<YouhuijuanConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<YouhuijuanConfig> config = configRequest.getYouhuiJuanConfig(userId);
+        config.enqueue(new Callback<YouhuijuanConfig>() {
+            @Override
+            public void onResponse(Call<YouhuijuanConfig> call, Response<YouhuijuanConfig> response) {
+
+                YouhuijuanConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<YouhuijuanConfig> call, Throwable t) {
+                CommonLog.e("request ad config failed : " + t.getMessage());
+                Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getAddCalculaterConfig(String city,String days,String base,final BeanConfigCallBack<HeaderImageConfig> callBack) {
+        SocialConfigRequest configRequest = RetrofitManager.getSoundCloudRetrofit().create(SocialConfigRequest.class);
+        Call<HeaderImageConfig> config = configRequest.getAddCalculaterConfig(city,days,base);
+        config.enqueue(new Callback<HeaderImageConfig>() {
+            @Override
+            public void onResponse(Call<HeaderImageConfig> call, Response<HeaderImageConfig> response) {
+
+                HeaderImageConfig arr = response.body();
+                callBack.onDataResponse(arr);
+            }
+
+            @Override
+            public void onFailure(Call<HeaderImageConfig> call, Throwable t) {
                 CommonLog.e("request ad config failed : " + t.getMessage());
                 Toast.makeText(SocialApplication.context, "请检查网络", Toast.LENGTH_SHORT).show();
             }

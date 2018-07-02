@@ -12,6 +12,7 @@ import com.justin.social.RetrofitUtils.DataBean.one.SocialPeopleConfig;
 import com.justin.social.RetrofitUtils.DataBean.two.ServiceConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.AddCalculater;
 import com.justin.social.activity.NewsListActivity;
 import com.justin.social.activity.NorProblemActivity;
 import com.justin.social.activity.OnlineServiceActivity;
@@ -49,6 +50,9 @@ public class FourModel extends BaseModel {
                 break;
             case R.id.social_search_ll:
                 mContext.startActivity(new Intent(mContext, SocialSearchActivity.class));
+                break;
+                case R.id.rem_ll:
+                mContext.startActivity(new Intent(mContext, AddCalculater.class));
                 break;
             case R.id.hosp_ll:
                 SendMessageActivity.JumpSendMessage(mContext, SendMessageActivity.TYPE_TWO);

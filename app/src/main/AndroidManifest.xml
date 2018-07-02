@@ -88,6 +88,7 @@
         <activity android:name=".activity.SocialSearchActivity" />
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.PhysicalActivity" />
+        <activity android:name=".activity.AddCalculater" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

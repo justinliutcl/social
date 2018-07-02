@@ -1,6 +1,7 @@
 package com.justin.social.model.four;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.view.View;
@@ -13,9 +14,11 @@ import com.justin.social.RetrofitUtils.DataBean.one.CityConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
+import com.justin.social.activity.OnlineServiceActivity;
 import com.justin.social.adapter.SocialToolNormalAdapter;
 import com.justin.social.databinding.ActivitySocialCalculaterBinding;
 import com.justin.social.model.base.BaseModel;
+import com.justin.social.utils.AppUtils;
 import com.justin.social.utils.DialogUtils;
 
 import java.util.ArrayList;
@@ -60,7 +63,7 @@ public class SocialCalculaterModel extends BaseModel {
 
     public void getCity() {
         cityConfig = CommonSettingValue.getIns(mContext).getCity();
-        if(cityConfig!=null){
+        if (cityConfig != null) {
             initCityConfig();
         }
         manager.getCityListConfig(new BeanConfigCallBack<CityConfig>() {
@@ -75,7 +78,7 @@ public class SocialCalculaterModel extends BaseModel {
         });
     }
 
-    public void initCityConfig(){
+    public void initCityConfig() {
         min = cityConfig.getData().get(0).getSocialSecurityBaseLow();
         max = cityConfig.getData().get(0).getSocialSecurityBaseHigh();
         minAccu = cityConfig.getData().get(0).getAccumulationFundBaseLow();
@@ -87,22 +90,32 @@ public class SocialCalculaterModel extends BaseModel {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.social_min:
-                    binding.baseText.setText(min);
+                binding.baseText.setText(min);
                 break;
             case R.id.accu_min:
                 binding.fiveAccuText.setText(minAccu);
                 break;
+            case R.id.online_service:
+                mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));
+                break;
+            case R.id.call_phone:
+                if (CommonSettingValue.getIns(mContext).getCustomPhone() != null) {
+                    AppUtils.diallPhone(CommonSettingValue.getIns(mContext).getCustomPhone(), mContext);
+                } else {
+
+                }
+                break;
             case R.id.detial_ll:
-                if(isShowDetial.get()){
+                if (isShowDetial.get()) {
                     isShowDetial.set(false);
                     binding.detialTv.setText("展开缴费明细");
-                }else{
+                } else {
                     isShowDetial.set(true);
                     binding.detialTv.setText("收起缴费明细");
 
                 }
-                if(adapter!=null){
-                    binding.scrollView.smoothScrollBy(0,50);
+                if (adapter != null) {
+                    binding.scrollView.smoothScrollBy(0, 50);
                 }
                 break;
         }
@@ -144,7 +157,7 @@ public class SocialCalculaterModel extends BaseModel {
     }
 
     private void getAllMoneyMessage() {
-        new HttpConfigManager().getToolMoneyConfig( text, accuText,hourseType.get(),city.get(), new BeanConfigCallBack<SocialTool>() {
+        new HttpConfigManager().getToolMoneyConfig(text, accuText, hourseType.get(), city.get(), new BeanConfigCallBack<SocialTool>() {
             @Override
             public void onDataResponse(SocialTool bean) {
                 if (bean == null || bean.getData() == null)

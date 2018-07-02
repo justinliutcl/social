@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.justin.social.model.four.SocialCalculaterModel" />
+            type="com.justin.social.model.four.AddCalculaterModel" />
 
         <variable
             name="view"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="社保计算器"
+                android:text="补缴计算器"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -136,7 +136,6 @@
                             android:src="@drawable/icon_right_green" />
                     </LinearLayout>
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -145,42 +144,38 @@
                         android:background="@color/base_line" />
 
                     <LinearLayout
-                        android:id="@+id/hourse_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:onClick="@{model.onDialogShow}"
                         android:orientation="horizontal"
-                        android:paddingBottom="14dp"
                         android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="14dp">
+                        android:paddingRight="16dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="户口性质"
+                            android:text="延期月数"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
-                        <TextView
+
+
+                        <EditText
+                            android:id="@+id/month_num"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
+                            android:background="@color/white"
                             android:gravity="right"
-                            android:text="@{model.hourseType}"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp"
+                            android:inputType="number"
+                            android:hint="请输入补缴月至今延期月数"
+                            android:lines="1"
+                            android:paddingBottom="14dp"
+                            android:paddingTop="14dp"
+                            android:textColor="@color/text_68"
+                            android:textSize="13sp" />
 
-                            />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_right_green" />
                     </LinearLayout>
-
 
                     <TextView
                         android:layout_width="match_parent"
@@ -241,65 +236,6 @@
                             android:textSize="13sp" />
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:id="@+id/five_accu_type"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="公积金基数"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="@{model.accuBbaseType}"
-                            android:textColor="@color/text_a7"
-                            android:textSize="12sp" />
-
-                        <EditText
-                            android:id="@+id/five_accu_text"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:inputType="number"
-                            android:lines="1"
-                            android:paddingBottom="14dp"
-                            android:paddingTop="14dp"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/accu_min"
-                            android:layout_width="75dp"
-                            android:layout_height="29dp"
-                            android:layout_marginLeft="5dp"
-                            android:background="@drawable/background_calculation"
-                            android:gravity="center"
-                            android:onClick="@{model.onClick}"
-                            android:text="最低基数"
-                            android:textColor="@color/text_green"
-                            android:textSize="13sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -332,40 +268,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="需要缴纳社保费用（元）"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:lines="1"
-                            android:paddingBottom="16dp"
-                            android:paddingTop="16dp"
-                            android:text="@{model.socialSecurity}"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-                    </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -385,42 +287,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要缴纳公积金费用（元）"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:gravity="right"
-                            android:lines="1"
-                            android:paddingBottom="16dp"
-                            android:paddingTop="16dp"
-                            android:text="@{model.accuSecurity}"
-                            android:textColor="@color/text_68"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/base_line" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="共计"
+                            android:text="应补缴总计"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 
@@ -439,44 +306,6 @@
 
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/detial_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:onClick="@{model.onClick}"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/detial_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="展开缴费明细"
-                        android:textColor="@color/text_green"
-                        android:textSize="13sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="16dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/icon_right_green" />
-                </LinearLayout>
-
-                <com.justin.social.views.LinearRecyclerView
-                    android:id="@+id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/white"
-                    android:nestedScrollingEnabled="false"
-                    android:layout_marginBottom="20dp"
-                    android:visibility="@{model.isShowDetial?view.visibility:view.GONE}"
-                    >
-
-                </com.justin.social.views.LinearRecyclerView>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
@@ -505,7 +334,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/online_service"
+                android:id="@+id/pay_social"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -536,7 +365,7 @@
                 android:background="@color/base_black1" />
 
             <LinearLayout
-                android:id="@+id/call_phone"
+                android:id="@+id/pay_accu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

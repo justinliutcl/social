@@ -7,6 +7,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableBoolean;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.justin.social.MainActivity;
@@ -16,6 +17,7 @@ import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.ContentKey;
+import com.justin.social.utils.DialogUtils;
 import com.justin.social.wxapi.WePayUser;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -68,6 +70,16 @@ public class SocialPayModel extends BaseModel {
 
 
     }
+
+    public void onYouhuiJuanClick(View view){
+        DialogUtils.getDialogUtilInstance().showYouhuiJuanDialog(mContext, new DialogUtils.ItemClickBack() {
+            @Override
+            public void onBack(String s) {
+                Toast.makeText(mContext,s,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void onOrderDetialClick(View view){
         OrderTableDetailActivity.JumpToOrder(mContext,num,type,money,name,idCard,base,starTime,city,typeName,
                 individual, residual, serviceMoney, overdel,accu);
