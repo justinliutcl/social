@@ -74,13 +74,13 @@ public class OrderInfoUtil2_0 {
 	 * @param app_id
 	 * @return
 	 */
-	public static Map<String, String> buildOrderParamMap(String app_id,String title, String body,String orderNumber, double money, boolean rsa2, Context context) {
+	public static Map<String, String> buildOrderParamMap(String app_id,String title, String body,String orderNumber, double money, boolean rsa2, Context context,String youhuijuanId) {
 		Map<String, String> keyValues = new HashMap<String, String>();
 
 		keyValues.put("app_id", app_id);
 
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+money+"\",\"subject\":\""+title+"\",\"passback_params\":\"" + AppUtils.getURLencode(CommonSettingValue.getIns(context).getCurrentUserId()) + "\",\"body\":\""+orderNumber+","+body+"\",\"type\":\"" + body + "\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+money+"\",\"subject\":\""+title+"\",\"passback_params\":\"" + AppUtils.getURLencode(CommonSettingValue.getIns(context).getCurrentUserId()) + "\",\"body\":\""+orderNumber+","+body+","+youhuijuanId+"\",\"type\":\"" + body + "\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
 
 		keyValues.put("charset", "utf-8");
 

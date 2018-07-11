@@ -24,6 +24,7 @@ import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.adapter.DialogYouhuiJuanAdapter;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
+import com.justin.social.utils.AppUtils;
 import com.justin.social.utils.ContentKey;
 import com.justin.social.utils.DialogUtils;
 import com.justin.social.wxapi.WePayUser;
@@ -38,8 +39,9 @@ public class SocialPayModel extends BaseModel {
     public  String name,idCard,base,accu,starTime,city,typeName;
     private String individual, residual, serviceMoney, overdel;
     public ObservableBoolean isSelect;
-    public String num,type,money;
+    public String num,type;
     public ObservableField<String>youhuijuan;
+    public ObservableField<String>money;
     YouhuijuanConfig mYouhuijuan;
 
 
@@ -52,7 +54,7 @@ public class SocialPayModel extends BaseModel {
         youhuijuan = new ObservableField<String>("请选择优惠券");
         this.num = num;
         this.type = type;
-        this.money = money;
+        this.money = new ObservableField<>(money);
         this.name = name;
         this.idCard = idCard;
         this.base = base;
@@ -101,6 +103,8 @@ public class SocialPayModel extends BaseModel {
 //                Toast.makeText(mContext,s,Toast.LENGTH_SHORT).show();
                                 youhuijuan.set("已选择：" + s.getCouponValue() + "元");
                                 mYouhuijuan = s;
+                                double m = Double.parseDouble(money.get()) - Double.parseDouble(s.getCouponValue());
+                                money.set(m+"");
                                 DialogUtils.getDialogUtilInstance().dismiss();
                             }
                         });
@@ -112,7 +116,7 @@ public class SocialPayModel extends BaseModel {
     }
 
     public void onOrderDetialClick(View view){
-        OrderTableDetailActivity.JumpToOrder(mContext,num,type,money,name,idCard,base,starTime,city,typeName,
+        OrderTableDetailActivity.JumpToOrder(mContext,num,type,money.get(),name,idCard,base,starTime,city,typeName,
                 individual, residual, serviceMoney, overdel,accu);
     }
     public void onAlipyClick(View view) {
@@ -125,7 +129,7 @@ public class SocialPayModel extends BaseModel {
 
     public void aliPay() {
         String yId = mYouhuijuan == null ? "0" : mYouhuijuan.couponId;
-        AliPayUse pay = new AliPayUse(mContext, typeName, 0.01, type, num, ContentKey.ALIPAY_URL, yId, new AliPayUse.OnPayCall() {
+        AliPayUse pay = new AliPayUse(mContext, typeName, Double.parseDouble(money.get()), type, num, ContentKey.ALIPAY_URL, yId, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
 
@@ -143,7 +147,7 @@ public class SocialPayModel extends BaseModel {
 
     public void weiPay() {
         String yId = mYouhuijuan == null ? "0" : mYouhuijuan.couponId;
-        WePayUser.wePay(mContext, num, type, 0.01, yId);
+        WePayUser.wePay(mContext, num, type, Double.parseDouble(money.get()), yId);
     }
 
     @BindingAdapter("selectType")

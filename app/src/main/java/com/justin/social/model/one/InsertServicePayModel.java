@@ -50,7 +50,7 @@ public class InsertServicePayModel extends BaseModel {
     }
 
     public void aliPay(){
-        AliPayUse pay = new AliPayUse( mContext, serviceType, 0.01, type,orderNumber, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+        AliPayUse pay = new AliPayUse( mContext, serviceType, Double.parseDouble(payMoney), type,orderNumber, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
 
@@ -67,7 +67,7 @@ public class InsertServicePayModel extends BaseModel {
     }
 
     public void weiPay(){
-        WePayUser.wePay(mContext,orderNumber,type,0.01,"0");
+        WePayUser.wePay(mContext,orderNumber,type,Double.parseDouble(payMoney),"0");
     }
 
     public void onAlipyClick(View view){

@@ -51,7 +51,7 @@ public class DialogPayChoseModel extends BaseModel {
     }
 
     public void aliPay(){
-        AliPayUse pay = new AliPayUse( mContext, typeName, 0.01, type,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+        AliPayUse pay = new AliPayUse( mContext, typeName, money, type,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
 
@@ -68,7 +68,7 @@ public class DialogPayChoseModel extends BaseModel {
     }
 
     public void weiPay(){
-        WePayUser.wePay(mContext,orderNum,type,0.01,"0");
+        WePayUser.wePay(mContext,orderNum,type,money,"0");
     }
 
 
