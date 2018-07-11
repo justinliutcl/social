@@ -47,7 +47,7 @@ public class DialogYouhuiJuanModel extends BaseModel{
         DialogUtils.getDialogUtilInstance().dismiss();
     }
 
-    public void initAdapter(final DialogUtils.ItemClickBack back) {
+    public void initAdapter(final DialogUtils.ItemYouhuijuanClickBack back) {
         UserDataObtain.getInstance(mContext).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
             public void complete(DbUser dbUser) {
@@ -58,7 +58,17 @@ public class DialogYouhuiJuanModel extends BaseModel{
                         bind.list.setAdapter(adapter);
                     }
                 });
-
+                bind.submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for(int i= 0;i<adapter.mDataList.size();i++){
+                            if(adapter.mDataList.get(i).isSelect.get()){
+                                back.onBack(adapter.mDataList.get(i));
+                                return;
+                            }
+                        }
+                    }
+                });
             }
         });
 

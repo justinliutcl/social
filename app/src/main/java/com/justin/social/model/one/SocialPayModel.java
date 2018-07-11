@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -12,8 +13,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.justin.social.MainActivity;
 import com.justin.social.R;
+import com.justin.social.RXDbUtils.DB.UserDataObtain;
+import com.justin.social.RXDbUtils.DBbean.DbUser;
+import com.justin.social.RXDbUtils.DBbean.IDataObtain;
+import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
+import com.justin.social.RetrofitUtils.DataBean.five.YouhuijuanConfig;
+import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.activity.OrderTableDetailActivity;
 import com.justin.social.activity.SocialPayActivity;
+import com.justin.social.adapter.DialogYouhuiJuanAdapter;
 import com.justin.social.alipay2.AliPayUse;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.ContentKey;
@@ -31,6 +39,8 @@ public class SocialPayModel extends BaseModel {
     private String individual, residual, serviceMoney, overdel;
     public ObservableBoolean isSelect;
     public String num,type,money;
+    public ObservableField<String>youhuijuan;
+    YouhuijuanConfig mYouhuijuan;
 
 
     public SocialPayModel(Context context,String num,String type,String money,
@@ -39,6 +49,7 @@ public class SocialPayModel extends BaseModel {
                           String overdel,String accu) {
         super(context);
         isSelect = new ObservableBoolean(true);
+        youhuijuan = new ObservableField<String>("请选择优惠券");
         this.num = num;
         this.type = type;
         this.money = money;
@@ -71,29 +82,50 @@ public class SocialPayModel extends BaseModel {
 
     }
 
-    public void onYouhuiJuanClick(View view){
-        DialogUtils.getDialogUtilInstance().showYouhuiJuanDialog(mContext, new DialogUtils.ItemClickBack() {
+    public void onYouhuiJuanClick(final View view) {
+        view.setClickable(false);
+        UserDataObtain.getInstance(mContext).getCurrentUser(new IDataObtain.IDBResCallback<DbUser>() {
             @Override
-            public void onBack(String s) {
-                Toast.makeText(mContext,s,Toast.LENGTH_SHORT).show();
+            public void complete(DbUser dbUser) {
+                view.setClickable(true);
+                new HttpConfigManager().getYouhuiJuanConfig(dbUser.getUserId(), new BeanConfigCallBack<YouhuijuanConfig>() {
+                    @Override
+                    public void onDataResponse(YouhuijuanConfig bean) {
+                        if(bean == null || bean.getData().isEmpty()){
+                            Toast.makeText(mContext,"暂无优惠券",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        DialogUtils.getDialogUtilInstance().showYouhuiJuanDialog(mContext, new DialogUtils.ItemYouhuijuanClickBack() {
+                            @Override
+                            public void onBack(YouhuijuanConfig s) {
+//                Toast.makeText(mContext,s,Toast.LENGTH_SHORT).show();
+                                youhuijuan.set("已选择：" + s.getCouponValue() + "元");
+                                mYouhuijuan = s;
+                                DialogUtils.getDialogUtilInstance().dismiss();
+                            }
+                        });
+                    }
+                });
             }
         });
+
     }
 
     public void onOrderDetialClick(View view){
         OrderTableDetailActivity.JumpToOrder(mContext,num,type,money,name,idCard,base,starTime,city,typeName,
                 individual, residual, serviceMoney, overdel,accu);
     }
-    public void onAlipyClick(View view){
+    public void onAlipyClick(View view) {
         isSelect.set(true);
     }
 
-    public void onWechatClick(View view){
+    public void onWechatClick(View view) {
         isSelect.set(false);
     }
 
-    public void aliPay(){
-        AliPayUse pay = new AliPayUse( mContext, typeName, 0.01, type,num, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+    public void aliPay() {
+        String yId = mYouhuijuan == null ? "0" : mYouhuijuan.couponId;
+        AliPayUse pay = new AliPayUse(mContext, typeName, 0.01, type, num, ContentKey.ALIPAY_URL, yId, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
 
@@ -109,8 +141,9 @@ public class SocialPayModel extends BaseModel {
         pay.pay();
     }
 
-    public void weiPay(){
-        WePayUser.wePay(mContext,num,type,0.01);
+    public void weiPay() {
+        String yId = mYouhuijuan == null ? "0" : mYouhuijuan.couponId;
+        WePayUser.wePay(mContext, num, type, 0.01, yId);
     }
 
     @BindingAdapter("selectType")

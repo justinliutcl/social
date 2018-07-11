@@ -529,12 +529,13 @@
 
 
                         <TextView
+                            android:id="@+id/youhuijuan_tv"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="请选择优惠券"
+                            android:text="@{model.youhuijuan}"
                             android:textColor="@color/text_68"
                             android:textSize="13sp" />
 

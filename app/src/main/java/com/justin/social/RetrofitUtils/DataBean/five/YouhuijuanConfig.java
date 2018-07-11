@@ -1,5 +1,8 @@
 package com.justin.social.RetrofitUtils.DataBean.five;
 
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
+
 import com.justin.social.RetrofitUtils.DataBean.BaseConfig;
 
 import java.util.List;
@@ -9,12 +12,13 @@ import java.util.List;
  */
 
 public class YouhuijuanConfig extends BaseConfig{
-    private List<YouhuijuanConfig> data;
-    private String couponId;
-    private String userId;
-    private String couponValue;
-    private String couponGetTime;
-    private String couponContinuedTime;
+    public List<YouhuijuanConfig> data;
+    public String couponId;
+    public String userId;
+    public String couponValue;
+    public String couponGetTime;
+    public String couponContinuedTime;
+    public ObservableBoolean isSelect = new ObservableBoolean(false);
 
     public List<YouhuijuanConfig> getData() {
         return data;

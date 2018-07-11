@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.justin.social.R;
@@ -19,12 +20,12 @@ import java.util.List;
  * Created by ASUS on 2018/4/6.
  */
 
-public class DialogYouhuiJuanAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, String> {
+public class DialogYouhuiJuanAdapter extends BaseAdapter<BaseHolder<ViewDataBinding>, YouhuijuanConfig> {
 
-    private List<YouhuijuanConfig> mDataList;
+    public List<YouhuijuanConfig> mDataList;
     private Context context;
-    DialogUtils.ItemClickBack back;
-    public DialogYouhuiJuanAdapter(List<YouhuijuanConfig> mDataList, Context context, DialogUtils.ItemClickBack back) {
+    DialogUtils.ItemYouhuijuanClickBack back;
+    public DialogYouhuiJuanAdapter(List<YouhuijuanConfig> mDataList, Context context, DialogUtils.ItemYouhuijuanClickBack back) {
         this.mDataList = mDataList;
         this.context = context;
         this.back = back;
@@ -38,7 +39,7 @@ public class DialogYouhuiJuanAdapter extends BaseAdapter<BaseHolder<ViewDataBind
 
     @Override
     public void onBindViewHolder(BaseHolder<ViewDataBinding> holder, int position) {
-        holder.bindTo(mDataList.get(position).getCouponId(), position);
+        holder.bindTo(mDataList.get(position), position);
     }
 
     @Override
@@ -47,10 +48,22 @@ public class DialogYouhuiJuanAdapter extends BaseAdapter<BaseHolder<ViewDataBind
     }
 
     @Override
-    public void onbindTo(BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, String model, int position) {
+    public void onbindTo(BaseHolder<ViewDataBinding> viewDataBindingBaseHolder, YouhuijuanConfig model, final int position) {
         if (viewDataBindingBaseHolder.mBinding instanceof DialogYouhuijuanItemBinding) {
             ((DialogYouhuijuanItemBinding) viewDataBindingBaseHolder.mBinding).setModel(model);
-            ((DialogYouhuijuanItemBinding) viewDataBindingBaseHolder.mBinding).setCall(back);
+            ((DialogYouhuijuanItemBinding) viewDataBindingBaseHolder.mBinding).content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for(int i=0;i<mDataList.size();i++){
+                        if(i == position){
+                            mDataList.get(i).isSelect.set(true);
+                        }else{
+                            mDataList.get(i).isSelect.set(false);
+                        }
+                    }
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
 }

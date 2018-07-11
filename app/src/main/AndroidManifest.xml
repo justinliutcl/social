@@ -133,6 +133,7 @@
             android:launchMode="singleTop"/>
         <activity android:name=".activity.InvoicPayActivity" />
         <activity android:name=".activity.OrderTableDetailActivity" />
+        <activity android:name=".activity.ZizhiActivity" />
     </application>
 
 </manifest>

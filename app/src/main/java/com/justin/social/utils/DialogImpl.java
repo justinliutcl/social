@@ -131,7 +131,7 @@ public class DialogImpl {
         return binding.getRoot();
     }
 
-    public static View getYouhuiJuanView(Context context, DialogUtils.ItemClickBack back){
+    public static View getYouhuiJuanView(Context context, DialogUtils.ItemYouhuijuanClickBack back){
         DialogYouhuijuanBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_youhuijuan,null,false);
         DialogYouhuiJuanModel model = new DialogYouhuiJuanModel(context);
         model.initTitle("请选择");

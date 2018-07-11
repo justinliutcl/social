@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.justin.social.R;
+import com.justin.social.RetrofitUtils.DataBean.five.YouhuijuanConfig;
 import com.justin.social.RetrofitUtils.DataBean.one.ServiceAddConfig;
 import com.justin.social.views.AutoHideKeyBoardDialog;
 
@@ -32,6 +33,10 @@ public class DialogUtils {
 
     public interface ItemClickBack {
         void onBack(String s);
+    }
+
+    public interface ItemYouhuijuanClickBack {
+        void onBack(YouhuijuanConfig s);
     }
 
     public interface ItemObjectClickBack<T> {
@@ -115,7 +120,7 @@ public class DialogUtils {
         showSimpleDialog(context, DialogImpl.getPayChoseView(context,typeName,type,orderNum,money));
     }
 
-    public void showYouhuiJuanDialog(Context context,  ItemClickBack back) {
+    public void showYouhuiJuanDialog(Context context,  ItemYouhuijuanClickBack back) {
         showSimpleDialog(context, DialogImpl.getYouhuiJuanView(context, back));
     }
 

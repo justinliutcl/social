@@ -60,6 +60,7 @@ public class AliPayUse {
     String type;
     String outUri;
     String orderNum;
+    String youhuijuanId;
     OnPayCall paycall;
 
     public interface OnPayCall {
@@ -69,7 +70,7 @@ public class AliPayUse {
     }
 
 
-    public AliPayUse( Context context, String title, double money, String type,String orderNum, String path, OnPayCall paycall) {
+    public AliPayUse( Context context, String title, double money, String type,String orderNum, String path,String youhuijuanId, OnPayCall paycall) {
         this.context = context;
         this.money = money;
         this.title = title;
@@ -77,6 +78,11 @@ public class AliPayUse {
         this.orderNum = orderNum;
         outUri = path;
         this.paycall = paycall;
+        this.youhuijuanId = youhuijuanId;
+    }
+
+    public AliPayUse(Context context, String title, double money, String type, String orderNum, String path, OnPayCall paycall) {
+        this(context, title, money, type, orderNum, path, "0", paycall);
     }
 
 

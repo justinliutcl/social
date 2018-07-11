@@ -20,7 +20,7 @@ import org.json.JSONObject;
  * Created by 不爱白菜 on 2016/5/10.
  */
 public class WePayUser {
-    public static void wePay(final Context context, String ordernumber,String type, double money) {
+    public static void wePay(final Context context, String ordernumber,String type, double money,String youhuijuanId) {
         IWXAPI api;
         api = WXAPIFactory.createWXAPI(context, Constants.APP_ID, false);
         api.registerApp(Constants.APP_ID);
@@ -29,7 +29,7 @@ public class WePayUser {
         finalApi = WXAPIFactory.createWXAPI(context, null);
         finalApi.registerApp(Constants.APP_ID);
 
-        new HttpConfigManager().getWeChatConfig(money, ordernumber,type, new BeanConfigCallBack<String>() {
+        new HttpConfigManager().getWeChatConfig(money, ordernumber,type,youhuijuanId, new BeanConfigCallBack<String>() {
             @Override
             public void onDataResponse(String bean) {
                 try {

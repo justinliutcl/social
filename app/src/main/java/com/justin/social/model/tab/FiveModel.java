@@ -16,6 +16,7 @@ import com.justin.social.activity.FindFriendActivity;
 import com.justin.social.activity.OnlineServiceActivity;
 import com.justin.social.activity.OrderListActivity;
 import com.justin.social.activity.SettingActivity;
+import com.justin.social.activity.ZizhiActivity;
 import com.justin.social.model.base.BaseModel;
 import com.justin.social.utils.DialogUtils;
 
@@ -117,6 +118,9 @@ public class FiveModel extends BaseModel {
                 break;
             case R.id.call_us_ll:
                 DialogUtils.getDialogUtilInstance().showCallUsDialog(mContext);
+                break;
+            case R.id.zizhirenzheng:
+                mContext.startActivity(new Intent(mContext, ZizhiActivity.class));
                 break;
             case R.id.online_service_ll:
                 mContext.startActivity(new Intent(mContext, OnlineServiceActivity.class));

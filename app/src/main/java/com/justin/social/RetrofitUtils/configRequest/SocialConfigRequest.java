@@ -301,7 +301,8 @@ public interface SocialConfigRequest {
     @POST("weixin/pay")
     Call<ResponseBody> sendWeChatConfig(@Query("cashnum")  double cashnum,
                                         @Query("mercid")  String mercid,
-                                        @Query("type") int type
+                                        @Query("type") int type,
+                                        @Query("couponId") String couponId
     );
 
     @FormUrlEncoded

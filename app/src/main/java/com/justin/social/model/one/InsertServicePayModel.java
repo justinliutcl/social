@@ -67,7 +67,7 @@ public class InsertServicePayModel extends BaseModel {
     }
 
     public void weiPay(){
-        WePayUser.wePay(mContext,orderNumber,type,0.01);
+        WePayUser.wePay(mContext,orderNumber,type,0.01,"0");
     }
 
     public void onAlipyClick(View view){

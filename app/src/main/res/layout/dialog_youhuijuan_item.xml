@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="model"
-            type="String"/>
-        <variable
-            name="call"
-            type="com.justin.social.utils.DialogUtils.ItemClickBack"/>
+            type="com.justin.social.RetrofitUtils.DataBean.five.YouhuijuanConfig" />
+
     </data>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:onClick="@{()->call.onBack(model)}"
-        >
+        android:background="@color/white"
+        android:orientation="horizontal">
+
         <ImageView
+            android:id="@+id/youhuijuan_v"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_youhuijuan"
+            android:textColor="@color/text_68" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_youhuijuan"
-            android:textColor="@color/text_68"
-            />
-    </LinearLayout>
+            android:layout_toRightOf="@+id/youhuijuan_v"
+            android:layout_alignTop="@+id/youhuijuan_v"
+            android:layout_alignBottom="@+id/youhuijuan_v"
+            >
+            <ImageView
+                android:id="@+id/select_iv"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+
+                app:selectType="@{model.isSelect}" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 </layout>

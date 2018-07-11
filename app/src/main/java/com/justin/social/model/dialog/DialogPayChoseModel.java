@@ -68,7 +68,7 @@ public class DialogPayChoseModel extends BaseModel {
     }
 
     public void weiPay(){
-        WePayUser.wePay(mContext,orderNum,type,0.01);
+        WePayUser.wePay(mContext,orderNum,type,0.01,"0");
     }
 
 
