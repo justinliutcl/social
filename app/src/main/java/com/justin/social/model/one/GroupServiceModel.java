@@ -25,6 +25,7 @@ public class GroupServiceModel extends BaseModel {
     public GroupServiceModel(Context context) {
         super(context);
         mes = new ObservableField<>("");
+        initData();
     }
 
     public void onServiceClick(View view){

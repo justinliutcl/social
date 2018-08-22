@@ -63,16 +63,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/icon_zizhi1" />
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_zizhi2" />
-                <ImageView
-                    android:id="@+id/img3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_zizhi3" />
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

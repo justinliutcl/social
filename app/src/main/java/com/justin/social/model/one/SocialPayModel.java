@@ -42,6 +42,7 @@ public class SocialPayModel extends BaseModel {
     public String num,type;
     public ObservableField<String>youhuijuan;
     public ObservableField<String>money;
+    public String resourMoney;
     YouhuijuanConfig mYouhuijuan;
 
 
@@ -55,6 +56,7 @@ public class SocialPayModel extends BaseModel {
         this.num = num;
         this.type = type;
         this.money = new ObservableField<>(money);
+        resourMoney = money;
         this.name = name;
         this.idCard = idCard;
         this.base = base;
@@ -103,7 +105,7 @@ public class SocialPayModel extends BaseModel {
 //                Toast.makeText(mContext,s,Toast.LENGTH_SHORT).show();
                                 youhuijuan.set("已选择：" + s.getCouponValue() + "元");
                                 mYouhuijuan = s;
-                                double m = Double.parseDouble(money.get()) - Double.parseDouble(s.getCouponValue());
+                                double m = Double.parseDouble(resourMoney) - Double.parseDouble(s.getCouponValue());
                                 money.set(m+"");
                                 DialogUtils.getDialogUtilInstance().dismiss();
                             }

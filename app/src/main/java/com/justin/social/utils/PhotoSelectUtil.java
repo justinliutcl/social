@@ -216,7 +216,7 @@ public class PhotoSelectUtil {
 //			foutput = new FileOutputStream(new File(afterpath));
 
 //			bitmap.compress(Bitmap.CompressFormat.PNG, 40, foutput);
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 30, byteout);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteout);
 			byte[] bytes=byteout.toByteArray();
 			byte[] encode= Base64.encode(bytes, Base64.DEFAULT);
 			String encodeString = new String(encode);

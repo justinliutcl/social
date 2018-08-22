@@ -52,7 +52,7 @@ public class PhoneModel  {
     }
 
     public void onClick(View view) {
-        AppUtils.doSendSMSTo(view.getContext(),phone,"欢迎加入优选社保");
+        AppUtils.doSendSMSTo(view.getContext(),phone,"快叫上小伙伴们一起来缴社保及存档案哦！http://www.youxuanzhijia.top");
     }
 
 

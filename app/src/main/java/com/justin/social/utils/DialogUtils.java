@@ -120,6 +120,10 @@ public class DialogUtils {
         showSimpleDialog(context, DialogImpl.getPayChoseView(context,typeName,type,orderNum,money));
     }
 
+    public void showShareDialog(Context context,String title,String content,String mes) {
+        showBottomDialog(context, DialogImpl.getShareView(context,title,content,mes));
+    }
+
     public void showYouhuiJuanDialog(Context context,  ItemYouhuijuanClickBack back) {
         showSimpleDialog(context, DialogImpl.getYouhuiJuanView(context, back));
     }

@@ -2,9 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="model"
-            type="com.justin.social.model.one.GroupServiceModel"/>
+            type="com.justin.social.model.one.GroupServiceModel" />
     </data>
 
     <RelativeLayout
@@ -57,32 +58,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:paddingBottom="15dp"
                     android:background="@drawable/background_radio_white"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
                         android:text="优选社保团体服务"
                         android:textColor="@color/text_35"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:layout_marginTop="15dp"
-                        />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{model.mes}"
-                        android:textColor="@color/text_68"
                         android:layout_marginTop="15dp"
                         android:lineSpacingExtra="2dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        />
+                        android:text="@{model.mes}"
+                        android:textColor="@color/text_68"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
 
@@ -90,9 +88,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/icon_service_write"
                     android:gravity="center_horizontal"
-                    android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
                     <TextView

@@ -363,10 +363,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="13dp"
-                        android:text="上传简历"
+                        android:text="上传简历（选填）"
                         android:textColor="@color/text_68"
                         android:textSize="13sp"
                         android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="用于给您提供猎头服务"
+                        android:textColor="@color/text_68"
+                        android:textSize="12sp"
+                         />
 
                 </LinearLayout>
 

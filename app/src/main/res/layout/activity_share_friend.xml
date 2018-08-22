@@ -60,6 +60,7 @@
                         android:background="@drawable/back_share_friend" />
 
                     <TextView
+                        android:id="@+id/share_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"

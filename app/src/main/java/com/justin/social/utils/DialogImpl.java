@@ -12,11 +12,13 @@ import com.justin.social.databinding.DialogCallUsBinding;
 import com.justin.social.databinding.DialogDuringBinding;
 import com.justin.social.databinding.DialogPayChoseBinding;
 import com.justin.social.databinding.DialogServiceAddBinding;
+import com.justin.social.databinding.DialogShareChoseBinding;
 import com.justin.social.databinding.DialogYouhuijuanBinding;
 import com.justin.social.model.dialog.DialogCallModel;
 import com.justin.social.model.dialog.DialogNorModel;
 import com.justin.social.model.dialog.DialogPayChoseModel;
 import com.justin.social.model.dialog.DialogSelectModel;
+import com.justin.social.model.dialog.DialogShareChoseModel;
 import com.justin.social.model.dialog.DialogYouhuiJuanModel;
 
 import java.util.ArrayList;
@@ -127,6 +129,13 @@ public class DialogImpl {
     public static View getPayChoseView(Context context,String typeName,String type,String orderNum,double money){
         DialogPayChoseBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_pay_chose,null,false);
         DialogPayChoseModel model = new DialogPayChoseModel(context,typeName,type,orderNum,money);
+        binding.setModel(model);
+        return binding.getRoot();
+    }
+
+    public static View getShareView(Context context,String title,String content,String mes){
+        DialogShareChoseBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_share_chose,null,false);
+        DialogShareChoseModel model = new DialogShareChoseModel(context,title,content,mes);
         binding.setModel(model);
         return binding.getRoot();
     }

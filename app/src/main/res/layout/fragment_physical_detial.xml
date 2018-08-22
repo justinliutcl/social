@@ -43,7 +43,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="13sp"
                     android:textColor="@color/text_a7"
-                    android:text="社保家资讯"
+                    android:text="优选社保资讯"
                     />
 
                 <TextView

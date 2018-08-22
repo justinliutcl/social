@@ -270,6 +270,26 @@ public class AppUtils {
 
     }
 
+    public static void shareToSocail(Context context,String url,String title,String des,Bitmap bitmap){
+        WXWebpageObject wxWebpageObject = new WXWebpageObject();
+        wxWebpageObject.webpageUrl = url;
+        WXMediaMessage message = new WXMediaMessage(wxWebpageObject);
+        message.title = title;
+        message.description = des;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] datas = baos.toByteArray();
+        message.thumbData = datas;
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = "newSocial";
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        IWXAPI api = WXAPIFactory.createWXAPI(context, Constants.APP_ID,true);
+        api.registerApp(Constants.APP_ID);
+        api.sendReq(req);
+
+    }
+
     public static void uploadFile(Uri fileUri, final Context context,final BeanConfigCallBack<HeaderImageConfig> callBack) {
         // create upload service client
         final FileUploadService service =
