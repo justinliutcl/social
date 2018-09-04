@@ -54,7 +54,7 @@ public class WePayUser {
 //                        req.extData = "app data"; // optional
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
                     finalApi.sendReq(req);
-                    Toast.makeText(context,"吊起微信",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context,"吊起微信",Toast.LENGTH_SHORT).show();
 
 
                 } catch (Exception e) {

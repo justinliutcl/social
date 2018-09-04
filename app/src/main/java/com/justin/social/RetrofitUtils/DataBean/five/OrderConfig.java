@@ -177,7 +177,7 @@ public class OrderConfig extends BaseConfig implements Serializable{
                 t = ContentKey.ORDER_TYPE_FIVE;
                 break;
         }
-        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+        AliPayUse pay = new AliPayUse( view.getContext(), title, Double.parseDouble(allCharge), t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
             @Override
             public void SuccessCallBack(String mes) {
                 Toast.makeText(view.getContext(),"支付成功",Toast.LENGTH_SHORT).show();

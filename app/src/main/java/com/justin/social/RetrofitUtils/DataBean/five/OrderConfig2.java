@@ -214,7 +214,7 @@ public class OrderConfig2 extends BaseConfig {
                 t = ContentKey.ORDER_TYPE_INVOIC;
                 break;
         }
-        DialogUtils.getDialogUtilInstance().showPayChoseDialog(view.getContext(),title,t,orderNum,0.01);
+        DialogUtils.getDialogUtilInstance().showPayChoseDialog(view.getContext(),title,t,orderNum,Double.parseDouble(allCharge));
 //        AliPayUse pay = new AliPayUse( view.getContext(), title, 0.01, t,orderNum, ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
 //            @Override
 //            public void SuccessCallBack(String mes) {
