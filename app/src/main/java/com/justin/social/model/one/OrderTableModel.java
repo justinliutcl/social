@@ -358,7 +358,7 @@ public class OrderTableModel extends BaseModel {
                                             public void complete(DbUser dbUser) {
                                                 SocialPayActivity.JumpToSocialPay(mContext,
                                                         bean.getData().orderNum,bean.getData().type,bean.getData().allCharge,
-                                                        dbUser.userName,dbUser.idCard,"0",currentTime.get(),cityName,"公积金",
+                                                        dbUser.userName,dbUser.idCard,defaultBase,currentTime.get(),cityName,"公积金",
                                                         personalTax.get(),disabilityInsurance.get(),serviceCharge.get(),overdue_fine.get(),defaultBase
                                                 );
                                             }

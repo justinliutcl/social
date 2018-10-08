@@ -41,6 +41,7 @@ public class SocialPayModel extends BaseModel {
     public ObservableBoolean isSelect;
     public String num,type;
     public ObservableField<String>youhuijuan;
+    public ObservableField<String>jishuType;
     public ObservableField<String>money;
     public String resourMoney;
     YouhuijuanConfig mYouhuijuan;
@@ -53,6 +54,7 @@ public class SocialPayModel extends BaseModel {
         super(context);
         isSelect = new ObservableBoolean(true);
         youhuijuan = new ObservableField<String>("请选择优惠券");
+        jishuType = new ObservableField<String>("社保基数");
         this.num = num;
         this.type = type;
         this.money = new ObservableField<>(money);
@@ -68,7 +70,8 @@ public class SocialPayModel extends BaseModel {
         this.serviceMoney = serviceMoney;
         this.overdel = overdel;
         this.accu = accu;
-
+        if(typeName.equals("公积金"))
+            jishuType.set("公积金基数");
     }
 
     public void onNextClick(View view){

@@ -2,29 +2,14 @@ package com.justin.social.model.one;
 
 import android.content.Context;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
 
-import com.justin.social.R;
-import com.justin.social.RXDbUtils.DB.UserDataObtain;
-import com.justin.social.RXDbUtils.DBbean.DbUser;
-import com.justin.social.RXDbUtils.DBbean.IDataObtain;
 import com.justin.social.RetrofitUtils.DataBean.callBack.BeanConfigCallBack;
 import com.justin.social.RetrofitUtils.DataBean.four.SocialTool;
-import com.justin.social.RetrofitUtils.DataBean.one.ResultConfig;
-import com.justin.social.RetrofitUtils.DataBean.one.SocialMoneyConfig;
 import com.justin.social.RetrofitUtils.HttpConfigManager;
 import com.justin.social.accessor.CommonSettingValue;
-import com.justin.social.activity.SocialPayActivity;
 import com.justin.social.adapter.SocialToolNormalAdapter;
 import com.justin.social.databinding.ActivityOrderDetialTableBinding;
-import com.justin.social.databinding.ActivityOrderTableBinding;
 import com.justin.social.model.base.BaseModel;
-import com.justin.social.utils.AppUtils;
-import com.justin.social.utils.BankUtils;
-import com.justin.social.utils.DialogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
