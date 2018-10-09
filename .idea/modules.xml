@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/social.iml" filepath="$PROJECT_DIR$/social.iml" />
-      <module fileurl="file://D:\workplace4studio\social\social\socialSecurity.iml" filepath="D:\workplace4studio\social\social\socialSecurity.iml" />
     </modules>
   </component>
 </project>
