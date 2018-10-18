@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="上交成功"
+                    android:text="参保成功"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
             </LinearLayout>
